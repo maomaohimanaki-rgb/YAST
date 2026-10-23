@@ -1,0 +1,1082 @@
+{
+ "format_version": "1.8.0",
+ "animations": {
+  "animation.player.attack.positions": {
+   "loop": true,
+   "bones": {
+    "head": {
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.attack.rotations": {
+   "loop": true,
+   "bones": {
+    "body": {
+     "rotation": [
+      0.0,
+      "variable.attack_body_rot_y",
+      0.0
+     ]
+    },
+    "leftarm": {
+     "rotation": [
+      "-(math.sin((1 - math.pow((1 - variable.attack_time), 4)) * 180) * 1.2 + math.sin(variable.attack_time * 180)) * 10.0",
+      0.0,
+      0.0
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? 0.0 : (-(math.sin((1 - math.pow((1 - variable.attack_time), 4)) * 180) * 1.2 + math.sin(variable.attack_time * 180)) * 30.0)",
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? 0.0 : (-(math.sin((1 - math.pow((1 - variable.attack_time), 4)) * 180) ? (-90.0 * math.sin((1 - math.pow((1 - variable.attack_time), 4)) * 180)) + 30.0 : 0.0))",
+      0
+     ]
+    }
+   }
+  },
+  "animation.player.base_pose.upside_down": {
+   "loop": true,
+   "bones": {
+    "waist": {
+     "position": [
+      0.0,
+      8.0,
+      0.0
+     ],
+     "rotation": [
+      0.0,
+      0.0,
+      180.0
+     ]
+    }
+   }
+  },
+  "animation.player.bob": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      0,
+      0,
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? 0.0 : (-((math.cos(query.life_time * 103.2) * 2.865) + 2.865))"
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      0,
+      0,
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? 0.0 : ((math.cos(query.life_time * 103.2) * 2.865) + 2.865)"
+     ]
+    },
+    "rightitem": {
+     "position": [
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? (-24.0 + math.sin(query.life_time * 55.0) * 2.5) : 0.0",
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? (22.0 + math.sin(query.life_time * 90.0) * 1.5) : 0.0",
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? -1.0 : 0.0"
+     ],
+     "rotation": [
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? (math.sin(query.life_time * 48.0) * 6.0 + (query.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:wooden_spear', 'minecraft:stone_spear', 'minecraft:copper_spear', 'minecraft:iron_spear', 'minecraft:golden_spear', 'minecraft:diamond_spear', 'minecraft:netherite_spear')) * (-45) + ((!((query.equipped_item_any_tag('slot.weapon.mainhand', 'minecraft:is_tool', 'minecraft:is_sword', 'minecraft:is_axe', 'minecraft:is_pickaxe', 'minecraft:is_shovel', 'minecraft:is_hoe', 'minecraft:is_spear', 'minecraft:is_mace') || query.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:trident', 'minecraft:mace', 'minecraft:bow', 'minecraft:crossbow', 'minecraft:shield', 'minecraft:stick', 'minecraft:bone', 'minecraft:blaze_rod', 'minecraft:fishing_rod', 'minecraft:carrot_on_a_stick', 'minecraft:warped_fungus_on_a_stick', 'minecraft:brush', 'minecraft:shears', 'minecraft:flint_and_steel'))) && !(query.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:spyglass')))) * (-90)) : 0.0",
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? ((((query.equipped_item_any_tag('slot.weapon.mainhand', 'minecraft:is_tool', 'minecraft:is_sword', 'minecraft:is_axe', 'minecraft:is_pickaxe', 'minecraft:is_shovel', 'minecraft:is_hoe', 'minecraft:is_spear', 'minecraft:is_mace') || query.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:trident', 'minecraft:mace', 'minecraft:bow', 'minecraft:crossbow', 'minecraft:shield', 'minecraft:stick', 'minecraft:bone', 'minecraft:blaze_rod', 'minecraft:fishing_rod', 'minecraft:carrot_on_a_stick', 'minecraft:warped_fungus_on_a_stick', 'minecraft:brush', 'minecraft:shears', 'minecraft:flint_and_steel'))) ? 270.0 : 0.0) + math.sin(query.life_time * 45.0) * 10.0) : 0.0",
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? (math.sin(query.life_time * 63.0) * 6.0) : 0.0"
+     ]
+    }
+   }
+  },
+  "animation.player.bob.stationary": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      0.0,
+      0.0,
+      "-((math.cos(query.life_time * 103.2) * 2.865) + 2.865)"
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      0.0,
+      0.0,
+      "(math.cos(query.life_time * 103.2) * 2.865) + 2.865"
+     ]
+    }
+   }
+  },
+  "animation.player.bow_equipped": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      "-90.0 + query.target_x_rotation - query.is_sneaking * 15.0 - this",
+      "27.5 + query.target_y_rotation",
+      0.0
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      "-90.0 + query.target_x_rotation - query.is_sneaking * 15.0 - this",
+      "-5.0 + query.target_y_rotation",
+      0.0
+     ]
+    },
+    "rightitem": {
+     "rotation": [
+      0.0,
+      -10.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.cape": {
+   "loop": true,
+   "bones": {
+    "cape": {
+     "position": [
+      0.0,
+      "query.get_root_locator_offset('armor_offset.default_neck', 1)",
+      0.0
+     ],
+     "rotation": [
+      "math.lerp(0.0, -126.0, query.cape_flap_amount) - 6.0",
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.crossbow_equipped": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "position": [
+      0.0,
+      0.0,
+      0.5
+     ],
+     "rotation": [
+      "-this - 65.0 - (1.0 - variable.item_use_normalized) * 5.0",
+      "-this + (1.0 - variable.item_use_normalized) * 30.0",
+      "-this + 20.0 + (1.0 - variable.item_use_normalized) * 10.0"
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      "- 60.0 - this",
+      "- 45.0 - this",
+      "- 2.5 - this"
+     ]
+    }
+   }
+  },
+  "animation.player.crossbow_hold": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      "query.is_swimming ? 0.0 : -93.0 + query.target_x_rotation - query.is_sneaking * 27.0 -this",
+      "query.is_swimming ? 0.0 : 42.0 + math.clamp(query.target_y_rotation, -45.0, 5.0) -this",
+      "query.is_sneaking * -15.0"
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      "query.is_swimming ? 0.0 : -93.0 + query.target_x_rotation - query.is_sneaking * 27.0 -this",
+      "query.is_swimming ? 0.0 : math.clamp(query.target_y_rotation, -60.0, 45.0) -this",
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.melee_spear_attack": {
+   "loop": true,
+   "bones": {
+    "body": {
+     "rotation": [
+      0.0,
+      "v.attack_body_rot_y",
+      0.0
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      "v.tp_melee_spear_base_arm_rotation_x + q.target_x_rotation - q.is_sneaking * 27.0 - this + v.tp_melee_spear_attack_arm_rotation_x",
+      "math.clamp(q.target_y_rotation, -60.0, 45.0) - this - v.attack_body_rot_y",
+      0.0
+     ]
+    },
+    "rightitem": {
+     "position": [
+      0.0,
+      -1.5,
+      -1.5
+     ],
+     "rotation": [
+      "v.tp_melee_spear_attack_item_rotation_x",
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.glide": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      "variable.tcos0",
+      0.0,
+      0.0
+     ]
+    },
+    "leftleg": {
+     "rotation": [
+      "variable.tcos0 * -1.4",
+      -0.1,
+      -0.1
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      "-variable.tcos0",
+      0.0,
+      0.0
+     ]
+    },
+    "rightleg": {
+     "rotation": [
+      "variable.tcos0 * 1.4",
+      0.1,
+      0.1
+     ]
+    }
+   }
+  },
+  "animation.player.holding": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? 0.0 : (variable.is_holding_left ? (-this * 0.5 - 18.0) : 0.0)",
+      0,
+      0
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? 0.0 : (variable.is_holding_right ? (-this * 0.5 - 18.0) : 0.0)",
+      0,
+      0
+     ]
+    }
+   }
+  },
+  "animation.player.holding_heavy_core": {
+   "loop": true,
+   "bones": {
+    "rightItem": {
+     "scale": 0.7,
+     "position": [
+      -1.0,
+      0.0,
+      -2.0
+     ]
+    }
+   }
+  },
+  "animation.player.holding.zombie": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.look_at_target.inverted": {
+   "loop": true,
+   "bones": {
+    "head": {
+     "rotation": [
+      "-query.target_x_rotation",
+      "-query.target_y_rotation",
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.look_at_target.ui": {
+   "loop": true,
+   "bones": {
+    "head": {
+     "rotation": [
+      "query.target_x_rotation",
+      "query.target_y_rotation",
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.move.arms": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? 0.0 : (variable.tcos0)",
+      0,
+      0
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? 0.0 : (-variable.tcos0)",
+      0,
+      0
+     ]
+    }
+   }
+  },
+  "animation.player.move.arms.single": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      "-variable.tcos0",
+      0.0,
+      0.0
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      "-variable.tcos0",
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.move.arms.stationary": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      0.0,
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.move.arms.statue_of_liberty": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      "variable.tcos0",
+      0.0,
+      0.0
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      "variable.is_holding_right || math.sin((1 - math.pow((1 - variable.attack_time), 4)) * 180) > 0.0  ? -variable.tcos0 : 180.0",
+      0.0,
+      "variable.is_holding_right || math.sin((1 - math.pow((1 - variable.attack_time), 4)) * 180) > 0.0 ? 0.0 : -17.2"
+     ]
+    }
+   }
+  },
+  "animation.player.move.arms.zombie": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      -90.0,
+      0.0,
+      0.0
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      -90.0,
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.move.legs": {
+   "loop": true,
+   "bones": {
+    "leftleg": {
+     "rotation": [
+      "variable.tcos0 * -1.4",
+      -0.1,
+      -0.1
+     ]
+    },
+    "rightleg": {
+     "rotation": [
+      "variable.tcos0 * 1.4",
+      0.1,
+      0.1
+     ]
+    }
+   }
+  },
+  "animation.player.move.legs.inverted": {
+   "loop": true,
+   "bones": {
+    "leftleg": {
+     "position": [
+      0.0,
+      8.0,
+      0.0
+     ],
+     "rotation": [
+      "variable.tcos0",
+      -0.1,
+      179.9
+     ]
+    },
+    "rightleg": {
+     "position": [
+      0.0,
+      8.0,
+      0.0
+     ],
+     "rotation": [
+      "-variable.tcos0",
+      0.1,
+      180.1
+     ]
+    }
+   }
+  },
+  "animation.player.move.legs.single": {
+   "loop": true,
+   "bones": {
+    "leftleg": {
+     "rotation": [
+      "variable.tcos0",
+      -0.1,
+      -0.1
+     ]
+    },
+    "rightleg": {
+     "rotation": [
+      "variable.tcos0",
+      0.1,
+      0.1
+     ]
+    }
+   }
+  },
+  "animation.player.move.legs.stationary": {
+   "loop": true,
+   "bones": {
+    "leftleg": {
+     "rotation": [
+      0.0,
+      -0.1,
+      -0.1
+     ]
+    },
+    "rightleg": {
+     "rotation": [
+      0.0,
+      0.1,
+      0.1
+     ]
+    }
+   }
+  },
+  "animation.player.riding.root": {
+   "loop": true,
+   "bones": {
+    "root": {
+     "position": [
+      0.0,
+      "variable.riding_y_offset ?? 0.0",
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.riding.arms": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      -36.0,
+      0.0,
+      0.0
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? 0.0 : (-36.0)",
+      0,
+      0
+     ]
+    }
+   }
+  },
+  "animation.player.riding.arms.zombie": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      45.0,
+      0.0,
+      0.0
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      45.0,
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.riding.legs": {
+   "loop": true,
+   "bones": {
+    "leftleg": {
+     "rotation": [
+      "-81.0 - this",
+      "-18.0 - this",
+      "-this"
+     ]
+    },
+    "rightleg": {
+     "rotation": [
+      "-81.0 - this",
+      "18.0 - this",
+      "-this"
+     ]
+    }
+   }
+  },
+  "animation.player.shield_block_main_hand": {
+   "loop": true,
+   "bones": {
+    "rightarm": {
+     "rotation": [
+      -20.0,
+      -30.0,
+      -25.0
+     ]
+    },
+    "rightitem": {
+     "position": [
+      -1.0,
+      -3.0,
+      0.0
+     ],
+     "rotation": [
+      0.0,
+      -60.0,
+      -45.0
+     ]
+    }
+   }
+  },
+  "animation.player.shield_block_off_hand": {
+   "loop": true,
+   "bones": {
+    "leftarm": {
+     "rotation": [
+      -20.0,
+      20.0,
+      20.0
+     ]
+    },
+    "leftitem": {
+     "position": [
+      "1.0 + query.item_is_charged * 1.5",
+      "-3.0 + query.item_is_charged",
+      0.0
+     ],
+     "rotation": [
+      "query.item_is_charged * 30.0",
+      "70.0 - query.item_is_charged * 60.0",
+      "65.0 - query.item_is_charged * 15.0"
+     ]
+    }
+   }
+  },
+  "animation.player.sleeping": {
+   "loop": true,
+   "override_previous_animation": true,
+   "bones": {
+    "head": {
+     "rotation": [
+      "30.0 - this",
+      "-this",
+      "-this"
+     ]
+    },
+    "root": {
+     "position": [
+      "24.0 * math.cos(query.body_y_rotation) * math.cos(query.sleep_rotation) - 24.0 * math.sin(query.body_y_rotation) * math.sin(query.sleep_rotation)",
+      0.0,
+      "24.0 * math.cos(query.body_y_rotation) * math.sin(query.sleep_rotation) + 24.0 * math.sin(query.body_y_rotation) * math.cos(query.sleep_rotation)"
+     ],
+     "rotation": [
+      -90.0,
+      "270.0 - query.sleep_rotation - query.body_y_rotation",
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.sneaking": {
+   "loop": true,
+   "bones": {
+    "body": {
+     "position": [
+      0.0,
+      -2.0,
+      0.0
+     ]
+    },
+    "head": {
+     "position": [
+      0.0,
+      -1.0,
+      0.0
+     ]
+    },
+    "leftarm": {
+     "rotation": [
+      -5.7,
+      0.0,
+      0.0
+     ]
+    },
+    "leftleg": {
+     "rotation": [
+      -28.0,
+      -0.1,
+      -0.1
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      "query.is_item_name_any('slot.armor.chest', 0, 'pa:ey', 'pa:janedoe', 'pa:jessy', 'pa:obito', 'pa:ty', 'pa:ward', 'ysm:wf01_taisho_maid_skin', 'ysm:wf01_taisho_maid_skin_white', 'ysm:wf02_new_year_skin', 'ysm:wf03_astronaut_skin', 'ysm:wf04_kongfu_black', 'ysm:wf04_kongfu_default', 'ysm:wf04_kongfu_default_red', 'ysm:wf04_kongfu_red', 'ysm:wf04_kongfu_red_more', 'ysm:wf04_kongfu_yellow', 'ysm:wf05_magical_blood', 'ysm:wf05_magical_flower', 'ysm:wf05_magical_ice', 'ysm:wf05_magical_magic', 'ysm:wf05_magical_water', 'ysm:wf05_magical_winefox', 'ysm:wf06_hanfu_default', 'ysm:wf07_jk_skin', 'ysm:wf11_salesperson_blue', 'ysm:wf11_salesperson_default', 'ysm:wf12_little_skin', 'ysm:wf13_matured_default', 'ysm:wf14_momo_skin_green', 'ysm:wf14_momo_skin_pink', 'ysm:wf16_tactics_tactics', 'ysm:wf17_mini_texture', 'ysm:wf18_wedding_skin', 'ysm:wf19_nine_tailed_skin', 'ysm:wf19_nine_tailed_skin_white', 'ysm:wf20_survivor_mitao', 'ysm:wf21_saint_skin', 'ysm:wf21_saint_skinblack', 'ysm:wf22_elf_skin') ? 0.0 : (-5.7)",
+      0,
+      0
+     ]
+    },
+    "rightleg": {
+     "rotation": [
+      -28.0,
+      0.1,
+      0.1
+     ]
+    },
+    "root": {
+     "position": [
+      0.0,
+      1.25,
+      9.0
+     ],
+     "rotation": [
+      "28.0 - this",
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.sneaking.inverted": {
+   "loop": true,
+   "bones": {
+    "body": {
+     "position": [
+      0.0,
+      -2.0,
+      0.0
+     ]
+    },
+    "head": {
+     "position": [
+      0.0,
+      -1.0,
+      0.0
+     ],
+     "rotation": [
+      -28.0,
+      0.0,
+      0.0
+     ]
+    },
+    "leftarm": {
+     "rotation": [
+      -5.7,
+      0.0,
+      0.0
+     ]
+    },
+    "leftleg": {
+     "rotation": [
+      28.0,
+      -0.1,
+      -0.1
+     ]
+    },
+    "rightarm": {
+     "rotation": [
+      -5.7,
+      0.0,
+      0.0
+     ]
+    },
+    "rightleg": {
+     "rotation": [
+      28.0,
+      0.1,
+      0.1
+     ]
+    },
+    "root": {
+     "position": [
+      0.0,
+      1.25,
+      -8.0
+     ],
+     "rotation": [
+      "-28.0 - this",
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.swim": {
+   "animation_length": 1.3,
+   "loop": true,
+   "override_previous_animation": true,
+   "bones": {
+    "leftarm": {
+     "rotation": {
+      "0": [
+       0.0,
+       180.0,
+       180.0
+      ],
+      "0.7": [
+       0.0,
+       180.0,
+       287.2
+      ],
+      "1.1": [
+       90.0,
+       180.0,
+       180.0
+      ],
+      "1.3": [
+       0.0,
+       180.0,
+       180.0
+      ]
+     }
+    },
+    "rightarm": {
+     "rotation": {
+      "0": [
+       0.0,
+       180.0,
+       -180.0
+      ],
+      "0.7": [
+       0.0,
+       180.0,
+       -287.2
+      ],
+      "1.1": [
+       90.0,
+       180.0,
+       -180.0
+      ],
+      "1.3": [
+       0.0,
+       180.0,
+       -180.0
+      ]
+     }
+    },
+    "root": {
+     "position": [
+      0.0,
+      "(math.sin(query.target_x_rotation) * 17.0 + 5.0) * variable.swim_amount",
+      "(math.cos(query.target_x_rotation) * 17.0) * variable.swim_amount"
+     ],
+     "rotation": [
+      "variable.swim_amount * (90 + query.target_x_rotation)",
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.swim.no_right_arm": {
+   "animation_length": 1.3,
+   "loop": true,
+   "override_previous_animation": true,
+   "bones": {
+    "leftarm": {
+     "rotation": {
+      "0": [
+       0.0,
+       180.0,
+       180.0
+      ],
+      "0.7": [
+       0.0,
+       180.0,
+       287.2
+      ],
+      "1.1": [
+       90.0,
+       180.0,
+       180.0
+      ],
+      "1.3": [
+       0.0,
+       180.0,
+       180.0
+      ]
+     }
+    },
+    "root": {
+     "position": [
+      0.0,
+      "(math.sin(query.target_x_rotation) * 17.0 + 5.0) * variable.swim_amount",
+      "(math.cos(query.target_x_rotation) * 17.0) * variable.swim_amount"
+     ],
+     "rotation": [
+      "variable.swim_amount * (90 + query.target_x_rotation)",
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.swim.legs": {
+   "loop": true,
+   "override_previous_animation": true,
+   "bones": {
+    "leftleg": {
+     "rotation": [
+      "math.lerp(0.0, math.cos(query.life_time * 390.0 + 180.0) * 17.2, variable.swim_amount)",
+      -0.1,
+      -0.1
+     ]
+    },
+    "rightleg": {
+     "rotation": [
+      "math.lerp(0.0, math.cos(query.life_time * 390.0) * 17.2, variable.swim_amount)",
+      0.1,
+      0.1
+     ]
+    }
+   }
+  },
+  "animation.player.swim.legs.single": {
+   "loop": true,
+   "override_previous_animation": true,
+   "bones": {
+    "leftleg": {
+     "rotation": [
+      "math.lerp(0.0, math.cos(query.life_time * 390.0) * 17.2, variable.swim_amount)",
+      -0.1,
+      -0.1
+     ]
+    },
+    "rightleg": {
+     "rotation": [
+      "math.lerp(0.0, math.cos(query.life_time * 390.0) * 17.2, variable.swim_amount)",
+      0.1,
+      0.1
+     ]
+    }
+   }
+  },
+  "animation.player.swim.legs.stationary": {
+   "loop": true,
+   "bones": {
+    "leftleg": {
+     "rotation": [
+      0.0,
+      -0.1,
+      -0.1
+     ]
+    },
+    "rightleg": {
+     "rotation": [
+      0.0,
+      0.1,
+      0.1
+     ]
+    }
+   }
+  },
+  "animation.player.crawl": {
+   "anim_time_update": "query.modified_distance_moved / 15.0",
+   "animation_length": 1.3,
+   "loop": true,
+   "override_previous_animation": true,
+   "bones": {
+    "leftarm": {
+     "rotation": {
+      "0": [
+       0.0,
+       180.0,
+       180.0
+      ],
+      "0.7": [
+       0.0,
+       180.0,
+       287.2
+      ],
+      "1.1": [
+       90.0,
+       180.0,
+       180.0
+      ],
+      "1.3": [
+       0.0,
+       180.0,
+       180.0
+      ]
+     }
+    },
+    "rightarm": {
+     "rotation": {
+      "0": [
+       0.0,
+       180.0,
+       -180.0
+      ],
+      "0.7": [
+       0.0,
+       180.0,
+       -287.2
+      ],
+      "1.1": [
+       90.0,
+       180.0,
+       -180.0
+      ],
+      "1.3": [
+       0.0,
+       180.0,
+       -180.0
+      ]
+     }
+    },
+    "root": {
+     "position": [
+      0.0,
+      "5.0 * variable.swim_amount",
+      "17.0 * variable.swim_amount"
+     ],
+     "rotation": [
+      "variable.swim_amount * 90",
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.crawl.no_right_arm": {
+   "anim_time_update": "query.modified_distance_moved / 15.0",
+   "animation_length": 1.3,
+   "loop": true,
+   "override_previous_animation": true,
+   "bones": {
+    "leftarm": {
+     "rotation": {
+      "0": [
+       0.0,
+       180.0,
+       180.0
+      ],
+      "0.7": [
+       0.0,
+       180.0,
+       287.2
+      ],
+      "1.1": [
+       90.0,
+       180.0,
+       180.0
+      ],
+      "1.3": [
+       0.0,
+       180.0,
+       180.0
+      ]
+     }
+    },
+    "root": {
+     "position": [
+      0.0,
+      "5.0 * variable.swim_amount",
+      "17.0 * variable.swim_amount"
+     ],
+     "rotation": [
+      "variable.swim_amount * 90",
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "animation.player.crawl.legs": {
+   "loop": true,
+   "override_previous_animation": true,
+   "bones": {
+    "leftleg": {
+     "rotation": [
+      "math.lerp(0.0, math.cos(query.modified_distance_moved * 30.0 + 180.0) * 17.2, variable.swim_amount)",
+      -0.1,
+      -0.1
+     ]
+    },
+    "rightleg": {
+     "rotation": [
+      "math.lerp(0.0, math.cos(query.modified_distance_moved * 30.0) * 17.2, variable.swim_amount)",
+      0.1,
+      0.1
+     ]
+    }
+   }
+  }
+ }
+}

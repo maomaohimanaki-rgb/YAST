@@ -1,0 +1,38 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "pa:obito.player",
+      "item": {
+        "pa:obito": "query.owner_identifier == 'minecraft:player'"
+      },
+      "materials": {
+        "default": "armor",
+        "enchanted": "armor_enchanted"
+      },
+      "textures": {
+        "default": "textures/entity/pamobile/obito",
+        "enchanted": "textures/misc/enchanted_item_glint"
+      },
+      "geometry": {
+        "default": "geometry.obito"
+      },
+      "animations": {
+        "idle": "animation.obito.idle",
+        "walk": "animation.obito.walk",
+        "sit": "animation.obito.sit",
+        "run": "animation.obito.run",
+        "jump": "animation.obito.jump",
+        "control": "controller.animation.pa_janedoe"
+      },
+      "scripts": {
+        "animate": [
+          "control"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.armor"
+      ]
+    }
+  }
+}

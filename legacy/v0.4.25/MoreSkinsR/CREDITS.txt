@@ -1,0 +1,99 @@
+Models/animations/textures converted from the builtin models of Yes Steve Model (YSM) 2.6.5.
+Licenses are the ones declared by each model in its ysm.json; keep attribution.
+Models marked CC BY-NC-SA 4.0 must stay non-commercial and share-alike.
+Models marked 'All Rights Reserved' were included on request but are NOT free to redistribute.
+
+Taishō Maid Wine Fox  [CC BY-NC-SA 4.0]
+   - Perfect Freeze (Original Model)
+   - lucia2048 (Original Animation)
+   - GODZILLA256 (Model)
+   - Baifan Xiaomiao (New Texture)
+   - Blue Rose (UI Texture)
+   - Moran Shiyu (Mask Model)
+   - Maks (Vehicle Model)
+   - Qianmojun (Model)
+   - Huoyushen (Animation)
+   - Yangmao (Sound/Animation)
+
+New Year Wine Fox  [CC BY-NC-SA 4.0]
+   - Zhiban (Model)
+   - lucia2048 (Animation)
+
+Astronaut Wine Fox  [CC BY-NC-SA 4.0]
+   - Perfect Freeze (Model)
+   - lucia2048 (Animation)
+   - GODZILLA256 (Model)
+   - Huoyushen (GUI Animation)
+
+Kongfu Wine Fox  [CC BY-NC-SA 4.0]
+   - GODZILLA256 (Model)
+
+Magical Wine Fox  [CC BY-NC-SA 4.0]
+   - Xinghai Jing (Model/Anim Modified)
+   - 伊蕾娜教代行教皇 (Hat Model)
+
+Hanfu Wine Fox  [CC BY-NC-SA 4.0]
+   - Zhiban (Author)
+
+JK Wine Fox  [CC BY-NC-SA 4.0]
+   - Elaina's Salted Fish (Model)
+   - Qianmojun (Model)
+   - lucia2048 (Animation)
+   - Moran Shiyu (Model)
+
+Salesperson Wine Fox  [CC BY-NC-SA 4.0]
+   - HolyCheese (Texture)
+
+Little Wine Fox  [CC BY-NC-SA 4.0]
+   - Rou_Ti (Model)
+   - Perfect Freeze (Original Model)
+   - lucia2048 (Original Animation)
+
+Matured Wine Fox  [CC BY-NC-SA 4.0]
+   - 受不了老师 (Modifier)
+
+MoMo Wine Fox  [CC BY-NC-SA 4.0]
+   - ZaiLaiJiJinXiaoMoMo (Animation & Texture Modder)
+   - Tex_offcial (Texture Artist)
+
+Tactical Wine Fox  [CC BY-NC-SA 4.0]
+   - Soda Marble Pixel (Derivative Modification)
+   - Perfect Freeze (Original Model)
+   - lucia2048 (Original Animation)
+
+Mini Wine Fox  [All Rights Reserved]
+   - White Bear (Model)
+   - What Duck (Animation)
+
+Wedding Wine Fox  [CC BY-NC-SA 4.0]
+   - GODZILLA256 (Model)
+   - lucia2048 (Animation)
+   - Qianmojun (Model)
+   - Huoyushen (Animation)
+   - Yangmao (Sound/Animation/Modifier)
+   - Blue Rose (Model)
+
+Nine-tailed Wine Fox  [CC BY-NC-SA 4.0]
+   - Perfect Freeze (Original Model)
+   - lucia2048 (Original Animation)
+   - GODZILLA256 (Model)
+   - Baifan Xiaomiao (New Texture)
+   - Blue Rose (UI Texture)
+   - Moran Shiyu (Mask Model)
+   - Maks (Vehicle Model)
+   - Qianmojun (Model)
+   - Huoyushen (Animation)
+   - Yangmao (Sound/Animation)
+   - Xinghaijing (Model & Animation Modifier)
+
+Survivor Wine Fox  [CC BY-NC-SA 4.0]
+   - MeiJianMuRong (Model)
+
+Saintess Wine Fox  [CC BY-NC-SA 4.0]
+   - Xinghai Jing (Design/Animation)
+   - TiKeLa (Wing Model)
+
+Elf Wine Fox  [CC BY-NC-SA 4.0]
+   - Xinghai Jing (Design/Animation/Model)
+   - TiKeLa (Model/Texture)
+

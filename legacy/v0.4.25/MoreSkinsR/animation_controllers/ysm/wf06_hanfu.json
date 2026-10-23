@@ -1,0 +1,441 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.ysm_wf06_hanfu.main": {
+      "initial_state": "idle",
+      "states": {
+        "sleep": {
+          "blend_transition": 0.2,
+          "animations": [
+            "sleep"
+          ],
+          "transitions": [
+            {
+              "elytra_fly": "(q.is_gliding)&&!((q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=1;"
+          ]
+        },
+        "elytra_fly": {
+          "blend_transition": 0.2,
+          "animations": [
+            "elytra_fly"
+          ],
+          "transitions": [
+            {
+              "sleep": "(q.is_sleeping)"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=2;"
+          ]
+        },
+        "swim": {
+          "blend_transition": 0.2,
+          "animations": [
+            "swim"
+          ],
+          "transitions": [
+            {
+              "sleep": "(q.is_sleeping)"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((q.is_sleeping))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=3;"
+          ]
+        },
+        "ride": {
+          "blend_transition": 0.2,
+          "animations": [
+            "ride_pig"
+          ],
+          "transitions": [
+            {
+              "sleep": "(q.is_sleeping)"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=4;"
+          ]
+        },
+        "sneaking": {
+          "blend_transition": 0.2,
+          "animations": [
+            "sneak"
+          ],
+          "transitions": [
+            {
+              "sleep": "(q.is_sleeping)"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=5;"
+          ]
+        },
+        "sneak": {
+          "blend_transition": 0.2,
+          "animations": [
+            "sneaking"
+          ],
+          "transitions": [
+            {
+              "sleep": "(q.is_sleeping)"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=6;"
+          ]
+        },
+        "jump": {
+          "blend_transition": 0.2,
+          "animations": [
+            "jump"
+          ],
+          "transitions": [
+            {
+              "sleep": "(q.is_sleeping)"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "fly": "(q.life_time-v.lg)>0.5&&!q.is_in_water"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "run": "(((q.is_sprinting||q.modified_move_speed>0.95))&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "walk": "((q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "idle": "(!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=7;"
+          ]
+        },
+        "run": {
+          "blend_transition": 0.2,
+          "animations": [
+            "run"
+          ],
+          "transitions": [
+            {
+              "sleep": "(q.is_sleeping)"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "((!q.is_on_ground&&!q.is_in_water)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)))&&(q.life_time-v.lg)>1.0"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=8;"
+          ]
+        },
+        "walk": {
+          "blend_transition": 0.2,
+          "animations": [
+            "walk"
+          ],
+          "transitions": [
+            {
+              "sleep": "(q.is_sleeping)"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "((!q.is_on_ground&&!q.is_in_water)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "idle": "!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=9;"
+          ]
+        },
+        "idle": {
+          "blend_transition": 0.2,
+          "animations": [
+            "idle"
+          ],
+          "transitions": [
+            {
+              "sleep": "(q.is_sleeping)"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=10;"
+          ]
+        },
+        "fly": {
+          "blend_transition": 0.2,
+          "animations": [
+            "fly"
+          ],
+          "transitions": [
+            {
+              "sleep": "(q.is_sleeping)"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "run": "(((q.is_sprinting||q.modified_move_speed>0.95))&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "walk": "((q.modified_move_speed>0.05)&&!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "idle": "(!((q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=11;"
+          ]
+        }
+      }
+    },
+    "controller.animation.ysm_wf06_hanfu.init": {
+      "initial_state": "init",
+      "states": {
+        "init": {
+          "on_entry": [
+            "v.bg=0;v.bone_rot_c=0;v.bone_rot_f=0;v.bone_rot_fx0=0;v.bone_rot_fx0dot=0;v.bone_rot_fxa0=0;v.bone_rot_fxa0dot=0;v.bone_rot_fxa1=0;v.bone_rot_fxa1dot=0;v.bone_rot_k1=0;v.bone_rot_k2=0;v.bone_rot_k3=0;v.bone_rot_r=0;v.bone_rot_x0=0;v.bone_rot_x0dot=0;v.bone_rot_x10=0;v.bone_rot_x10dot=0;v.bone_rot_x1a0=0;v.bone_rot_x1a0dot=0;v.bone_rot_x1a1=0;v.bone_rot_x1a1dot=0;v.bone_rot_x20=0;v.bone_rot_x20dot=0;v.bone_rot_x2a0=0;v.bone_rot_x2a0dot=0;v.bone_rot_x2a1=0;v.bone_rot_x2a1dot=0;v.bone_rot_x30=0;v.bone_rot_x30dot=0;v.bone_rot_x3a0=0;v.bone_rot_x3a0dot=0;v.bone_rot_x3a1=0;v.bone_rot_x3a1dot=0;v.bone_rot_x40=0;v.bone_rot_x40dot=0;v.bone_rot_x4a0=0;v.bone_rot_x4a0dot=0;v.bone_rot_x4a1=0;v.bone_rot_x4a1dot=0;v.bone_rot_x50=0;v.bone_rot_x50dot=0;v.bone_rot_x5a0=0;v.bone_rot_x5a0dot=0;v.bone_rot_x5a1=0;v.bone_rot_x5a1dot=0;v.bone_rot_xa0=0;v.bone_rot_xa0dot=0;v.bone_rot_xa1=0;v.bone_rot_xa1dot=0;v.bone_rot_z0=0;v.bone_rot_z0dot=0;v.bone_rot_z10=0;v.bone_rot_z10dot=0;v.bone_rot_z1a0=0;v.bone_rot_z1a0dot=0;v.bone_rot_z1a1=0;v.bone_rot_z1a1dot=0;v.bone_rot_z20=0;v.bone_rot_z20dot=0;v.bone_rot_z2a0=0;v.bone_rot_z2a0dot=0;v.bone_rot_z2a1=0;v.bone_rot_z2a1dot=0;v.bone_rot_z30=0;v.bone_rot_z30dot=0;v.bone_rot_z3a0=0;v.bone_rot_z3a0dot=0;v.bone_rot_z3a1=0;v.bone_rot_z3a1dot=0;v.bone_rot_z40=0;v.bone_rot_z40dot=0;v.bone_rot_z4a0=0;v.bone_rot_z4a0dot=0;v.bone_rot_z4a1=0;v.bone_rot_z4a1dot=0;v.bone_rot_z50=0;v.bone_rot_z50dot=0;v.bone_rot_z5a0=0;v.bone_rot_z5a0dot=0;v.bone_rot_z5a1=0;v.bone_rot_z5a1dot=0;v.bone_rot_za0=0;v.bone_rot_za0dot=0;v.bone_rot_za1=0;v.bone_rot_za1dot=0;v.breast_k1=0;v.breast_k2=0;v.breast_k3=0;v.breast_pitch0=0;v.breast_pitch0dot=0;v.breast_pitch1=0;v.breast_pitch1dot=0;v.breast_pitch2=0;v.breast_pitch2dot=0;v.breast_pitch3=0;v.breast_pitch3dot=0;v.breast_yaw0=0;v.breast_yaw0dot=0;v.breast_yaw1=0;v.breast_yaw1dot=0;v.bv=0;v.by=0;v.elytra=0;v.exp=0;v.f=0;v.hg=0;v.hv=0;v.hy=0;v.l10_k1=0;v.l10_k2=0;v.l10_k3=0;v.l10_p0=0;v.l10_p0dot=0;v.l10_p1=0;v.l10_p1dot=0;v.l11_k1=0;v.l11_k2=0;v.l11_k3=0;v.l11_p0=0;v.l11_p0dot=0;v.l11_p1=0;v.l11_p1dot=0;v.l12_k1=0;v.l12_k2=0;v.l12_k3=0;v.l12_p0=0;v.l12_p0dot=0;v.l12_p1=0;v.l12_p1dot=0;v.l13_k1=0;v.l13_k2=0;v.l13_k3=0;v.l13_p01y=0;v.l13_p01ydot=0;v.l13_p01z=0;v.l13_p01zdot=0;v.l13_p02y=0;v.l13_p02ydot=0;v.l13_p02z=0;v.l13_p02zdot=0;v.l13_p03y=0;v.l13_p03ydot=0;v.l13_p03z=0;v.l13_p03zdot=0;v.l13_p04y=0;v.l13_p04ydot=0;v.l13_p04z=0;v.l13_p04zdot=0;v.l13_p05y=0;v.l13_p05ydot=0;v.l13_p05z=0;v.l13_p05zdot=0;v.l13_p06y=0;v.l13_p06ydot=0;v.l13_p06z=0;v.l13_p06zdot=0;v.l13_p11y=0;v.l13_p11ydot=0;v.l13_p11z=0;v.l13_p11zdot=0;v.l13_p12y=0;v.l13_p12ydot=0;v.l13_p12z=0;v.l13_p12zdot=0;v.l13_p13y=0;v.l13_p13ydot=0;v.l13_p13z=0;v.l13_p13zdot=0;v.l13_p14y=0;v.l13_p14ydot=0;v.l13_p14z=0;v.l13_p14zdot=0;v.l13_p15y=0;v.l13_p15ydot=0;v.l13_p15z=0;v.l13_p15zdot=0;v.l13_p16y=0;v.l13_p16ydot=0;v.l13_p16z=0;v.l13_p16zdot=0;v.l1_k1=0;v.l1_k2=0;v.l1_k3=0;v.l1_longhair_k1=0;v.l1_longhair_k2=0;v.l1_longhair_k3=0;v.l1_longhair_pitch0=0;v.l1_longhair_pitch0dot=0;v.l1_longhair_pitch1=0;v.l1_longhair_pitch1dot=0;v.l1_longhair_pitch2=0;v.l1_longhair_pitch2dot=0;v.l1_longhair_pitch3=0;v.l1_longhair_pitch3dot=0;v.l1_longhair_roll0=0;v.l1_longhair_roll0dot=0;v.l1_longhair_roll1=0;v.l1_longhair_roll1dot=0;v.l1_p0=0;v.l1_p0dot=0;v.l1_p1=0;v.l1_p1dot=0;v.l2_k1=0;v.l2_k2=0;v.l2_k3=0;v.l2_longhair_k1=0;v.l2_longhair_k2=0;v.l2_longhair_k3=0;v.l2_longhair_pitch0=0;v.l2_longhair_pitch0dot=0;v.l2_longhair_pitch1=0;v.l2_longhair_pitch1dot=0;v.l2_longhair_pitch2=0;v.l2_longhair_pitch2dot=0;v.l2_longhair_pitch3=0;v.l2_longhair_pitch3dot=0;v.l2_longhair_roll0=0;v.l2_longhair_roll0dot=0;v.l2_longhair_roll1=0;v.l2_longhair_roll1dot=0;v.l2_p0=0;v.l2_p0dot=0;v.l2_p1=0;v.l2_p1dot=0;v.l3_k1=0;v.l3_k2=0;v.l3_k3=0;v.l3_longhair_k1=0;v.l3_longhair_k2=0;v.l3_longhair_k3=0;v.l3_longhair_pitch0=0;v.l3_longhair_pitch0dot=0;v.l3_longhair_pitch1=0;v.l3_longhair_pitch1dot=0;v.l3_longhair_pitch2=0;v.l3_longhair_pitch2dot=0;v.l3_longhair_pitch3=0;v.l3_longhair_pitch3dot=0;v.l3_longhair_roll0=0;v.l3_longhair_roll0dot=0;v.l3_longhair_roll1=0;v.l3_longhair_roll1dot=0;v.l3_p0=0;v.l3_p0dot=0;v.l3_p1=0;v.l3_p1dot=0;v.l4_k1=0;v.l4_k2=0;v.l4_k3=0;v.l4_longhair_k1=0;v.l4_longhair_k2=0;v.l4_longhair_k3=0;v.l4_longhair_pitch0=0;v.l4_longhair_pitch0dot=0;v.l4_longhair_pitch1=0;v.l4_longhair_pitch1dot=0;v.l4_longhair_pitch2=0;v.l4_longhair_pitch2dot=0;v.l4_longhair_pitch3=0;v.l4_longhair_pitch3dot=0;v.l4_longhair_roll0=0;v.l4_longhair_roll0dot=0;v.l4_longhair_roll1=0;v.l4_longhair_roll1dot=0;v.l4_p0=0;v.l4_p0dot=0;v.l4_p1=0;v.l4_p1dot=0;v.l5_k1=0;v.l5_k2=0;v.l5_k3=0;v.l5_longhair_k1=0;v.l5_longhair_k2=0;v.l5_longhair_k3=0;v.l5_longhair_pitch0=0;v.l5_longhair_pitch0dot=0;v.l5_longhair_pitch1=0;v.l5_longhair_pitch1dot=0;v.l5_longhair_pitch2=0;v.l5_longhair_pitch2dot=0;v.l5_longhair_pitch3=0;v.l5_longhair_pitch3dot=0;v.l5_longhair_roll0=0;v.l5_longhair_roll0dot=0;v.l5_longhair_roll1=0;v.l5_longhair_roll1dot=0;v.l5_p0=0;v.l5_p0dot=0;v.l5_p1=0;v.l5_p1dot=0;v.l6_k1=0;v.l6_k2=0;v.l6_k3=0;v.l6_p0=0;v.l6_p00=0;v.l6_p00dot=0;v.l6_p0dot=0;v.l6_p1=0;v.l6_p10=0;v.l6_p10dot=0;v.l6_p1dot=0;v.l7_k1=0;v.l7_k2=0;v.l7_k3=0;v.l7_p0=0;v.l7_p0dot=0;v.l7_p1=0;v.l7_p1dot=0;v.l8_k1=0;v.l8_k2=0;v.l8_k3=0;v.l8_p0=0;v.l8_p0dot=0;v.l8_p1=0;v.l8_p1dot=0;v.l9_k1=0;v.l9_k2=0;v.l9_k3=0;v.l9_p0=0;v.l9_p0dot=0;v.l9_p1=0;v.l9_p1dot=0;v.mbreast_c=0;v.mbreast_f=0;v.mbreast_g0=0;v.mbreast_g0dot=0;v.mbreast_ga0=0;v.mbreast_ga0dot=0;v.mbreast_ga1=0;v.mbreast_ga1dot=0;v.mbreast_k1=0;v.mbreast_k2=0;v.mbreast_k3=0;v.mbreast_r=0;v.mbreast_v0=0;v.mbreast_v0dot=0;v.mbreast_va0=0;v.mbreast_va0dot=0;v.mbreast_va1=0;v.mbreast_va1dot=0;v.mbreast_y0=0;v.mbreast_y0dot=0;v.mbreast_ya0=0;v.mbreast_ya0dot=0;v.mbreast_ya1=0;v.mbreast_ya1dot=0;v.mhair_bone_rot_f1x=0;v.mhair_bone_rot_f1xdot=0;v.mhair_bone_rot_m1x=0;v.mhair_bone_rot_m1xdot=0;v.mhair_bone_rot_m1z=0;v.mhair_bone_rot_m1zdot=0;v.mhair_c=0;v.mhair_f=0;v.mhair_g0=0;v.mhair_g0dot=0;v.mhair_ga0=0;v.mhair_ga0dot=0;v.mhair_ga1=0;v.mhair_ga1dot=0;v.mhair_k1=0;v.mhair_k2=0;v.mhair_k3=0;v.mhair_p0=0;v.mhair_p0dot=0;v.mhair_pa0=0;v.mhair_pa0dot=0;v.mhair_pa1=0;v.mhair_pa1dot=0;v.mhair_r=0;v.mhair_v0=0;v.mhair_v0dot=0;v.mhair_va0=0;v.mhair_va0dot=0;v.mhair_va1=0;v.mhair_va1dot=0;v.mhair_y0=0;v.mhair_y0dot=0;v.mhair_ya0=0;v.mhair_ya0dot=0;v.mhair_ya1=0;v.mhair_ya1dot=0;v.mhead_c=0;v.mhead_f=0;v.mhead_g0=0;v.mhead_g0dot=0;v.mhead_ga0=0;v.mhead_ga0dot=0;v.mhead_ga1=0;v.mhead_ga1dot=0;v.mhead_k1=0;v.mhead_k2=0;v.mhead_k3=0;v.mhead_r=0;v.mhead_v0=0;v.mhead_v0dot=0;v.mhead_va0=0;v.mhead_va0dot=0;v.mhead_va1=0;v.mhead_va1dot=0;v.position_c=0;v.position_f=0;v.position_k1=0;v.position_k2=0;v.position_k3=0;v.position_r=0;v.position_x0=0;v.position_x0dot=0;v.position_xa0=0;v.position_xa0dot=0;v.position_xa1=0;v.position_xa1dot=0;v.position_y0=0;v.position_y0dot=0;v.position_ya0=0;v.position_ya0dot=0;v.position_ya1=0;v.position_ya1dot=0;v.position_z0=0;v.position_z0dot=0;v.position_za0=0;v.position_za0dot=0;v.position_za1=0;v.position_za1dot=0;v.s=0;v.tail1y=0;v.tail1z=0;v.tail2y=0;v.tail2z=0;v.tail3y=0;v.tail3z=0;v.tail4y=0;v.tail4z=0;v.tail5y=0;v.tail5z=0;v.tail6y=0;v.tail6z=0;v.time=0;v.yaw0=0;"
+          ]
+        }
+      }
+    }
+  }
+}

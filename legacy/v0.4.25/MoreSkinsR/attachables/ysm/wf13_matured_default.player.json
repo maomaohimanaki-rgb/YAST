@@ -1,0 +1,77 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "ysm:wf13_matured_default.player",
+      "item": {
+        "ysm:wf13_matured_default": "query.owner_identifier == 'minecraft:player'"
+      },
+      "materials": {
+        "default": "armor",
+        "enchanted": "armor_enchanted",
+        "glow": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/entity/ysm/wf13_matured_default",
+        "enchanted": "textures/misc/enchanted_item_glint"
+      },
+      "geometry": {
+        "default": "geometry.ysm_wf13_matured"
+      },
+      "render_controllers": [
+        "controller.render.ysm_glow"
+      ],
+      "animations": {
+        "head_look": "animation.ysm_wf13_matured.head_look",
+        "pre_parallel0": "animation.ysm_wf13_matured.pre_parallel0",
+        "pre_parallel1": "animation.ysm_wf13_matured.pre_parallel1",
+        "pre_parallel2": "animation.ysm_wf13_matured.pre_parallel2",
+        "parallel2": "animation.ysm_wf13_matured.parallel2",
+        "parallel3": "animation.ysm_wf13_matured.parallel3",
+        "parallel4": "animation.ysm_wf13_matured.parallel4",
+        "idle": "animation.ysm_wf13_matured.idle",
+        "walk": "animation.ysm_wf13_matured.walk",
+        "run": "animation.ysm_wf13_matured.run",
+        "jump": "animation.ysm_wf13_matured.jump",
+        "elytra_fly": "animation.ysm_wf13_matured.elytra_fly",
+        "sneak": "animation.ysm_wf13_matured.sneak",
+        "sneaking": "animation.ysm_wf13_matured.sneaking",
+        "swim": "animation.ysm_wf13_matured.swim",
+        "swim_stand": "animation.ysm_wf13_matured.swim_stand",
+        "sit": "animation.ysm_wf13_matured.sit",
+        "ride": "animation.ysm_wf13_matured.ride",
+        "sleep": "animation.ysm_wf13_matured.sleep",
+        "extra1": "animation.ysm_wf13_matured.extra1",
+        "extra2": "animation.ysm_wf13_matured.extra2",
+        "extra3": "animation.ysm_wf13_matured.extra3",
+        "extra4": "animation.ysm_wf13_matured.extra4",
+        "extra5": "animation.ysm_wf13_matured.extra5",
+        "extra6": "animation.ysm_wf13_matured.extra6",
+        "extra7": "animation.ysm_wf13_matured.extra7",
+        "extra0": "animation.ysm_wf13_matured.extra0",
+        "main": "controller.animation.ysm_wf13_matured.main",
+        "ysm_init": "controller.animation.ysm_wf13_matured.init",
+        "fly": "animation.ysm_wf13_matured.fly"
+      },
+      "scripts": {
+        "pre_animation": [
+          "v.yast_action_id=v.yast_action_id??-1;v.yast_action_start=v.yast_action_start??0;",
+          "v.lg=v.lg??0;v.lg=(q.is_on_ground||q.is_in_water)?q.life_time:v.lg;",
+          "v.roaming_a=v.roaming_a??0;v.roaming_b=v.roaming_b??0;v.roaming_umbrella=v.roaming_umbrella??0;v.ysm_extra=v.ysm_extra??0;v.ysm_st=v.ysm_st??0;",
+          "variable.ysm_tex = 0;"
+        ],
+        "animate": [
+          "ysm_init",
+          "head_look",
+          "pre_parallel0",
+          "pre_parallel1",
+          "pre_parallel2",
+          "main",
+          "parallel2",
+          "parallel3",
+          "parallel4"
+        ]
+      }
+    }
+  }
+}

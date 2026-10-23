@@ -1,0 +1,106 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "ysm:wf17_mini_texture.player",
+      "item": {
+        "ysm:wf17_mini_texture": "query.owner_identifier == 'minecraft:player'"
+      },
+      "materials": {
+        "default": "armor",
+        "enchanted": "armor_enchanted"
+      },
+      "textures": {
+        "default": "textures/entity/ysm/wf17_mini_texture",
+        "enchanted": "textures/misc/enchanted_item_glint"
+      },
+      "geometry": {
+        "default": "geometry.ysm_wf17_mini"
+      },
+      "render_controllers": [
+        "controller.render.armor"
+      ],
+      "animations": {
+        "head_look": "animation.ysm_wf17_mini.head_look",
+        "pre_parallel0": "animation.ysm_wf17_mini.pre_parallel0",
+        "pre_parallel1": "animation.ysm_wf17_mini.pre_parallel1",
+        "pre_parallel2": "animation.ysm_wf17_mini.pre_parallel2",
+        "pre_parallel3": "animation.ysm_wf17_mini.pre_parallel3",
+        "pre_parallel4": "animation.ysm_wf17_mini.pre_parallel4",
+        "pre_parallel5": "animation.ysm_wf17_mini.pre_parallel5",
+        "pre_parallel6": "animation.ysm_wf17_mini.pre_parallel6",
+        "pre_parallel7": "animation.ysm_wf17_mini.pre_parallel7",
+        "parallel0": "animation.ysm_wf17_mini.parallel0",
+        "parallel1": "animation.ysm_wf17_mini.parallel1",
+        "parallel2": "animation.ysm_wf17_mini.parallel2",
+        "parallel3": "animation.ysm_wf17_mini.parallel3",
+        "parallel4": "animation.ysm_wf17_mini.parallel4",
+        "parallel5": "animation.ysm_wf17_mini.parallel5",
+        "parallel6": "animation.ysm_wf17_mini.parallel6",
+        "parallel7": "animation.ysm_wf17_mini.parallel7",
+        "idle": "animation.ysm_wf17_mini.idle",
+        "walk": "animation.ysm_wf17_mini.walk",
+        "run": "animation.ysm_wf17_mini.run",
+        "jump": "animation.ysm_wf17_mini.jump",
+        "elytra_fly": "animation.ysm_wf17_mini.elytra_fly",
+        "sneak": "animation.ysm_wf17_mini.sneak",
+        "sneaking": "animation.ysm_wf17_mini.sneaking",
+        "swim": "animation.ysm_wf17_mini.swim",
+        "swim_stand": "animation.ysm_wf17_mini.swim_stand",
+        "sit": "animation.ysm_wf17_mini.sit",
+        "ride": "animation.ysm_wf17_mini.ride",
+        "ride_pig": "animation.ysm_wf17_mini.ride_pig",
+        "sleep": "animation.ysm_wf17_mini.sleep",
+        "2": "animation.ysm_wf17_mini.2",
+        "3": "animation.ysm_wf17_mini.3",
+        "4": "animation.ysm_wf17_mini.4",
+        "5": "animation.ysm_wf17_mini.5",
+        "extra1": "animation.ysm_wf17_mini.extra1",
+        "extra2": "animation.ysm_wf17_mini.extra2",
+        "extra3": "animation.ysm_wf17_mini.extra3",
+        "extra4": "animation.ysm_wf17_mini.extra4",
+        "extra5": "animation.ysm_wf17_mini.extra5",
+        "extra6": "animation.ysm_wf17_mini.extra6",
+        "extra7": "animation.ysm_wf17_mini.extra7",
+        "extra0": "animation.ysm_wf17_mini.extra0",
+        "new": "animation.ysm_wf17_mini.new",
+        "new2": "animation.ysm_wf17_mini.new2",
+        "new3": "animation.ysm_wf17_mini.new3",
+        "new4": "animation.ysm_wf17_mini.new4",
+        "up": "animation.ysm_wf17_mini.up",
+        "main": "controller.animation.ysm_wf17_mini.main",
+        "ysm_init": "controller.animation.ysm_wf17_mini.init",
+        "fly": "animation.ysm_wf17_mini.fly"
+      },
+      "scripts": {
+        "pre_animation": [
+          "v.yast_action_id=v.yast_action_id??-1;v.yast_action_start=v.yast_action_start??0;",
+          "v.lg=v.lg??0;v.lg=(q.is_on_ground||q.is_in_water)?q.life_time:v.lg;",
+          "v.so_1=v.so_1??0;v.so_10=v.so_10??0;v.so_11=v.so_11??0;v.so_12=v.so_12??0;v.so_13=v.so_13??0;v.so_14=v.so_14??0;v.so_15=v.so_15??0;v.so_16=v.so_16??0;v.so_17=v.so_17??0;v.so_18=v.so_18??0;v.so_19=v.so_19??0;v.so_2=v.so_2??0;v.so_20=v.so_20??0;v.so_21=v.so_21??0;v.so_22=v.so_22??0;v.so_23=v.so_23??0;v.so_24=v.so_24??0;v.so_25=v.so_25??0;v.so_26=v.so_26??0;v.so_27=v.so_27??0;v.so_28=v.so_28??0;v.so_29=v.so_29??0;v.so_3=v.so_3??0;v.so_30=v.so_30??0;v.so_31=v.so_31??0;v.so_32=v.so_32??0;v.so_33=v.so_33??0;v.so_34=v.so_34??0;v.so_35=v.so_35??0;v.so_36=v.so_36??0;v.so_4=v.so_4??0;v.so_5=v.so_5??0;v.so_6=v.so_6??0;v.so_7=v.so_7??0;v.so_8=v.so_8??0;v.so_9=v.so_9??0;v.ysm_extra=v.ysm_extra??0;v.ysm_st=v.ysm_st??0;",
+          "variable.ysm_tex = 0;"
+        ],
+        "animate": [
+          "ysm_init",
+          "head_look",
+          "pre_parallel0",
+          "pre_parallel1",
+          "pre_parallel2",
+          "pre_parallel3",
+          "pre_parallel4",
+          "pre_parallel5",
+          "pre_parallel6",
+          "pre_parallel7",
+          "main",
+          "parallel0",
+          "parallel1",
+          "parallel2",
+          "parallel3",
+          "parallel4",
+          "parallel5",
+          "parallel6",
+          "parallel7"
+        ]
+      }
+    }
+  }
+}

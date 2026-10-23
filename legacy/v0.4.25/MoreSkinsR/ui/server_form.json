@@ -1,0 +1,886 @@
+{
+  "namespace": "server_form",
+  "long_form": {
+    "modifications": [
+      {
+        "array_name": "bindings",
+        "operation": "insert_back",
+        "value": [
+          {
+            "binding_name": "#title_text"
+          },
+          {
+            "binding_type": "view",
+            "source_property_name": "((#title_text - 'wheel_form:') = #title_text)",
+            "target_property_name": "#visible"
+          }
+        ]
+      }
+    ]
+  },
+  "wheel_form_panel": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "layer": 10,
+    "bindings": [
+      {
+        "binding_name": "#title_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not ((#title_text - 'wheel_form:') = #title_text))",
+        "target_property_name": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "title": {
+          "type": "label",
+          "text": "#text",
+          "layer": 12,
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            -122
+          ],
+          "bindings": [
+            {
+              "binding_name": "#title_text"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#title_text - 'wheel_form:')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "close@server_form.wheel_close": {
+          "size": [
+            24,
+            24
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            116,
+            -120
+          ],
+          "layer": 12
+        }
+      },
+      {
+        "wheel": {
+          "type": "panel",
+          "size": [
+            330,
+            230
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "controls": [
+            {
+              "outer_1": {
+                "type": "stack_panel",
+                "size": [
+                  56,
+                  24
+                ],
+                "offset": [
+                  0.0,
+                  -80.0
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_sector": {
+                      "$cell_size": [
+                        56,
+                        24
+                      ],
+                      "collection_index": 0,
+                      "$sector_tex": "textures/testmod/sector_o1",
+                      "$sector_off": [
+                        -0.0,
+                        80.0
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outer_2": {
+                "type": "stack_panel",
+                "size": [
+                  56,
+                  24
+                ],
+                "offset": [
+                  56.6,
+                  -56.6
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_sector": {
+                      "$cell_size": [
+                        56,
+                        24
+                      ],
+                      "collection_index": 1,
+                      "$sector_tex": "textures/testmod/sector_o2",
+                      "$sector_off": [
+                        -56.6,
+                        56.6
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outer_3": {
+                "type": "stack_panel",
+                "size": [
+                  56,
+                  24
+                ],
+                "offset": [
+                  80.0,
+                  0.0
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_sector": {
+                      "$cell_size": [
+                        56,
+                        24
+                      ],
+                      "collection_index": 2,
+                      "$sector_tex": "textures/testmod/sector_o3",
+                      "$sector_off": [
+                        -80.0,
+                        -0.0
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outer_4": {
+                "type": "stack_panel",
+                "size": [
+                  56,
+                  24
+                ],
+                "offset": [
+                  56.6,
+                  56.6
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_sector": {
+                      "$cell_size": [
+                        56,
+                        24
+                      ],
+                      "collection_index": 3,
+                      "$sector_tex": "textures/testmod/sector_o4",
+                      "$sector_off": [
+                        -56.6,
+                        -56.6
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outer_5": {
+                "type": "stack_panel",
+                "size": [
+                  56,
+                  24
+                ],
+                "offset": [
+                  0.0,
+                  80.0
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_sector": {
+                      "$cell_size": [
+                        56,
+                        24
+                      ],
+                      "collection_index": 4,
+                      "$sector_tex": "textures/testmod/sector_o5",
+                      "$sector_off": [
+                        -0.0,
+                        -80.0
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outer_6": {
+                "type": "stack_panel",
+                "size": [
+                  56,
+                  24
+                ],
+                "offset": [
+                  -56.6,
+                  56.6
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_sector": {
+                      "$cell_size": [
+                        56,
+                        24
+                      ],
+                      "collection_index": 5,
+                      "$sector_tex": "textures/testmod/sector_o6",
+                      "$sector_off": [
+                        56.6,
+                        -56.6
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outer_7": {
+                "type": "stack_panel",
+                "size": [
+                  56,
+                  24
+                ],
+                "offset": [
+                  -80.0,
+                  0.0
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_sector": {
+                      "$cell_size": [
+                        56,
+                        24
+                      ],
+                      "collection_index": 6,
+                      "$sector_tex": "textures/testmod/sector_o7",
+                      "$sector_off": [
+                        80.0,
+                        -0.0
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "outer_8": {
+                "type": "stack_panel",
+                "size": [
+                  56,
+                  24
+                ],
+                "offset": [
+                  -56.6,
+                  -56.6
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_sector": {
+                      "$cell_size": [
+                        56,
+                        24
+                      ],
+                      "collection_index": 7,
+                      "$sector_tex": "textures/testmod/sector_o8",
+                      "$sector_off": [
+                        56.6,
+                        56.6
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "inner_1": {
+                "type": "stack_panel",
+                "size": [
+                  42,
+                  22
+                ],
+                "offset": [
+                  21.2,
+                  -21.2
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_sector": {
+                      "$cell_size": [
+                        42,
+                        22
+                      ],
+                      "collection_index": 8,
+                      "$sector_tex": "textures/testmod/sector_i1",
+                      "$sector_off": [
+                        -21.2,
+                        21.2
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "inner_2": {
+                "type": "stack_panel",
+                "size": [
+                  42,
+                  22
+                ],
+                "offset": [
+                  21.2,
+                  21.2
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_sector": {
+                      "$cell_size": [
+                        42,
+                        22
+                      ],
+                      "collection_index": 9,
+                      "$sector_tex": "textures/testmod/sector_i2",
+                      "$sector_off": [
+                        -21.2,
+                        -21.2
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "inner_3": {
+                "type": "stack_panel",
+                "size": [
+                  42,
+                  22
+                ],
+                "offset": [
+                  -21.2,
+                  21.2
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_sector": {
+                      "$cell_size": [
+                        42,
+                        22
+                      ],
+                      "collection_index": 10,
+                      "$sector_tex": "textures/testmod/sector_i3",
+                      "$sector_off": [
+                        21.2,
+                        -21.2
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "inner_4": {
+                "type": "stack_panel",
+                "size": [
+                  42,
+                  22
+                ],
+                "offset": [
+                  -21.2,
+                  -21.2
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_sector": {
+                      "$cell_size": [
+                        42,
+                        22
+                      ],
+                      "collection_index": 11,
+                      "$sector_tex": "textures/testmod/sector_i4",
+                      "$sector_off": [
+                        21.2,
+                        21.2
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "back_center": {
+                "type": "stack_panel",
+                "size": [
+                  64,
+                  30
+                ],
+                "offset": [
+                  0,
+                  0
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_sector": {
+                      "$cell_size": [
+                        64,
+                        30
+                      ],
+                      "collection_index": 14,
+                      "$sector_tex": "textures/testmod/sector_center",
+                      "$sector_off": [
+                        0,
+                        0
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "page_prev": {
+                "type": "stack_panel",
+                "size": [
+                  64,
+                  26
+                ],
+                "offset": [
+                  -142,
+                  0
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_pill": {
+                      "$cell_size": [
+                        64,
+                        26
+                      ],
+                      "collection_index": 12
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "page_next": {
+                "type": "stack_panel",
+                "size": [
+                  64,
+                  26
+                ],
+                "offset": [
+                  142,
+                  0
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "collection_name": "form_buttons",
+                "controls": [
+                  {
+                    "cell@server_form.wheel_cell_pill": {
+                      "$cell_size": [
+                        64,
+                        26
+                      ],
+                      "collection_index": 13
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "main_screen_content": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "insert_back",
+        "value": [
+          {
+            "wheel_form_factory": {
+              "type": "panel",
+              "factory": {
+                "name": "server_form_factory",
+                "control_ids": {
+                  "long_form": "@server_form.wheel_form_panel"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "wheel_cell": {
+    "$cell_size|default": [
+      52,
+      22
+    ],
+    "type": "panel",
+    "size": "$cell_size",
+    "controls": [
+      {
+        "btn@server_form.wheel_btn": {
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "txt": {
+          "type": "label",
+          "text": "#form_button_text",
+          "layer": 32,
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "shadow": true,
+          "font_scale_factor": 0.8,
+          "text_alignment": "center",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "size": [
+            "100%",
+            "default"
+          ],
+          "bindings": [
+            {
+              "binding_name": "#form_button_text",
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "wheel_btn": {
+    "$pressed_button_name|default": "button.form_button_click",
+    "type": "button",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "focused"
+      }
+    ],
+    "controls": [
+      {
+        "default": {
+          "type": "panel"
+        }
+      },
+      {
+        "hover": {
+          "type": "panel"
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel"
+        }
+      }
+    ]
+  },
+  "wheel_close": {
+    "type": "button",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.menu_exit",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "button.menu_exit",
+        "mapping_type": "focused"
+      }
+    ],
+    "controls": [
+      {
+        "default": {
+          "type": "panel"
+        }
+      },
+      {
+        "hover": {
+          "type": "panel"
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel"
+        }
+      },
+      {
+        "x": {
+          "type": "label",
+          "text": "X",
+          "layer": 32,
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "shadow": true,
+          "anchor_from": "center",
+          "anchor_to": "center"
+        }
+      }
+    ]
+  },
+  "wheel_cell_sector": {
+    "$cell_size|default": [
+      56,
+      24
+    ],
+    "$sector_tex|default": "textures/testmod/sector_o1",
+    "$sector_off|default": [
+      0,
+      0
+    ],
+    "type": "panel",
+    "size": "$cell_size",
+    "controls": [
+      {
+        "sector": {
+          "type": "image",
+          "texture": "$sector_tex",
+          "size": [
+            220,
+            220
+          ],
+          "offset": "$sector_off",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 1,
+          "bindings": [
+            {
+              "binding_name": "#form_button_text",
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not (#form_button_text = ''))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "btn@server_form.wheel_btn": {
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "txt": {
+          "type": "label",
+          "text": "#form_button_text",
+          "layer": 32,
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "shadow": true,
+          "font_scale_factor": 0.8,
+          "text_alignment": "center",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "size": [
+            "100%",
+            "default"
+          ],
+          "bindings": [
+            {
+              "binding_name": "#form_button_text",
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "wheel_cell_pill": {
+    "$cell_size|default": [
+      64,
+      26
+    ],
+    "type": "panel",
+    "size": "$cell_size",
+    "controls": [
+      {
+        "pill": {
+          "type": "image",
+          "texture": "textures/testmod/page_btn",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 1,
+          "bindings": [
+            {
+              "binding_name": "#form_button_text",
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not (#form_button_text = ''))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "btn@server_form.wheel_btn": {
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "txt": {
+          "type": "label",
+          "text": "#form_button_text",
+          "layer": 32,
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "shadow": true,
+          "font_scale_factor": 0.8,
+          "text_alignment": "center",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "size": [
+            "100%",
+            "default"
+          ],
+          "bindings": [
+            {
+              "binding_name": "#form_button_text",
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

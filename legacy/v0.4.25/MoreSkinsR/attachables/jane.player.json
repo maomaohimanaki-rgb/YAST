@@ -1,0 +1,38 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "pa:janedoe.player",
+      "item": {
+        "pa:janedoe": "query.owner_identifier == 'minecraft:player'"
+      },
+      "materials": {
+        "default": "armor",
+        "enchanted": "armor_enchanted"
+      },
+      "textures": {
+        "default": "textures/entity/pamobile/pa_janedoe",
+        "enchanted": "textures/misc/enchanted_item_glint"
+      },
+      "geometry": {
+        "default": "geometry.pa_janedoe"
+      },
+      "animations": {
+        "idle": "animation.JaneDoe.idle",
+        "walk": "animation.JaneDoe.walk",
+        "sit": "animation.JaneDoe.sit",
+        "run": "animation.JaneDoe.run",
+        "jump": "animation.JaneDoe.run",
+        "control": "controller.animation.pa_janedoe"
+      },
+      "scripts": {
+        "animate": [
+          "control"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.armor"
+      ]
+    }
+  }
+}

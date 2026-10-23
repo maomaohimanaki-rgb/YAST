@@ -1,0 +1,65 @@
+{
+  "format_version": 2,
+  "metadata": {
+    "authors": [
+      "JebusArt",
+      "ShadowDxrk00",
+      "Wine Fox & YSM authors (see CREDITS.txt)"
+    ]
+  },
+  "header": {
+    "description": "YAST mobile 0.4.25 — roda integrada com sinais compatíveis",
+    "name": "YAST mobile BP",
+    "uuid": "a251789e-9d14-4240-b74b-7d44b4b2dd99",
+    "version": [
+      0,
+      4,
+      25
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "1e1b72a3-65e5-4f12-9bf8-c165862ac754",
+      "version": [
+        0,
+        4,
+        25
+      ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "ac7fbc24-6b3e-4eaa-982b-bb1bf160c3a7",
+      "version": [
+        0,
+        4,
+        25
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "4d2f15e9-426f-43e4-ad68-b1db1bc3fd87",
+      "version": [
+        0,
+        4,
+        25
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.0.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.0.0"
+    }
+  ]
+}

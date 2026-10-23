@@ -1,0 +1,38 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "pa:ey.player",
+      "item": {
+        "pa:ey": "query.owner_identifier == 'minecraft:player'"
+      },
+      "materials": {
+        "default": "armor",
+        "enchanted": "armor_enchanted"
+      },
+      "textures": {
+        "default": "textures/entity/pamobile/ey",
+        "enchanted": "textures/misc/enchanted_item_glint"
+      },
+      "geometry": {
+        "default": "geometry.ey"
+      },
+      "animations": {
+        "idle": "animation.ey.idle",
+        "walk": "animation.ey.walk",
+        "sit": "animation.ey.sit",
+        "run": "animation.ey.run",
+        "jump": "animation.ey.jump",
+        "control": "controller.animation.pa_janedoe"
+      },
+      "scripts": {
+        "animate": [
+          "control"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.armor"
+      ]
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "format_version": 2,
+  "metadata": {
+    "authors": [
+      "JebusArt",
+      "ShadowDxrk00",
+      "Wine Fox & YSM authors (see CREDITS.txt)"
+    ]
+  },
+  "header": {
+    "description": "YAST mobile 0.4.25 — controladores de ações corrigidos",
+    "name": "YAST mobile RP",
+    "uuid": "4d2f15e9-426f-43e4-ad68-b1db1bc3fd87",
+    "version": [
+      0,
+      4,
+      25
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "description": "§1MoreSkins Skinpack Addons Beta",
+      "type": "resources",
+      "uuid": "9f8d43bd-82ad-4e29-a8c4-1ca619c8eaa3",
+      "version": [
+        0,
+        4,
+        25
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "a251789e-9d14-4240-b74b-7d44b4b2dd99",
+      "version": [
+        0,
+        4,
+        25
+      ]
+    }
+  ]
+}

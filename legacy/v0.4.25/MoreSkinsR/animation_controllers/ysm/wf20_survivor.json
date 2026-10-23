@@ -1,0 +1,1313 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.ysm_wf20_survivor.main": {
+      "initial_state": "idle",
+      "states": {
+        "sleep": {
+          "blend_transition": 0.2,
+          "animations": [
+            "sleep"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=1;"
+          ]
+        },
+        "elytra_fly": {
+          "blend_transition": 0.2,
+          "animations": [
+            "elytra_fly"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=2;"
+          ]
+        },
+        "swim": {
+          "blend_transition": 0.2,
+          "animations": [
+            "swim"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=3;"
+          ]
+        },
+        "ride": {
+          "blend_transition": 0.2,
+          "animations": [
+            "ride_pig"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=4;"
+          ]
+        },
+        "sneaking": {
+          "blend_transition": 0.2,
+          "animations": [
+            "sneak"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=5;"
+          ]
+        },
+        "sneak": {
+          "blend_transition": 0.2,
+          "animations": [
+            "sneaking"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=6;"
+          ]
+        },
+        "jump": {
+          "blend_transition": 0.2,
+          "animations": [
+            "jump"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "fly": "(q.life_time-v.lg)>0.5&&!q.is_in_water"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "run": "(((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "walk": "((q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "idle": "(!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=7;"
+          ]
+        },
+        "run": {
+          "blend_transition": 0.2,
+          "animations": [
+            "run"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "((!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)))&&(q.life_time-v.lg)>1.0"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=8;"
+          ]
+        },
+        "walk": {
+          "blend_transition": 0.2,
+          "animations": [
+            "walk"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "((!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=9;"
+          ]
+        },
+        "idle": {
+          "blend_transition": 0.2,
+          "animations": [
+            "idle"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=10;"
+          ]
+        },
+        "fly": {
+          "blend_transition": 0.2,
+          "animations": [
+            "fly"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "run": "(((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "walk": "((q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "idle": "(!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=19;"
+          ]
+        },
+        "yast_act_extra0": {
+          "animations": [
+            "extra0"
+          ],
+          "on_entry": [
+            "v.ysm_st=18;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=10;"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            },
+            {
+              "yast_rearm": "(q.life_time-v.yast_action_start)>=3.1&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            }
+          ]
+        },
+        "yast_act_extra1": {
+          "animations": [
+            "extra1"
+          ],
+          "on_entry": [
+            "v.ysm_st=11;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=11;"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            },
+            {
+              "yast_rearm": "(q.life_time-v.yast_action_start)>=1.6&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            }
+          ]
+        },
+        "yast_act_extra2": {
+          "animations": [
+            "extra2"
+          ],
+          "on_entry": [
+            "v.ysm_st=12;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=12;"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            },
+            {
+              "yast_rearm": "(q.life_time-v.yast_action_start)>=8.975&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            }
+          ]
+        },
+        "yast_act_extra3": {
+          "animations": [
+            "extra3"
+          ],
+          "on_entry": [
+            "v.ysm_st=13;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=13;"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            },
+            {
+              "yast_rearm": "(q.life_time-v.yast_action_start)>=1.6&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            }
+          ]
+        },
+        "yast_act_extra4": {
+          "animations": [
+            "extra4"
+          ],
+          "on_entry": [
+            "v.ysm_st=15;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=14;"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            },
+            {
+              "yast_rearm": "(q.life_time-v.yast_action_start)>=4.6&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            }
+          ]
+        },
+        "yast_act_extra5": {
+          "animations": [
+            "extra5"
+          ],
+          "on_entry": [
+            "v.ysm_st=14;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=15;"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            },
+            {
+              "yast_rearm": "(q.life_time-v.yast_action_start)>=3.225&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            }
+          ]
+        },
+        "yast_act_extra6": {
+          "animations": [
+            "extra6"
+          ],
+          "on_entry": [
+            "v.ysm_st=16;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=16;"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra7": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra7')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            },
+            {
+              "yast_rearm": "(q.life_time-v.yast_action_start)>=4.6&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0', 'yast:signal_a_wf20_extra1', 'yast:signal_a_wf20_extra2', 'yast:signal_a_wf20_extra3', 'yast:signal_a_wf20_extra4', 'yast:signal_a_wf20_extra5', 'yast:signal_a_wf20_extra6', 'yast:signal_a_wf20_extra7', 'yast:signal_x_wf20_stop'))"
+            }
+          ]
+        },
+        "yast_act_extra7": {
+          "animations": [
+            "extra7"
+          ],
+          "on_entry": [
+            "v.ysm_st=17;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=17;"
+          ],
+          "transitions": [
+            {
+              "yast_act_extra0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra0')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_extra1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra1')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_extra2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra2')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_extra3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra3')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_extra4": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra4')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_extra5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra5')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_extra6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf20_extra6')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf20_stop')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            }
+          ]
+        },
+        "yast_reset": {
+          "on_entry": [
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        },
+        "yast_rearm": {
+          "on_entry": [
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.ysm_wf20_survivor.init": {
+      "initial_state": "init",
+      "states": {
+        "init": {
+          "on_entry": [
+            "v.bg=0;v.bv=0;v.by=0;v.hg=0;v.hv=0;v.l10_c=0;v.l10_f=0;v.l10_k1=0;v.l10_k2=0;v.l10_k3=0;v.l10_p0=0;v.l10_p0dot=0;v.l10_p1=0;v.l10_p1dot=0;v.l10_r=0;v.l11_c=0;v.l11_f=0;v.l11_k1=0;v.l11_k2=0;v.l11_k3=0;v.l11_p0=0;v.l11_p0dot=0;v.l11_p1=0;v.l11_p1dot=0;v.l11_r=0;v.l12_c=0;v.l12_f=0;v.l12_k1=0;v.l12_k2=0;v.l12_k3=0;v.l12_p0=0;v.l12_p0dot=0;v.l12_p1=0;v.l12_p1dot=0;v.l12_r=0;v.l13_c=0;v.l13_f=0;v.l13_k1=0;v.l13_k2=0;v.l13_k3=0;v.l13_p01y=0;v.l13_p01ydot=0;v.l13_p01z=0;v.l13_p01zdot=0;v.l13_p02y=0;v.l13_p02ydot=0;v.l13_p02z=0;v.l13_p02zdot=0;v.l13_p03y=0;v.l13_p03ydot=0;v.l13_p03z=0;v.l13_p03zdot=0;v.l13_p04y=0;v.l13_p04ydot=0;v.l13_p04z=0;v.l13_p04zdot=0;v.l13_p05y=0;v.l13_p05ydot=0;v.l13_p05z=0;v.l13_p05zdot=0;v.l13_p06y=0;v.l13_p06ydot=0;v.l13_p06z=0;v.l13_p06zdot=0;v.l13_p11y=0;v.l13_p11ydot=0;v.l13_p11z=0;v.l13_p11zdot=0;v.l13_p12y=0;v.l13_p12ydot=0;v.l13_p12z=0;v.l13_p12zdot=0;v.l13_p13y=0;v.l13_p13ydot=0;v.l13_p13z=0;v.l13_p13zdot=0;v.l13_p14y=0;v.l13_p14ydot=0;v.l13_p14z=0;v.l13_p14zdot=0;v.l13_p15y=0;v.l13_p15ydot=0;v.l13_p15z=0;v.l13_p15zdot=0;v.l13_p16y=0;v.l13_p16ydot=0;v.l13_p16z=0;v.l13_p16zdot=0;v.l13_r=0;v.l1_c=0;v.l1_f=0;v.l1_k1=0;v.l1_k2=0;v.l1_k3=0;v.l1_p0=0;v.l1_p0dot=0;v.l1_p1=0;v.l1_p1dot=0;v.l1_r=0;v.l2_c=0;v.l2_f=0;v.l2_k1=0;v.l2_k2=0;v.l2_k3=0;v.l2_p0=0;v.l2_p0dot=0;v.l2_p1=0;v.l2_p1dot=0;v.l2_r=0;v.l3_c=0;v.l3_f=0;v.l3_k1=0;v.l3_k2=0;v.l3_k3=0;v.l3_p0=0;v.l3_p0dot=0;v.l3_p1=0;v.l3_p1dot=0;v.l3_r=0;v.l4_c=0;v.l4_f=0;v.l4_k1=0;v.l4_k2=0;v.l4_k3=0;v.l4_p0=0;v.l4_p0dot=0;v.l4_p1=0;v.l4_p1dot=0;v.l4_r=0;v.l5_c=0;v.l5_f=0;v.l5_k1=0;v.l5_k2=0;v.l5_k3=0;v.l5_p0=0;v.l5_p0dot=0;v.l5_p1=0;v.l5_p1dot=0;v.l5_r=0;v.l6_c=0;v.l6_f=0;v.l6_k1=0;v.l6_k2=0;v.l6_k3=0;v.l6_p0=0;v.l6_p00=0;v.l6_p00dot=0;v.l6_p0dot=0;v.l6_p1=0;v.l6_p10=0;v.l6_p10dot=0;v.l6_p1dot=0;v.l6_r=0;v.l7_c=0;v.l7_f=0;v.l7_k1=0;v.l7_k2=0;v.l7_k3=0;v.l7_p0=0;v.l7_p0dot=0;v.l7_p1=0;v.l7_p1dot=0;v.l7_r=0;v.l8_c=0;v.l8_f=0;v.l8_k1=0;v.l8_k2=0;v.l8_k3=0;v.l8_p0=0;v.l8_p0dot=0;v.l8_p1=0;v.l8_p1dot=0;v.l8_r=0;v.l9_c=0;v.l9_f=0;v.l9_k1=0;v.l9_k2=0;v.l9_k3=0;v.l9_p0=0;v.l9_p0dot=0;v.l9_p1=0;v.l9_p1dot=0;v.l9_r=0;v.roaming_a=0;v.roaming_b=0;v.so_1=0;v.so_10=0;v.so_11=0;v.so_12=0;v.so_2=0;v.so_3=0;v.so_4=0;v.so_5=0;v.so_6=0;v.so_7=0;v.so_8=0;v.so_9=0;v.tail1y=0;v.tail1z=0;v.tail2y=0;v.tail2z=0;v.tail3y=0;v.tail3z=0;v.tail4y=0;v.tail4z=0;v.tail5y=0;v.tail5z=0;v.tail6y=0;v.tail6z=0;v.ysm_extra=0;"
+          ]
+        }
+      }
+    }
+  }
+}
