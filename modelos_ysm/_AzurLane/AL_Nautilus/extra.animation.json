@@ -1,0 +1,144 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"extra6": {
+			"loop": "hold_on_last_frame",
+			"bones": {
+				"Root": {
+					"rotation": [-2.60661, -7.38861, -2.50021]
+				},
+				"AllHead": {
+					"rotation": [5, 7.5, 0]
+				},
+				"bone30": {
+					"position": [0, 0, -0.925],
+					"scale": 1
+				},
+				"RightEyesBase3": {
+					"position": [-0.3, 0, 0]
+				},
+				"RightArm": {
+					"rotation": [-180, 60, -157.5]
+				},
+				"RightForeArm": {
+					"rotation": [0, 0, -110]
+				},
+				"LeftArm": {
+					"rotation": [-168.45194, 2.66493, 74.76048]
+				},
+				"LeftForeArm": {
+					"rotation": [0, 0, 72.5]
+				},
+				"RightLeg": {
+					"rotation": [-12.2563, 0.67075, 4.96082]
+				},
+				"RightLowerLeg": {
+					"rotation": [27.5, 0, 0]
+				},
+				"RightFoot": {
+					"rotation": [15, 0, 0]
+				},
+				"LeftLowerLeg": {
+					"rotation": [20, 0, 0]
+				},
+				"sha": {
+					"rotation": [16.4199, 64.41689, 7.67733],
+					"position": [16.3, -43, 0]
+				},
+				"shen": {
+					"rotation": [15.08453, -7.38542, -1.30962]
+				},
+				"weiba": {
+					"rotation": [15.08453, -7.38542, -1.30962]
+				},
+				"Head": {
+					"rotation": [5, 0, 2.5]
+				},
+				"bone20": {
+					"position": [0, 0, 2],
+					"scale": 0
+				},
+				"bone49": {
+					"position": [0, 0, -0.4]
+				}
+			}
+		},
+		"extra7": {
+			"loop": true,
+			"bones": {
+				"Head": {
+					"rotation": [12.5, 0, 0],
+					"position": [0, 0.3, 0.5]
+				},
+				"RightArm": {
+					"rotation": [-177.88249, 4.53051, -52.41623]
+				},
+				"RightForeArm": {
+					"rotation": [0, 0, -20]
+				},
+				"LeftArm": {
+					"rotation": [-178.84505, -2.21738, -307.52235]
+				},
+				"LeftForeArm": {
+					"rotation": [0, 0, 12.5]
+				},
+				"sha": {
+					"rotation": [0, 77.5, 0],
+					"position": [-18, 38.4, 0]
+				},
+				"tou": {
+					"rotation": [-5, 0, 0]
+				},
+				"DownBody": {
+					"rotation": [-27.5, 0, 0]
+				},
+				"LeftLeg": {
+					"rotation": [22.5, 0, 0]
+				},
+				"bone13": {
+					"rotation": [-11, 0, 0]
+				},
+				"langhua": {
+					"scale": 0
+				}
+			}
+		},
+		"extra0": {
+			"loop": "hold_on_last_frame",
+			"bones": {
+				"Root": {
+					"rotation": [5, 0, 0],
+					"position": [0, 4.3, 0]
+				},
+				"UpBody": {
+					"rotation": [10, 0, 0]
+				},
+				"Head": {
+					"rotation": [-22.5, 0, 0]
+				},
+				"LeftArm": {
+					"rotation": [-27.5, 0, 0]
+				},
+				"RightLeg": {
+					"rotation": [0, 0, 0]
+				},
+				"RightLowerLeg": {
+					"rotation": [37.5, 0, 0]
+				},
+				"RightFoot": {
+					"rotation": [-22.5, 0, 0]
+				},
+				"LeftLeg": {
+					"rotation": [-67.61414, 6.71577, -7.41447]
+				},
+				"LeftLowerLeg": {
+					"rotation": [60, 0, 0]
+				},
+				"sha": {
+					"position": [-21, -8, 0]
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

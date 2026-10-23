@@ -1,0 +1,100 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.unknown.new": {
+			"loop": true,
+			"bones": {
+				"AllBody": {
+					"position": [0, 0.0375, 0]
+				},
+				"LeftLeg": {
+					"rotation": [0, 2.5, 0],
+					"scale": [0.9, 1, 1]
+				},
+				"LeftLowerLeg": {
+					"rotation": [4.65993, 3.21132, -12.08681]
+				},
+				"LeftFoot": {
+					"rotation": [-0.05318, 11.57823, 8.11325]
+				},
+				"RightLeg": {
+					"rotation": [-2.5, -7.5, -2.5],
+					"scale": [0.9, 1, 1]
+				},
+				"RightLowerLeg": {
+					"rotation": [12.75353, -8.95611, 0.94992]
+				},
+				"RightFoot": {
+					"rotation": [-2.5, 0, 0]
+				},
+				"UpBody": {
+					"rotation": [-6.10693, -12.45167, 5.12076]
+				},
+				"skirt": {
+					"rotation": [0, 4, 0]
+				},
+				"Upper_body": {
+					"rotation": [0.21865, -4.99523, -7.50954]
+				},
+				"LeftArm": {
+					"rotation": [-10.10725, -0.48686, 4.98875],
+					"scale": [0.9, 1, 0.9]
+				},
+				"LeftForeArm": {
+					"rotation": [15, 0, 0]
+				},
+				"zLeftHandLocator": {
+					"rotation": [0, 0, -17.5]
+				},
+				"palm_left": {
+					"rotation": [0, 0, -37.5]
+				},
+				"FingerLeft": {
+					"rotation": [0, 0, -10]
+				},
+				"RightArm": {
+					"rotation": [5.81597, -28.78696, 10.45308],
+					"position": [0, 1, 0],
+					"scale": [0.9, 1, 0.9]
+				},
+				"RightForeArm": {
+					"rotation": [-30.18563, -18.0585, -14.48852]
+				},
+				"palm_right": {
+					"rotation": [0, 0, -67]
+				},
+				"Head": {
+					"rotation": [12.04029, 15.9975, 0.28673],
+					"position": [0, 0.3625, 0]
+				},
+				"hair2_1": {
+					"rotation": [-12.5, 0, 0]
+				},
+				"hair2_3": {
+					"rotation": [-14.93839, 1.79012, 4.66916]
+				},
+				"hair3": {
+					"rotation": [0, -5, 0]
+				},
+				"hair3_1": {
+					"rotation": [-7.5, 0, 0]
+				},
+				"hair4": {
+					"rotation": [2.5, 0, -12.5]
+				},
+				"hair5": {
+					"rotation": [2.5, 0, 0]
+				},
+				"hair6": {
+					"rotation": [-10, 0, 0]
+				},
+				"RightEyesBase": {
+					"position": [0.175, 0, 0]
+				},
+				"LeftEyesBase": {
+					"position": [0.4, 0, 0]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,61 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "LeftArm",
+					"pivot": [3, 22.5, 0.5]
+				},
+				{
+					"name": "LeftForeArm",
+					"parent": "LeftArm",
+					"pivot": [3, 25.6, 0.5],
+					"cubes": [
+						{"origin": [2, 16.5, -0.5], "size": [2, 10, 2], "uv": [42, 5]}
+					]
+				},
+				{
+					"name": "LeftHand",
+					"parent": "LeftForeArm",
+					"pivot": [3, 17.6, 0.5]
+				},
+				{
+					"name": "LeftHandLocator",
+					"parent": "LeftHand",
+					"pivot": [3, 17.6, 0.5]
+				},
+				{
+					"name": "RightArm",
+					"pivot": [-3, 22.5, 0.5]
+				},
+				{
+					"name": "RightForeArm",
+					"parent": "RightArm",
+					"pivot": [-3, 25.6, 0.5],
+					"cubes": [
+						{"origin": [-4, 16.5, -0.5], "size": [2, 10, 2], "uv": [24, 43]}
+					]
+				},
+				{
+					"name": "RightHand",
+					"parent": "RightForeArm",
+					"pivot": [-3, 17.6, 0.5]
+				},
+				{
+					"name": "RightHandLocator",
+					"parent": "RightHand",
+					"pivot": [-3, 17.6, 0.5]
+				}
+			]
+		}
+	]
+}

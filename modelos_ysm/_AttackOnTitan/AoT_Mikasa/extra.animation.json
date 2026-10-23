@@ -1,0 +1,46 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"extra0": {
+			"loop": true,
+			"animation_length": 66,
+			"override_previous_animation": true,
+			"bones": {
+				"RightArm": {
+					"rotation": [-50, 0, 0]
+				},
+				"RightForeArm": {
+					"rotation": [-18.5051, -80.99406, -56.16697]
+				},
+				"LeftArm": {
+					"rotation": [51.47932, 42.855, 53.9189]
+				},
+				"LeftForeArm": {
+					"rotation": [-52.5, 0, 0]
+				},
+				"RightHand": {
+					"rotation": {
+						"0.0": [-71.73714, 15.95107, -22.45156],
+						"3.24": [-71.73714, 15.95107, -22.45156]
+					}
+				},
+				"RightHandLocator": {
+					"scale": 0
+				},
+				"Right_sword": {
+					"scale": 0
+				},
+				"LeftHand": {
+					"rotation": [0, -15, 25]
+				},
+				"LeftHandLocator": {
+					"scale": 0
+				},
+				"Left_sword": {
+					"scale": 0
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

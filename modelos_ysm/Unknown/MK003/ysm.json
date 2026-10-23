@@ -1,0 +1,53 @@
+{
+  "spec": 2,
+  "metadata": {
+    "name": "测试模型MK003",
+    "tips": "测试模型MK003，因为是练手作而不是该形象计划中的最终效果，因此暂时没有命名，之后作者会随技术力进步而优化该模型，完整形象敬请期待",
+    "license": {
+      "type": "CC BY-NC-SA 4.0"
+    },
+    "authors": [
+      {
+        "name": "准尉Werner",
+        "role": "模型",
+        "avatar": "avatar/ZW.png",
+        "contact": {
+          "Bilibili": "https://space.bilibili.com/23427031"
+        },
+        "comment": "已有之事，后必再有；已行之事，后必再行。"
+      }
+    ]
+  },
+  "properties": {
+    "height_scale": 0.7,
+    "width_scale": 0.7,
+    "extra_animation": {
+      "extra1": "",
+      "extra2": "",
+      "extra3": "",
+      "extra4": "",
+      "extra5": "",
+      "extra6": "",
+      "extra7": ""
+    },
+    "preview_animation": "idle",
+    "default_texture": "default",
+    "render_layers_first": false,
+    "free": true
+  },
+  "files": {
+    "player": {
+      "model": {
+        "main": "models/main.json",
+        "arm": "models/arm.json"  
+      },
+      "animation": {
+        "main": "animations/main.animation.json",
+        "arm": "animations/arm.animation.json"  
+      },
+      "texture": [
+        "textures/texture.png"
+      ]
+    }
+  }
+}

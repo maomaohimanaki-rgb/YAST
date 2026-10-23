@@ -1,0 +1,52 @@
+{
+	"format_version": "1.19.0",
+	"animation_controllers": {
+		"player.pre_parallel_1": {
+			"initial_state": "缓冲",
+			"states": {
+				"缓冲": {
+					"transitions": [
+						{"跳跃": "ctrl.jump&&query.vertical_speed>0&&!q.is_riding"},
+						{"飞行": "ctrl.fly"},
+						{"跳跃下坠": "ctrl.jump&&query.vertical_speed<0&&!q.is_riding"}
+					],
+					"blend_transition": 0.1
+				},
+				"跳跃": {
+					"animations": ["jump_UP"],
+					"transitions": [
+						{"跳跃下坠": "ctrl.jump&&q.all_animations_finished"},
+						{"飞行": "ctrl.fly"},
+						{"跳跃缓冲": "!ctrl.jump"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"跳跃下坠": {
+					"animations": ["jump_Fall"],
+					"transitions": [
+						{"跳跃缓冲": "!ctrl.jump"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"飞行": {
+					"animations": ["fly"],
+					"transitions": [
+						{"跳跃下坠": "!ctrl.fly"}
+					],
+					"blend_transition": 0.1
+				},
+				"跳跃缓冲": {
+					"animations": ["idle"],
+					"transitions": [
+						{"缓冲": "!ctrl.jump&&q.all_animations_finished"},
+						{"跳跃": "ctrl.jump"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				}
+			}
+		}
+	}
+}

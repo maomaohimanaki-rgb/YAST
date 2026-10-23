@@ -1,0 +1,739 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"ground": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"ysmGlow_explosion": {
+					"scale": {
+						"0.0": {
+							"post": [1, 1, 1],
+							"lerp_mode": "catmullrom"
+						},
+						"0.125": {
+							"post": [7, 7, 7],
+							"lerp_mode": "catmullrom"
+						},
+						"0.375": {
+							"post": [9, 9, 9],
+							"lerp_mode": "catmullrom"
+						},
+						"0.5": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						}
+					}
+				},
+				"ysmGlow_explosion_frame1": {
+					"scale": {
+						"0.5": [1, 1, 1],
+						"0.625": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_explosion_frame2": {
+					"scale": {
+						"0.5833": [0, 0, 0],
+						"0.625": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.75": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_explosion_frame3": {
+					"scale": {
+						"0.7083": [0, 0, 0],
+						"0.75": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.875": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_explosion_frame4": {
+					"scale": {
+						"0.8333": [0, 0, 0],
+						"0.875": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"1.0": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"explosion": {
+					"scale": {
+						"0.5": {
+							"pre": [0, 0, 0],
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.5833": {
+							"post": [1.5, 1.5, 1.5],
+							"lerp_mode": "catmullrom"
+						},
+						"1.0": {
+							"post": [2.5, 2.5, 2.5],
+							"lerp_mode": "catmullrom"
+						}
+					}
+				},
+				"ysmGlow_thunder1": {
+					"scale": {
+						"0.4583": [0, 0, 0],
+						"0.5": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.5833": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_thunder2": {
+					"scale": {
+						"0.5417": [0, 0, 0],
+						"0.5833": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.6667": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_thunder3": {
+					"scale": {
+						"0.6667": [0, 0, 0],
+						"0.7083": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.7917": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_thunder5": {
+					"scale": {
+						"0.8333": [0, 0, 0],
+						"0.875": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"1.0": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_thunder4": {
+					"scale": {
+						"0.75": [0, 0, 0],
+						"0.7917": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.875": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_thunder6": {
+					"scale": {
+						"0.375": [0, 0, 0],
+						"0.4167": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.5": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_thunder7": {
+					"scale": {
+						"0.4583": [0, 0, 0],
+						"0.5": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.5833": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_thunder8": {
+					"scale": {
+						"0.5833": [0, 0, 0],
+						"0.625": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.7083": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_thunder9": {
+					"scale": {
+						"0.6667": [0, 0, 0],
+						"0.7083": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.7917": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_thunder10": {
+					"scale": {
+						"0.75": [0, 0, 0],
+						"0.7917": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.9167": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"thunder2": {
+					"rotation": {
+						"0.0": [-209.28582, 8.81391, -208.272],
+						"0.5417": [-209.28582, 8.81391, -208.272]
+					},
+					"position": {
+						"0.0": [-10.1, -7, -4.2],
+						"0.5417": [-10.1, -7, -4.2]
+					}
+				},
+				"thunder": {
+					"rotation": {
+						"0.0": [11, 0, -13],
+						"0.5417": [11, 0, -13]
+					},
+					"position": {
+						"0.0": [12, 7, 0],
+						"0.5417": [12, 7, 0]
+					}
+				}
+			}
+		},
+		"air": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"ysmGlow_flyingeffect1": {
+					"scale": {
+						"0.0": [1, 1, 1],
+						"0.125": {"pre": [1, 1, 1], "post": [0, 0, 0]},
+						"0.5": {"pre": [0, 0, 0], "post": [1, 1, 1]}
+					}
+				},
+				"ysmGlow_flyingeffect2": {
+					"scale": {
+						"0.0833": [0, 0, 0],
+						"0.125": {"pre": [0, 0, 0], "post": [1, 1, 1]},
+						"0.25": {"pre": [1, 1, 1], "post": [0, 0, 0]}
+					}
+				},
+				"ysmGlow_flyingeffect3": {
+					"scale": {
+						"0.2083": [0, 0, 0],
+						"0.25": {"pre": [0, 0, 0], "post": [1, 1, 1]},
+						"0.375": {"pre": [1, 1, 1], "post": [0, 0, 0]}
+					}
+				},
+				"ysmGlow_flyingeffect4": {
+					"scale": {
+						"0.3333": [0, 0, 0],
+						"0.375": {"pre": [0, 0, 0], "post": [1, 1, 1]},
+						"0.5": {"pre": [1, 1, 1], "post": [0, 0, 0]}
+					}
+				},
+				"ysmGlow_pokong1": {
+					"scale": {
+						"0.0": [1, 1, 1],
+						"0.0833": {"pre": [1, 1, 1], "post": [0, 0, 0]},
+						"0.4583": {"pre": [0, 0, 0], "post": [1, 1, 1]},
+						"0.5": [1, 1, 1]
+					}
+				},
+				"ysmGlow_pokong2": {
+					"scale": {
+						"0.0417": [0, 0, 0],
+						"0.0833": {"pre": [0, 0, 0], "post": [1, 1, 1]},
+						"0.25": {"pre": [1, 1, 1], "post": [0, 0, 0]}
+					}
+				},
+				"ysmGlow_pokong3": {
+					"scale": {
+						"0.2083": [0, 0, 0],
+						"0.25": {"pre": [0, 0, 0], "post": [1, 1, 1]},
+						"0.4583": {"pre": [1, 1, 1], "post": [0, 0, 0]}
+					}
+				},
+				"ysmGlow_explosion": {
+					"scale": 0
+				},
+				"explosion_": {
+					"scale": 0
+				},
+				"thunder": {
+					"scale": 0
+				},
+				"thunder2": {
+					"scale": 0
+				},
+				"smoke": {
+					"scale": 0
+				},
+				"smoke5": {
+					"scale": 0
+				}
+			},
+			"timeline": {
+				"0.0": "ysm.particle('minecraft:soul_fire_flame',0,0,0,0.2,0.2,0.2,0.05,1,20);",
+				"0.125": "ysm.particle('minecraft:soul_fire_flame',0,0,0,0.2,0.2,0.2,0.05,1,20);",
+				"0.25": "ysm.particle('minecraft:soul_fire_flame',0,0,0,0.2,0.2,0.2,0.05,1,20);",
+				"0.375": "ysm.particle('minecraft:soul_fire_flame',0,0,0,0.2,0.2,0.2,0.075,3,20);"
+			}
+		},
+		"fire": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"ysmGlow_flyingeffect1": {
+					"scale": {
+						"0.0": [1, 1, 1],
+						"0.125": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						},
+						"0.5": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						}
+					}
+				},
+				"ysmGlow_flyingeffect2": {
+					"scale": {
+						"0.0833": [0, 0, 0],
+						"0.125": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.25": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_flyingeffect3": {
+					"scale": {
+						"0.2083": [0, 0, 0],
+						"0.25": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.375": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_flyingeffect4": {
+					"scale": {
+						"0.3333": [0, 0, 0],
+						"0.375": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.5": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_pokong1": {
+					"scale": {
+						"0.0": [1, 1, 1],
+						"0.0833": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						},
+						"0.4583": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.5": [1, 1, 1]
+					}
+				},
+				"ysmGlow_pokong2": {
+					"scale": {
+						"0.0417": [0, 0, 0],
+						"0.0833": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.25": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_pokong3": {
+					"scale": {
+						"0.2083": [0, 0, 0],
+						"0.25": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.4583": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_explosion": {
+					"scale": 0
+				},
+				"explosion_": {
+					"scale": 0
+				},
+				"thunder": {
+					"scale": 0
+				},
+				"thunder2": {
+					"scale": 0
+				},
+				"smoke": {
+					"scale": 0
+				},
+				"smoke5": {
+					"scale": 0
+				}
+			}
+		},
+		"water": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"ysmGlow_flyingeffect1": {
+					"scale": {
+						"0.0": [1, 1, 1],
+						"0.125": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						},
+						"0.5": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						}
+					}
+				},
+				"ysmGlow_flyingeffect2": {
+					"scale": {
+						"0.0833": [0, 0, 0],
+						"0.125": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.25": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_flyingeffect3": {
+					"scale": {
+						"0.2083": [0, 0, 0],
+						"0.25": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.375": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_flyingeffect4": {
+					"scale": {
+						"0.3333": [0, 0, 0],
+						"0.375": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.5": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_pokong1": {
+					"scale": {
+						"0.0": [1, 1, 1],
+						"0.0833": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						},
+						"0.4583": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.5": [1, 1, 1]
+					}
+				},
+				"ysmGlow_pokong2": {
+					"scale": {
+						"0.0417": [0, 0, 0],
+						"0.0833": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.25": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_pokong3": {
+					"scale": {
+						"0.2083": [0, 0, 0],
+						"0.25": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.4583": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"ysmGlow_explosion": {
+					"scale": 0
+				},
+				"explosion_": {
+					"scale": 0
+				},
+				"thunder": {
+					"scale": 0
+				},
+				"thunder2": {
+					"scale": 0
+				},
+				"smoke": {
+					"scale": 0
+				},
+				"smoke5": {
+					"scale": 0
+				}
+			}
+		},
+		"parallel0": {
+			"loop": true,
+			"bones": {
+				"bow": {
+					"scale": "ysm.shoot_item_id!='minecraft:crossbow'"
+				},
+				"crossbow": {
+					"scale": "ysm.shoot_item_id=='minecraft:crossbow'"
+				}
+			}
+		},
+		"parallel1": {
+			"loop": true,
+			"bones": {
+				"ysmGlow_outline": {
+					"scale": "!ysm.in_ground"
+				},
+				"ysmGlow_flyingeffect1": {
+					"scale": "!ysm.in_ground"
+				},
+				"ysmGlow_flyingeffect2": {
+					"scale": "!ysm.in_ground"
+				},
+				"ysmGlow_flyingeffect3": {
+					"scale": "!ysm.in_ground"
+				},
+				"ysmGlow_flyingeffect4": {
+					"scale": "!ysm.in_ground"
+				},
+				"ysmGlow_pokong1": {
+					"scale": "!ysm.in_ground"
+				},
+				"ysmGlow_pokong2": {
+					"scale": "!ysm.in_ground"
+				},
+				"ysmGlow_pokong3": {
+					"scale": "!ysm.in_ground"
+				},
+				"bone": {
+					"scale": "!ysm.in_ground"
+				},
+				"ysmGlow_bone2": {
+					"scale": "(ysm.on_ground_time>=20)? 0:1"
+				},
+				"explosion_": {
+					"scale": "((ysm.on_ground_time>=20)? 0:1)*ysm.in_ground"
+				}
+			}
+		},
+		"parallel2": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"smoke1": {
+					"scale": {
+						"0.0": [1, 1, 1],
+						"0.125": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						},
+						"0.5": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						}
+					}
+				},
+				"smoke2": {
+					"scale": {
+						"0.0833": [0, 0, 0],
+						"0.125": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.25": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"smoke3": {
+					"scale": {
+						"0.2083": [0, 0, 0],
+						"0.25": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.375": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"smoke4": {
+					"scale": {
+						"0.3333": [0, 0, 0],
+						"0.375": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.5": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"smoke": {
+					"scale": "(ysm.on_ground_time>=20)? 1:0"
+				},
+				"smoke5": {
+					"scale": "(ysm.on_ground_time>=20)? 1:0"
+				},
+				"smoke6": {
+					"scale": {
+						"0.0": [1, 1, 1],
+						"0.125": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						},
+						"0.5": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						}
+					}
+				},
+				"smoke7": {
+					"scale": {
+						"0.0833": [0, 0, 0],
+						"0.125": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.25": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"smoke8": {
+					"scale": {
+						"0.2083": [0, 0, 0],
+						"0.25": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.375": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				},
+				"smoke9": {
+					"scale": {
+						"0.3333": [0, 0, 0],
+						"0.375": {
+							"pre": [0, 0, 0],
+							"post": [1, 1, 1]
+						},
+						"0.5": {
+							"pre": [1, 1, 1],
+							"post": [0, 0, 0]
+						}
+					}
+				}
+			}
+		},
+		"parallel3": {
+			"loop": true
+		},
+		"parallel4": {
+			"loop": true
+		},
+		"parallel5": {
+			"loop": true
+		},
+		"parallel6": {
+			"loop": true
+		},
+		"parallel7": {
+			"loop": true
+		}
+	},
+	"geckolib_format_version": 2
+}

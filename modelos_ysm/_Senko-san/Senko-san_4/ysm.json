@@ -1,0 +1,42 @@
+{
+  "spec": 2,
+  "metadata": {
+    "name": "Senko San",
+    "tips": "This is for accurate eyes height
+For intended size:
+/attribute @s minecraft:generic.scale base set 0.77",
+    "license": {
+      "type": "CC 0"
+    },
+	"authors": [
+      {
+        "name": "RayCantTrace",
+        "role": "Model and animations",
+	"avatar": "avatar/avt.png",
+	"contact": {
+          "Youtube": "https://www.youtube.com/@RayCantTrace"
+        }
+      }
+    ]
+  },
+    "properties": {
+    "height_scale": 1.3,
+    "width_scale": 1.3,
+    "preview_animation": "gui",
+    "free": true
+  },
+  "files": {
+    "player": {
+      "model": {
+        "main": "models/main.json",
+        "arm": "models/arm.json"
+      },
+      "animation": {
+        "main": "animations/main.animation.json"
+      },
+      "texture": [
+        "textures/senko_san.png"
+      ]
+    }
+  }
+}

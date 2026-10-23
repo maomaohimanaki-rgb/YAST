@@ -1,0 +1,52 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"hold_offhand#minecraft:flowers": {
+			"loop": true,
+			"animation_length": 0.08333,
+			"bones": {
+				"LeftArmUpper": {
+					"rotation": [-7.5, 0, 0]
+				},
+				"LeftArmLower": {
+					"rotation": [-121.04033, -5.14581, -31.13308],
+					"position": [0.2, 0.7, -0.5]
+				},
+				"LeftHand": {
+					"rotation": [-2.68416, -9.88554, 6.25938],
+					"position": [0, 0, 0]
+				},
+				"Umbrella": {
+					"rotation": [-3.50798, 29.55923, -9.83173],
+					"position": [0.2, 0, 0.6]
+				},
+				"RightArmUpper": {
+					"rotation": [7.5, 0, -15]
+				}
+			}
+		},
+		"hold_mainhand#minecraft:flowers": {
+			"loop": true,
+			"bones": {
+				"LeftArmUpper": {
+					"rotation": [-7.5, 0, 0]
+				},
+				"LeftArmLower": {
+					"rotation": [-121.46219, -10.27651, -27.99296],
+					"position": [0, 0.7, -0.5]
+				},
+				"LeftHand": {
+					"rotation": [11.31584, -9.88554, 6.25938],
+					"position": [0, 0, 0]
+				},
+				"Umbrella": {
+					"rotation": [-3.50798, 29.55923, -9.83173],
+					"position": [0.2, 0, 0.6]
+				},
+				"RightArmUpper": {
+					"rotation": [7.5, 0, -15]
+				}
+			}
+		}
+	}
+}

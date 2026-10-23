@@ -1,0 +1,71 @@
+{
+	"spec": 2,
+	"metadata": {
+		"name": "Default",
+		"tips": "默认模型（Default Model）",
+		"license": {
+			"type": "All Rights its my",
+			"desc": "Can be empty Pastebin"
+		},
+		"authors": [
+			{
+				"name": "Mochitik",
+				"role": "Creator",
+				"avatar": "avatar/miyabi.png",
+				"contact": {
+					"Bilibili": "https://space.bilibili.com/1874517490"
+				},
+				"comment": "@mochitik"
+			}
+		],
+		"link": {
+			"home": "",
+			"donate": ""
+		}
+	},
+	"properties": {
+		"height_scale": 0.95,
+		"width_scale": 0.95,
+		"preview_animation": "idle",
+		"default_texture": "default",
+		"render_layers_first": false,
+		"free": false,
+		"disable_preview_rotation": false,
+		"all_cutout": false,
+		"extra_animation": {
+			"extra0": "",
+			"extra1": "",
+			"extra2": "",
+			"extra3": "",
+			"extra4": "",
+			"extra5": "",
+			"extra6": "",
+			"extra7": ""
+		}
+	},
+	"files": {
+		"player": {
+			"model": {
+				"main": "models/main.json",
+				"arm": "models/arm.json"
+			},
+			"animation": {
+				"main": "animations/main.animation.json",
+				"arm": "animations/arm.animation.json"
+			},
+			"animation_controllers": ["controller/main.animation_controllers.json"],
+			"texture": [
+				{
+					"uv": "textures/default.png"
+				}
+			]
+		},
+		"arrow": {
+			"model": "models/arrow.json",
+			"animation": "animations/arrow.animation.json",
+			"texture": {
+				"uv": "textures/arrow.png"
+			}
+		}
+	}
+}

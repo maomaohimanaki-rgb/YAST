@@ -1,0 +1,128 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "LeftArm",
+					"pivot": [5, 26, 0],
+					"mirror": true,
+					"cubes": [
+						{"origin": [3.8929, 21.9748, -1.5], "size": [2, 4, 3], "uv": [0, 39]},
+						{"origin": [4.7929, 24.8748, -1.5], "size": [1.2, 1.2, 3], "inflate": -0.1, "pivot": [5.8929, 25.9748, 0], "rotation": [0, 0, 45], "uv": [0, 33]},
+						{"origin": [3.9929, 21.2248, -1], "size": [1.8, 1, 2.25], "uv": [4, 59]}
+					]
+				},
+				{
+					"name": "LeftForeArm",
+					"parent": "LeftArm",
+					"pivot": [4.8929, 21.9748, 0],
+					"mirror": true,
+					"cubes": [
+						{"origin": [3.8929, 17.9748, -1.5], "size": [2, 4, 3], "uv": [0, 46]}
+					]
+				},
+				{
+					"name": "LeftHand",
+					"parent": "LeftForeArm",
+					"pivot": [4.8929, 17.9748, 0],
+					"mirror": true,
+					"cubes": [
+						{"origin": [3.97972, 15.4824, -1.75], "size": [1, 2, 1], "uv": [0, 59]},
+						{"origin": [4.97972, 14.9824, -1.5], "size": [1, 2, 3], "uv": [0, 54]},
+						{"origin": [3.8929, 16.9748, -1.5], "size": [2, 1, 3], "uv": [0, 46]},
+						{"origin": [3.8929, 16.7748, -1.5], "size": [2, 1, 3], "inflate": 0.1, "uv": [10, 66]}
+					]
+				},
+				{
+					"name": "LeftHandLocator",
+					"parent": "LeftHand",
+					"pivot": [4.8929, 12.7248, 0]
+				},
+				{
+					"name": "SheathLocator",
+					"parent": "LeftHand",
+					"pivot": [4.8929, 12.7248, 0]
+				},
+				{
+					"name": "LeftWaistLocator",
+					"parent": "LeftHand",
+					"pivot": [4.8929, 12.7248, 0]
+				},
+				{
+					"name": "glave_L",
+					"parent": "LeftForeArm",
+					"pivot": [4.8929, 15.9748, 0],
+					"cubes": [
+						{"origin": [4.8929, 18.4748, -0.5], "size": [1.5, 1.25, 2.25], "pivot": [4.8929, 19.2248, 0], "rotation": [-10, -15, -15], "uv": [6, 63], "mirror": true},
+						{"origin": [3.8929, 17.9748, -1.5], "size": [2, 1, 3], "inflate": 0.1, "uv": [0, 66], "mirror": true},
+						{"origin": [3.3929, 18.2248, 0], "size": [1.5, 1, 1.75], "pivot": [3.3929, 18.7248, 0], "rotation": [0, 5, 0], "uv": [4, 63], "mirror": true},
+						{"origin": [4.8929, 18.4748, -1.75], "size": [1.5, 1.25, 2.25], "pivot": [4.8929, 19.2248, 0], "rotation": [10, 15, -15], "uv": [0, 63], "mirror": true},
+						{"origin": [3.3929, 18.2248, -1.75], "size": [1.5, 1, 1.75], "pivot": [3.3929, 18.7248, 0], "rotation": [0, -5, 0], "uv": [4, 63], "mirror": true}
+					]
+				},
+				{
+					"name": "RightArm",
+					"pivot": [-5, 26, 0],
+					"mirror": true,
+					"cubes": [
+						{"origin": [-5.8929, 21.9748, -1.5], "size": [2, 4, 3], "uv": [0, 39], "mirror": false},
+						{"origin": [-5.9929, 24.8748, -1.5], "size": [1.2, 1.2, 3], "inflate": -0.1, "pivot": [-5.8929, 25.9748, 0], "rotation": [0, 0, -45], "uv": [0, 33], "mirror": false},
+						{"origin": [-5.7929, 21.2248, -1], "size": [1.8, 1, 2.25], "uv": [4, 59], "mirror": false}
+					]
+				},
+				{
+					"name": "RightForeArm",
+					"parent": "RightArm",
+					"pivot": [-4.8929, 21.9748, 0],
+					"mirror": true,
+					"cubes": [
+						{"origin": [-5.8929, 17.9748, -1.5], "size": [2, 4, 3], "uv": [0, 46], "mirror": false}
+					]
+				},
+				{
+					"name": "RightHand",
+					"parent": "RightForeArm",
+					"pivot": [-4.8929, 17.9748, 0],
+					"mirror": true,
+					"cubes": [
+						{"origin": [-4.97972, 15.4824, -1.75], "size": [1, 2, 1], "uv": [0, 59], "mirror": false},
+						{"origin": [-5.97972, 14.9824, -1.5], "size": [1, 2, 3], "uv": [0, 54], "mirror": false},
+						{"origin": [-5.8929, 16.9748, -1.5], "size": [2, 1, 3], "uv": [12, 62], "mirror": false},
+						{"origin": [-5.8929, 16.7748, -1.5], "size": [2, 1, 3], "inflate": 0.1, "uv": [10, 66], "mirror": false}
+					]
+				},
+				{
+					"name": "RightHandLocator",
+					"parent": "RightHand",
+					"pivot": [-2.8929, 16.7248, 0]
+				},
+				{
+					"name": "BladeLocator",
+					"parent": "RightHand",
+					"pivot": [-2.8929, 16.7248, 0]
+				},
+				{
+					"name": "glave_R",
+					"parent": "RightForeArm",
+					"pivot": [-4.8929, 15.9748, 0],
+					"cubes": [
+						{"origin": [-6.3929, 18.4748, -0.5], "size": [1.5, 1.25, 2.25], "pivot": [-4.8929, 19.2248, 0], "rotation": [-10, 15, 15], "uv": [6, 63]},
+						{"origin": [-4.8929, 18.2248, 0], "size": [1.5, 1, 1.75], "pivot": [-3.3929, 18.7248, 0], "rotation": [0, -5, 0], "uv": [4, 63]},
+						{"origin": [-6.3929, 18.4748, -1.75], "size": [1.5, 1.25, 2.25], "pivot": [-4.8929, 19.2248, 0], "rotation": [10, -15, 15], "uv": [0, 63]},
+						{"origin": [-4.8929, 18.2248, -1.75], "size": [1.5, 1, 1.75], "pivot": [-3.3929, 18.7248, 0], "rotation": [0, 5, 0], "uv": [4, 63]},
+						{"origin": [-5.8929, 17.9748, -1.5], "size": [2, 1, 3], "inflate": 0.1, "uv": [0, 66]}
+					]
+				}
+			]
+		}
+	]
+}

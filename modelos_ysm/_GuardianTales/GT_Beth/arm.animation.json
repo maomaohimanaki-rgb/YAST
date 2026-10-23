@@ -1,0 +1,33 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "arm_parallel0": {
+      "loop": true
+    },
+    "arm_parallel1": {
+      "loop": true
+    },
+    "arm_parallel2": {
+      "loop": true
+    },
+    "arm_parallel3": {
+      "loop": true
+    },
+    "arm_parallel4": {
+      "loop": true
+    },
+    "arm_parallel5": {
+      "loop": true
+    },
+    "arm_parallel6": {
+      "loop": true
+    },
+    "arm_parallel7": {
+      "loop": true
+    },
+    "arm_parallel8": {
+      "loop": true
+    }
+  },
+  "geckolib_format_version": 2
+}

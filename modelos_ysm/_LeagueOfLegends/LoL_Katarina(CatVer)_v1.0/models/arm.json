@@ -1,0 +1,81 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 7,
+				"visible_bounds_height": 5,
+				"visible_bounds_offset": [0, 1.5, 0]
+			},
+			"bones": [
+				{
+					"name": "Arm",
+					"pivot": [-0.2, 31.275, 0]
+				},
+				{
+					"name": "LeftArm",
+					"parent": "Arm",
+					"pivot": [3.4, 31.025, 0],
+					"rotation": [0, 0, -18],
+					"cubes": [
+						{"origin": [2.6, 25.075, -1.5], "size": [3.05, 7, 3], "uv": [68, 54]},
+						{"origin": [2.9, 24.175, -1.1], "size": [2.55, 2, 2.2], "uv": [86, 70]},
+						{"origin": [2.8, 24.125, -1.125], "size": [2.7, 2.05, 2.3], "uv": [24, 87]}
+					]
+				},
+				{
+					"name": "LeftForeArm",
+					"parent": "LeftArm",
+					"pivot": [4.125, 25.075, 0.025],
+					"cubes": [
+						{"origin": [2.625, 18.075, -1.475], "size": [3, 7, 3], "uv": [62, 40]},
+						{"origin": [2.525, 20.375, -1.575], "size": [3.2, 5, 3.2], "uv": [0, 74]}
+					]
+				},
+				{
+					"name": "LeftHand",
+					"parent": "LeftForeArm",
+					"pivot": [4.125, 19.575, 0.025]
+				},
+				{
+					"name": "LeftHandLocator",
+					"parent": "LeftHand",
+					"pivot": [4.125, 19.575, 0.025]
+				},
+				{
+					"name": "RightArm",
+					"parent": "Arm",
+					"pivot": [-3.4, 31.025, 0],
+					"rotation": [0, 0, 18],
+					"cubes": [
+						{"origin": [-5.65, 25.075, -1.5], "size": [3.05, 7, 3], "uv": [64, 26]},
+						{"origin": [-5.45, 24.175, -1.1], "size": [2.55, 2, 2.2], "uv": [32, 87]},
+						{"origin": [-5.5, 24.125, -1.125], "size": [2.7, 2.05, 2.3], "uv": [52, 87]}
+					]
+				},
+				{
+					"name": "RightForeArm",
+					"parent": "RightArm",
+					"pivot": [-4.125, 25.075, 0.025],
+					"cubes": [
+						{"origin": [-5.625, 18.075, -1.475], "size": [3, 7, 3], "uv": [12, 65]},
+						{"origin": [-5.675, 20.375, -1.575], "size": [3.2, 5, 3.2], "uv": [74, 36]}
+					]
+				},
+				{
+					"name": "RightHand",
+					"parent": "RightForeArm",
+					"pivot": [-4.125, 19.575, 0.025]
+				},
+				{
+					"name": "RightHandLocator",
+					"parent": "RightHand",
+					"pivot": [-4.125, 19.575, 0.025]
+				}
+			]
+		}
+	]
+}

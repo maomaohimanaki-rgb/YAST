@@ -1,0 +1,40 @@
+{
+  "spec": 2,
+  "metadata": {
+    "name": "Senko San",
+    "tips": "Chill! She's actually 800 years old.",
+    "license": {
+      "type": "CC 0"
+    },
+	"authors": [
+      {
+        "name": "RayCantTrace",
+        "role": "Model and animations",
+	"avatar": "avatar/avt.png",
+	"contact": {
+          "Youtube": "https://www.youtube.com/@RayCantTrace"
+        }
+      }
+    ]
+  },
+    "properties": {
+    "height_scale": 1,
+    "width_scale": 1,
+    "preview_animation": "gui",
+    "free": true
+  },
+  "files": {
+    "player": {
+      "model": {
+        "main": "models/main.json",
+        "arm": "models/arm.json"
+      },
+      "animation": {
+        "main": "animations/main.animation.json"
+      },
+      "texture": [
+        "textures/senko_san.png"
+      ]
+    }
+  }
+}

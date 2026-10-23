@@ -1,0 +1,142 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"idle": {
+			"animation_length": 0.375
+		},
+		"jump": {
+			"loop": true,
+			"animation_length": 0.75
+		},
+		"run": {
+			"loop": true,
+			"animation_length": 0.6667
+		},
+		"walk": {
+			"loop": true,
+			"animation_length": 1
+		},
+		"attacked": {
+			"animation_length": 0.45833,
+			"bones": {
+				"bone4": {
+					"rotation": [-1.76442, 0.34932, 1.73102]
+				},
+				"bone": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.125": [0, 20, 0],
+						"0.4583": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"sneak": {
+			"loop": true,
+			"animation_length": 1.5,
+			"bones": {
+				"bone": {
+					"position": [0, 3, 0]
+				}
+			}
+		},
+		"sneaking": {
+			"loop": "hold_on_last_frame",
+			"bones": {
+				"bone": {
+					"position": [0, 3, 0]
+				}
+			}
+		},
+		"swim": {
+			"loop": true,
+			"animation_length": 1
+		},
+		"sit": {
+			"animation_length": 0.375
+		},
+		"ride": {
+			"animation_length": 0.375
+		},
+		"ride_pig": {
+			"animation_length": 0.375
+		},
+		"sleep": {
+			"animation_length": 0.375
+		},
+		"fly": {
+			"loop": true,
+			"animation_length": 0.33333
+		},
+		"swim_stand": {
+			"loop": true,
+			"animation_length": 1
+		},
+		"boat": {
+			"animation_length": 0.375
+		},
+		"climbing": {
+			"loop": true
+		},
+		"use_righthand": {
+			"animation_length": 0.25,
+			"bones": {
+				"bone2": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.0833": [0, -17.5, 0],
+						"0.25": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"use_lefthand": {
+			"animation_length": 0.25,
+			"bones": {
+				"bone2": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.0833": [0, -17.5, 0],
+						"0.25": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"parallel0": {
+			"loop": true,
+			"animation_length": 0.375,
+			"bones": {
+				"bone5": {
+					"scale": [1.3, 1.3, 1.3]
+				},
+				"Head": {
+					"scale": [1.54, 1.54, 1.54]
+				}
+			}
+		},
+		"parallel1": {
+			"loop": true
+		},
+		"parallel2": {
+			"loop": true
+		},
+		"parallel3": {
+			"loop": true
+		},
+		"parallel4": {
+			"loop": true
+		},
+		"parallel5": {
+			"loop": true
+		},
+		"parallel6": {
+			"loop": true
+		},
+		"parallel7": {
+			"loop": true
+		},
+		"default": {
+			"animation_length": 0.375
+		}
+	}
+}

@@ -1,0 +1,59 @@
+{
+  "spec": 2,
+  "metadata": {
+    "name": "Frank - The Legion（弗兰克 - 军团）",
+    "tips": "The Legion are a close-knit group of murderous Killers.\n军团是一群冷血无情的杀手。",
+    "license": {
+      "type": "CC BY-NC-SA 4.0"
+    },
+    "authors": [
+      {
+        "name": "Mister蜘蛛",
+        "role": "模型、材质和动画",
+        "avatar": "avatar/MS.png",
+        "contact": {
+          "Afdian": "https://afdian.com/a/spidermr",
+          "Bilibili": "https://space.bilibili.com/3537124015999017"
+        },
+        "comment": "只是一只蜘蛛！"
+      }
+    ],
+    "link": {
+      "home": "https://space.bilibili.com/3537124015999017",
+      "donate": "https://afdian.com/a/spidermr"
+    }
+  },
+  "properties": {
+    "extra_animation": {
+      "extra0": "",
+      "extra1": "",
+      "extra2": "",
+      "extra3": "",
+      "extra4": "",
+      "extra5": "",
+      "extra6": "",
+      "extra7": ""
+    },
+    "preview_animation": "gui",
+    "disable_preview_rotation": true,
+    "default_texture": "frank",
+    "height_scale": 0.7,
+    "width_scale": 0.7,
+    "free": true
+  },
+  "files": {
+    "player": {
+      "model": {
+        "main": "models/main.json",
+        "arm": "models/arm.json"
+      },
+      "animation": {
+        "main": "animations/main.animation.json",
+        "arm": "animations/arm.animation.json"
+      },
+      "texture": [
+        "textures/Frank.png"
+      ]
+    }
+  }
+}

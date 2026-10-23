@@ -1,0 +1,32 @@
+{
+  "spec": 2,
+  "metadata": {
+    "name": "Senko San",
+	"tips": "For the desired size: \n/attribute @s minecraft:generic.scale base set 0.6",
+    "license": {
+      "type": "CC 0"
+    },
+    "link": {
+      "home": "https://modrinth.com/mod/yes-steve-model"
+    }
+  },
+    "properties": {
+    "height_scale": 1.3,
+    "width_scale": 1.3,
+    "free": true
+  },
+  "files": {
+    "player": {
+      "model": {
+        "main": "models/main.json",
+        "arm": "models/arm.json"
+      },
+      "animation": {
+        "main": "animations/main.animation.json"
+      },
+      "texture": [
+        "textures/fox.png"
+      ]
+    }
+  }
+}

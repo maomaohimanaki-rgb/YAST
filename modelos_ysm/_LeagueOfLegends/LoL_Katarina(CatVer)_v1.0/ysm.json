@@ -1,0 +1,49 @@
+{
+  "spec": 2,
+  "metadata": {
+    "name": "Catarina",
+    "tips": "Kitty cat katarina",
+    "license": {
+      "type": "CC 0",
+      "desc:": "Extra license description"
+    },
+    "authors": [
+      {
+        "name": "___winston"
+      }
+    ]
+  },
+  "properties": {
+    "height_scale": 0.7,
+    "width_scale": 0.7,
+    "extra_animation": {
+      "extra0": "",
+      "extra1": "Wave",
+      "run": "Run",
+      "walk": "Walk",
+      "extra4": "",
+      "extra5": "",
+      "extra6": "",
+      "extra7": ""
+    },
+    "preview_animation": "idle",
+    "default_texture": "texture",
+    "free": true
+  },
+  "files": {
+    "player": {
+      "model": {
+        "main": "models/main.json",
+        "arm": "models/arm.json"
+      },
+      "animation": {
+        "main": "animations/main.animation.json",
+        "arm": "animations/arm.animation.json",
+        "extra": "animations/extra.animation.json"
+      },
+      "texture": [
+        "textures/texture.png"
+      ]
+    }
+  }
+}

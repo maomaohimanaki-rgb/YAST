@@ -1,0 +1,93 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"forward": {
+			"loop": true,
+			"animation_length": 1.5,
+			"bones": {
+				"LeftFrontWheel": {
+					"rotation": ["(q.anim_time / 0.4) * 180", 0, 0]
+				},
+				"LeftBackWheel": {
+					"rotation": ["(q.anim_time / 0.4) * 180", 0, 0]
+				},
+				"RightBackWheel": {
+					"rotation": ["(q.anim_time / 0.4) * 180", 0, 0]
+				},
+				"RightFrontWheel": {
+					"rotation": ["(q.anim_time / 0.4) * 180", 0, 0]
+				},
+				"Root": {
+					"scale": 2
+				},
+				"bone14": {
+					"rotation": {
+						"0.5": [0, 0, 0],
+						"0.75": [-15, 15, 0],
+						"1.0": [0, 30, 0],
+						"1.25": [0, 15, 0],
+						"1.5": [0, 0, 0]
+					}
+				},
+				"bone12": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.25": [-15, -15, 0],
+						"0.5": [0, -30, 0],
+						"0.75": [0, -15, 0],
+						"1.0": [0, 0, 0]
+					}
+				},
+				"bone2": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.375": [-15, 0, 0],
+						"0.75": [0, 0, 0],
+						"1.125": [-15, 0, 0],
+						"1.5": [0, 0, 0]
+					}
+				},
+				"TSB": {
+					"scale": 0
+				}
+			},
+			"sound_effects": {
+				"0.0": {
+					"effect": "car_run"
+				}
+			}
+		},
+		"has_ride": {
+			"loop": true,
+			"animation_length": 2.9167,
+			"bones": {
+				"Root": {
+					"scale": 2
+				},
+				"PassengerLocator": {
+					"scale": 0
+				},
+				"TSB": {
+					"scale": 0
+				}
+			},
+			"sound_effects": {
+				"0.0": {
+					"effect": "car_idle"
+				}
+			}
+		},
+		"idle": {
+			"loop": true,
+			"bones": {
+				"Root": {
+					"scale": 2
+				},
+				"TSB": {
+					"scale": 0
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

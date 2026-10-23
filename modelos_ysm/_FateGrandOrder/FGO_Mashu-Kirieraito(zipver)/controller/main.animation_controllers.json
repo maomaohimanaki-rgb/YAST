@@ -1,0 +1,266 @@
+{
+	"format_version": "1.19.0",
+	"animation_controllers": {
+		"player.parallel_0": {
+			"states": {
+				"default": {
+					"animations": [
+						"parallel0",
+						"parallel1",
+						"parallel2",
+						"parallel3",
+						"parallel4",
+						"parallel5",
+						"parallel6",
+						"parallel7",
+						"flyingeffect",
+						{"offhand_shield_effect": "ysm.bone_scale('offshield_particle_all_a').x==1"},
+						""
+					]
+				}
+			}
+		},
+		"player.parallel_2": {
+			"states": {
+				"default": {
+					"animations": ["empty"],
+					"on_exit": ["v.jumping=0;"],
+					"transitions": [
+						{"jump": "ctrl.jump&&v.jumping&&q.vertical_speed>0"},
+						{"jump2": "ctrl.jump&&v.jumping&&q.vertical_speed<0"}
+					],
+					"blend_transition": 0.05,
+					"blend_via_shortest_path": true
+				},
+				"jump": {
+					"animations": ["jump2", "注：跳跃特效"],
+					"on_exit": ["v.jumping=0;"],
+					"transitions": [
+						{"default": "(!ctrl.jump||ctrl.fly||ctrl.elytra_fly)"},
+						{"fall": "q.vertical_speed<-20"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"jump2": {
+					"animations": ["jump3"],
+					"on_exit": ["v.jumping=0;"],
+					"transitions": [
+						{"fall": "q.vertical_speed<-20"},
+						{"default": "(!ctrl.jump||ctrl.fly||ctrl.elytra_fly)"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"fall": {
+					"animations": ["fall"],
+					"on_exit": ["v.jumping=0;"],
+					"transitions": [
+						{"default": "!ctrl.jump&&!q.is_on_ground||ctrl.fly||ctrl.elytra_fly||(q.vertical_speed>-20)"},
+						{"landing": "!ctrl.jump&&q.is_on_ground"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"landing": {
+					"animations": ["landing"],
+					"on_exit": ["v.jumping=0;"],
+					"transitions": [
+						{"default": "q.all_animations_finished||!ctrl.idle"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				}
+			}
+		},
+		"player.parallel_3": {
+			"states": {
+				"default": {
+					"animations": ["atk_emp"],
+					"on_entry": ["v.attack=0;"],
+					"on_exit": ["v.swing_sword=0;v.attack=math.mod(v.attack+1,3);"],
+					"transitions": [
+						{"swing1": "v.swing_sword&&v.attack==0&&!v.jump"},
+						{"swing2": "v.swing_sword&&v.attack==1&&!v.jump"},
+						{"swing3": "v.swing_sword&&v.attack==2&&!v.jump"},
+						{"jump_swing": "v.swing_sword&&v.jump"}
+					]
+				},
+				"swing1": {
+					"animations": [
+						{"swing_sword_1": "ctrl.idle"},
+						{"swing_sword_idle1": "!ctrl.idle"}
+					],
+					"on_exit": ["v.swing_sword=0;v.attack=math.mod(v.attack+1,3);"],
+					"transitions": [
+						{"default": "q.all_animations_finished"},
+						{"swing2": "v.swing_sword&&v.attack==1&&!v.jump"},
+						{"jump_swing": "v.swing_sword&&v.jump"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"swing2": {
+					"animations": [
+						{"swing_sword_2": "ctrl.idle"},
+						{"swing_sword_idle2": "!ctrl.idle"}
+					],
+					"on_exit": ["v.swing_sword=0;v.attack=math.mod(v.attack+1,3);"],
+					"transitions": [
+						{"default": "q.all_animations_finished"},
+						{"swing3": "v.swing_sword&&v.attack==2&&!v.jump"},
+						{"jump_swing": "v.swing_sword&&v.jump"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"swing3": {
+					"animations": [
+						{"swing_sword_3": "ctrl.idle"},
+						{"swing_sword_idle3": "!ctrl.idle"}
+					],
+					"on_exit": ["v.swing_sword=0;v.attack=math.mod(v.attack+1,3);"],
+					"transitions": [
+						{"default": "q.all_animations_finished"},
+						{"swing1": "v.swing_sword&&v.attack==0&&!v.jump"},
+						{"jump_swing": "v.swing_sword&&v.jump"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"jump_swing": {
+					"animations": ["swing_sword_jump"],
+					"on_exit": ["v.swing_sword=0;v.attack=math.mod(v.attack+1,3);"],
+					"transitions": [
+						{"default": "q.all_animations_finished"},
+						{"swing1": "v.swing_sword&&!v.jump"}
+					],
+					"blend_transition": 0.05,
+					"blend_via_shortest_path": true
+				}
+			}
+		},
+		"player.parallel_1": {
+			"states": {
+				"default": {
+					"animations": ["empty"],
+					"transitions": [
+						{"run": "ctrl.run"},
+						{"run(no right hand)": "ctrl.run&&ysm.has_mainhand"}
+					]
+				},
+				"run": {
+					"animations": ["run2"],
+					"transitions": [
+						{"stop": "!ctrl.run&&ctrl.walk"},
+						{"default": "!ctrl.run&&!ctrl.walk"},
+						{"run(no right hand)": "ctrl.run&&ysm.has_mainhand"},
+						{"stop(no right hand)": "!ctrl.run&&ctrl.walk&&ysm.has_mainhand"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"stop": {
+					"animations": ["stop"],
+					"transitions": [
+						{"default": "q.all_animations_finished"},
+						{"stop(no right hand)": "!ctrl.run&&ctrl.walk&&ysm.has_mainhand"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"run(no right hand)": {
+					"animations": ["run3"],
+					"transitions": [
+						{"default": "!ctrl.run&&!ctrl.walk"},
+						{"stop(no right hand)": "!ctrl.run&&ctrl.walk&&ysm.has_mainhand"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"stop(no right hand)": {
+					"animations": ["stop2"],
+					"transitions": [
+						{"default": "q.all_animations_finished"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				}
+			}
+		},
+		"player.pre_parallel_0": {
+			"states": {
+				"default": {
+					"animations": ["pre_parallel0", "pre_parallel1", "pre_parallel2", "pre_parallel3", "pre_parallel4", "pre_parallel5", "pre_parallel6", ""]
+				}
+			}
+		},
+		"player.parallel_4": {
+			"states": {
+				"default": {
+					"animations": ["ex_emp"],
+					"on_exit": ["v.extra6=0;"],
+					"transitions": [
+						{"extra6": "v.extra6==1&&ctrl.idle"}
+					]
+				},
+				"extra6": {
+					"animations": ["extra6_"],
+					"on_exit": ["v.extra6=0;"],
+					"transitions": [
+						{"stop": "q.all_animations_finished"},
+						{"default": "!ctrl.idle"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"stop": {
+					"animations": ["flying_saintquartz"],
+					"on_exit": ["v.extra6=0;"],
+					"transitions": [
+						{"default": "q.all_animations_finished"},
+						{"extra6": "v.extra6==1&&ctrl.idle"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				}
+			}
+		},
+		"player.parallel_5": {
+			"states": {
+				"default": {
+					"animations": ["atk_emp"],
+					"on_exit": ["v.mainhand_use=0;v.mainhand_bow=0;"],
+					"transitions": [
+						{"mainhand_shield": "v.mainhand_use==1"},
+						{"mainhand_bows": "v.mainhand_bow==1"}
+					]
+				},
+				"mainhand_shield": {
+					"animations": [
+						{"use_mainhand:shield_idle": "ctrl.idle"},
+						{"use_mainhand:shield_!idle": "!ctrl.idle"}
+					],
+					"on_exit": ["v.mainhand_use=0;"],
+					"transitions": [
+						{"default": "!ctrl.use('mainhand', ':shield')"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"mainhand_bows": {
+					"animations": [
+						{"use_mainhand:bow_idle": "ctrl.idle"},
+						{"use_mainhand:bow_!idle": "!ctrl.idle"}
+					],
+					"on_exit": ["v.mainhand_bow=0;"],
+					"transitions": [
+						{"default": "!ctrl.use('mainhand', ':bow')"}
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,60 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 32,
+				"texture_height": 32,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2,
+				"visible_bounds_offset": [0, 0, 0]
+			},
+			"bones": [
+				{
+					"name": "Root",
+					"pivot": [8, 0, 0],
+					"rotation": [0, 90, 0]
+				},
+				{
+					"name": "ysmGlow_FAqiu",
+					"parent": "Root",
+					"pivot": [7.96255, 0.39347, -7.97685],
+					"cubes": [
+						{
+							"origin": [6.96255, -0.60653, -8.97685],
+							"size": [2, 2, 2],
+							"uv": {
+								"north": {"uv": [3, 6], "uv_size": [2, 2]},
+								"east": {"uv": [6, 3], "uv_size": [2, 2]},
+								"south": {"uv": [5, 6], "uv_size": [2, 2]},
+								"west": {"uv": [7, 5], "uv_size": [2, 2]},
+								"up": {"uv": [7, 7], "uv_size": [2, 2]},
+								"down": {"uv": [3, 10], "uv_size": [2, -2]}
+							}
+						}
+					]
+				},
+				{
+					"name": "cube_outline",
+					"parent": "ysmGlow_FAqiu",
+					"pivot": [7.96255, 0.39347, -7.97685],
+					"cubes": [
+						{
+							"origin": [9.46255, 1.89347, -6.47685],
+							"size": [-3, -3, -3],
+							"uv": {
+								"north": {"uv": [0, 0], "uv_size": [3, 3]},
+								"east": {"uv": [0, 3], "uv_size": [3, 3]},
+								"south": {"uv": [3, 0], "uv_size": [3, 3]},
+								"west": {"uv": [3, 3], "uv_size": [3, 3]},
+								"up": {"uv": [0, 6], "uv_size": [3, 3]},
+								"down": {"uv": [6, 3], "uv_size": [3, -3]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,53 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"parallel0": {
+			"loop": true,
+			"bones": {
+				"WaiTao": {
+					"scale": "query.health<8?0:1"
+				},
+				"RightKuTui": {
+					"scale": "query.health<8?0:1"
+				},
+				"RightTuiHuan": {
+					"scale": "query.health<8?0:1"
+				},
+				"LeftKuTui": {
+					"scale": "query.health<8?0:1"
+				},
+				"LeftTuiHuan": {
+					"scale": "query.health<8?0:1"
+				},
+				"YaoDai": {
+					"scale": "query.health<8?0:1"
+				},
+				"LeftHandShouTao": {
+					"scale": "query.health<8?0:1"
+				},
+				"LeftForeArm2": {
+					"scale": "query.health<8?0:1"
+				},
+				"LeftArm2": {
+					"scale": "query.health<8?0:1"
+				},
+				"RightHandShouTao": {
+					"scale": "query.health<8?0:1"
+				},
+				"RightShouZhi2": {
+					"scale": "query.health<8?0:1"
+				},
+				"RightShouZhi3": {
+					"scale": "query.health<8?0:1"
+				},
+				"RightForeArm2": {
+					"scale": "query.health<8?0:1"
+				},
+				"RightArm2": {
+					"scale": "query.health<8?0:1"
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

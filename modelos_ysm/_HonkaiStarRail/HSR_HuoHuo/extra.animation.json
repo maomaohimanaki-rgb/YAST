@@ -1,0 +1,84 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"extra5": {
+			"loop": true,
+			"bones": {
+				"tx2": {
+					"scale": 1
+				},
+				"ysmGlow_LeftEyelidBase": {
+					"position": [0.05, 0, -0.25]
+				},
+				"LeftEyelidBase": {
+					"position": [0, 0, 1]
+				},
+				"ysmGlow_RightEyelidBase": {
+					"position": [-0.05, 0, -0.25]
+				},
+				"RightEyelidBase": {
+					"position": [0, 0, 1]
+				},
+				"LeftEyebrow": {
+					"rotation": [0, 0, -2.5]
+				},
+				"RightEyebrow": {
+					"rotation": [0, 0, 2.5]
+				},
+				"Mouth2": {
+					"position": [0, 0, 0]
+				},
+				"Mouth4": {
+					"position": [0, 0, 0]
+				},
+				"Mouth5": {
+					"position": [0, 0, 0]
+				},
+				"Mouth3": {
+					"position": [0, 0, -1]
+				},
+				"mm2": {
+					"rotation": [0, 0, 5]
+				},
+				"mm": {
+					"rotation": [0, 0, -5]
+				},
+				"LeftArm": {
+					"rotation": [0, 0, -30]
+				},
+				"LeftForeArm": {
+					"rotation": [0, 0, 82.5]
+				},
+				"RightArm": {
+					"rotation": [0, 0, 10]
+				},
+				"RightLeg": {
+					"rotation": [0, 5, 5]
+				},
+				"RightFoot3": {
+					"rotation": [0, 0, -5]
+				},
+				"LeftLeg": {
+					"rotation": [0, -10, -7.5]
+				},
+				"LeftFoot3": {
+					"rotation": [0, 0, 7.5]
+				},
+				"ysmGlow_tx2": {
+					"scale": 1
+				}
+			}
+		},
+		"extra4": {
+			"loop": true,
+			"bones": {
+				"Mouth2": {
+					"position": [0, 0, 0]
+				},
+				"Mouth4": {
+					"position": [0, 0, -1]
+				}
+			}
+		}
+	}
+}

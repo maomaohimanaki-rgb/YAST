@@ -1,0 +1,1 @@
+{"animation_controllers":{"player.paraller_6":{"initial_state":"default","states":{"default":{"animations":["parallel6"],"transitions":[{"nvd":"ysm.effect_level('minecraft:night_vision')"}]},"nvd":{"animations":["Nvd"],"transitions":[{"default":"!ysm.effect_level('minecraft:night_vision')"}]}}}},"format_version":"1.19.0"}

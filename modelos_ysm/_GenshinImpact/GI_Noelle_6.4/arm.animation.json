@@ -1,0 +1,106 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"arm_parallel0": {
+			"loop": true,
+			"bones": {
+				"left_arm_armor": {
+					"scale": "ysm.has_chest_plate?(query.health<15?0:1):0"
+				},
+				"left_forearm_armor": {
+					"scale": "ysm.has_chest_plate?(query.health<12?0:1):0"
+				},
+				"lefthand_armor": {
+					"scale": "ysm.has_chest_plate?(query.health<10?0:1):0"
+				},
+				"right_arm_armor": {
+					"scale": "ysm.has_chest_plate?(query.health<13?0:1):0"
+				},
+				"right_forearmm_armor": {
+					"scale": "ysm.has_chest_plate?(query.health<7?0:1):0"
+				},
+				"righthand_armor": {
+					"scale": "ysm.has_chest_plate?(query.health<4?0:1):0"
+				},
+				"iron_left_arm_armor": {
+					"scale": "ysm.armor_value>14?0:1"
+				},
+				"diamond_left_arm_armor": {
+					"scale": "ysm.armor_value<14?0:ysm.armor_value<19?1:0"
+				},
+				"netherite_left_arm_armor": {
+					"scale": "ysm.armor_value<19?0:1"
+				},
+				"iron_left_forearm_armor": {
+					"scale": "ysm.armor_value>14?0:1"
+				},
+				"diamond_left_forearm_armor": {
+					"scale": "ysm.armor_value<14?0:ysm.armor_value<19?1:0"
+				},
+				"netherite_left_forearm_armor": {
+					"scale": "ysm.armor_value<19?0:1"
+				},
+				"iron_lefthand_armor": {
+					"scale": "ysm.armor_value>14?0:1"
+				},
+				"diamond_lefthand_armor": {
+					"scale": "ysm.armor_value<14?0:ysm.armor_value<19?1:0"
+				},
+				"netherite_lefthand_armor": {
+					"scale": "ysm.armor_value<19?0:1"
+				},
+				"iron_right_arm_armor": {
+					"scale": "ysm.armor_value>14?0:1"
+				},
+				"diamon_right_arm_armor": {
+					"scale": "ysm.armor_value<14?0:ysm.armor_value<19?1:0"
+				},
+				"netherite_right_arm_armor": {
+					"scale": "ysm.armor_value<19?0:1"
+				},
+				"iron_right_forearmm_armor": {
+					"scale": "ysm.armor_value>14?0:1"
+				},
+				"diamond_right_forearmm_armor": {
+					"scale": "ysm.armor_value<14?0:ysm.armor_value<19?1:0"
+				},
+				"netherite_right_forearmm_armor": {
+					"scale": "ysm.armor_value<19?0:1"
+				},
+				"iron_righthand_armor": {
+					"scale": "ysm.armor_value>14?0:1"
+				},
+				"diamond_righthand_armor": {
+					"scale": "ysm.armor_value<14?0:ysm.armor_value<19?1:0"
+				},
+				"netherite_righthand_armor": {
+					"scale": "ysm.armor_value<19?0:1"
+				}
+			}
+		},
+		"arm_parallel1": {
+			"loop": true
+		},
+		"arm_parallel2": {
+			"loop": true
+		},
+		"arm_parallel3": {
+			"loop": true
+		},
+		"arm_parallel4": {
+			"loop": true
+		},
+		"arm_parallel5": {
+			"loop": true
+		},
+		"arm_parallel6": {
+			"loop": true
+		},
+		"arm_parallel7": {
+			"loop": true
+		},
+		"arm_parallel8": {
+			"loop": true
+		}
+	}
+}

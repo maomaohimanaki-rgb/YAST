@@ -1,0 +1,95 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"water": {
+			"loop": true,
+			"animation_length": 0.25,
+			"bones": {
+				"Shoulijian": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.25": [-360, 0, 0]
+					}
+				},
+				"Shoulijian2": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.25": [-360, 0, 0]
+					}
+				}
+			}
+		},
+		"fire": {
+			"loop": true,
+			"animation_length": 0.25,
+			"bones": {
+				"Shoulijian": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.25": [-360, 0, 0]
+					}
+				},
+				"Shoulijian2": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.25": [-360, 0, 0]
+					}
+				}
+			}
+		},
+		"ground": {
+			"loop": true
+		},
+		"air": {
+			"loop": true,
+			"animation_length": 0.25,
+			"bones": {
+				"Shoulijian": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.25": [-360, 0, 0]
+					}
+				},
+				"Shoulijian2": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.25": [-360, 0, 0]
+					}
+				}
+			}
+		},
+		"parallel0": {
+			"loop": true,
+			"bones": {
+				"bow": {
+					"scale": "ysm.shoot_item_id!='minecraft:crossbow'"
+				},
+				"crossbow": {
+					"scale": "ysm.shoot_item_id=='minecraft:crossbow'"
+				}
+			}
+		},
+		"parallel1": {
+			"loop": true
+		},
+		"parallel2": {
+			"loop": true
+		},
+		"parallel3": {
+			"loop": true
+		},
+		"parallel4": {
+			"loop": true
+		},
+		"parallel5": {
+			"loop": true
+		},
+		"parallel6": {
+			"loop": true
+		},
+		"parallel7": {
+			"loop": true
+		}
+	},
+	"geckolib_format_version": 2
+}

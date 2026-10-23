@@ -1,0 +1,77 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 32,
+				"texture_height": 32,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0],
+				"ysm_extra_info": {
+					"name": "doro谢芙蒂",
+					"tips": "doro doro dororororo！",
+					"authors": ["作者——雒仁"],
+					"license": "CC BY-NC-SA 4.0"
+				}
+			},
+			"bones": [
+				{
+					"name": "Root",
+					"pivot": [0, -0.29643, 0]
+				},
+				{
+					"name": "ysmGlow_doro",
+					"parent": "Root",
+					"pivot": [0, -0.29643, 0],
+					"cubes": [
+						{
+							"origin": [-10.5, -0.29643, 0],
+							"size": [21, 16, 0.001],
+							"uv": {
+								"north": {"uv": [1.67704, 2.19259], "uv_size": [9.48402, 10.28995]},
+								"east": {"uv": [0, 0], "uv_size": [0, 16]},
+								"south": {"uv": [0, 25.71852], "uv_size": [4.26667, 6.28148]},
+								"west": {"uv": [0, 0], "uv_size": [0, 16]},
+								"up": {"uv": [0, 0], "uv_size": [16, 0]},
+								"down": {"uv": [0, 0], "uv_size": [16, 0]}
+							}
+						}
+					]
+				},
+				{
+					"name": "ysmGlow_dororo",
+					"parent": "Root",
+					"pivot": [0, -0.29643, 0.9995],
+					"cubes": [
+						{
+							"origin": [-10.5, -2.23929, -0.0005],
+							"size": [21.22857, 16.69286, 0.001],
+							"uv": {
+								"north": {"uv": [19.18709, 14.28148], "uv_size": [8.42687, 11.96444]},
+								"east": {"uv": [0, 0], "uv_size": [0.001, 16]},
+								"south": {"uv": [0, 20.35556], "uv_size": [8.25926, 11.64444]},
+								"west": {"uv": [0, 0], "uv_size": [0.001, 16]},
+								"up": {"uv": [21, 0.001], "uv_size": [-21, -0.001]},
+								"down": {"uv": [21, 0.001], "uv_size": [-21, -0.001]}
+							}
+						}
+					]
+				},
+				{
+					"name": "LeftHandLocator",
+					"parent": "Root",
+					"pivot": [1.17143, 1.33214, 0],
+					"rotation": [-60, 0, 0]
+				},
+				{
+					"name": "RightHandLocator",
+					"parent": "Root",
+					"pivot": [-5.11428, 2.81785, 0],
+					"rotation": [-60, 0, 0]
+				}
+			]
+		}
+	]
+}

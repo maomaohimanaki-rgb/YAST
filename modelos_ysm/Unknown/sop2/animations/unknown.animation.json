@@ -1,0 +1,33 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"震惊": {
+			"loop": true,
+			"bones": {
+				"mei": {
+					"scale": 0
+				},
+				"mei-sad": {
+					"scale": 1
+				},
+				"month": {
+					"scale": 0
+				},
+				"month-sad": {
+					"scale": 1
+				}
+			}
+		},
+		"默认": {
+			"loop": true,
+			"bones": {
+				"mei": {
+					"scale": 1
+				},
+				"month": {
+					"scale": 1
+				}
+			}
+		}
+	}
+}

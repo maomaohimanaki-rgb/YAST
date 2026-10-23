@@ -1,0 +1,63 @@
+{
+  "spec": 2,
+  "metadata": {
+    "name": "Jane Doe",
+    "tips": "Undercover PubSec officer",
+    "license": {
+      "type": "CC BY-NC-SA 4.0"
+    },
+    "authors": [
+      {
+        "name": "groube",
+        "role": "big fan of Jane Doe",
+        "comment": "thanks for checking out this model :)",
+        "avatar": "avatar/gsl.png"
+      }
+    ],
+    "link": {
+      "home": "https://modrinth.com/mod/yes-steve-model",
+      "donate": "https://afdian.com/a/ysmmod"
+    }
+  },
+  "properties": {
+    "height_scale": 0.75,
+    "width_scale": 0.75,
+    "extra_animation": {
+      "jacket": "toggle jacket",
+      "twitch ears": "ears ↑↓",
+      "extra idle": "extra idle",
+      "hi": "打招呼",
+      "extra2": "鼓掌",
+      "extra3": "是的",
+      "extra4": "不行",
+      "extra5": "卖萌",
+      "extra6": "御笔摇",
+      "extra0": "换头饰",
+      "extra1": "打招呼",
+      "extra7": "舞蹈"
+    },
+    "preview_animation": "gui",
+    "default_texture": "default",
+    "render_layers_first": false,
+    "free": true
+  },
+  "files": {
+    "player": {
+      "model": {
+        "main": "models/main.json",
+        "arm": "models/arm.json"
+      },
+      "animation": {
+        "main": "animations/main.animation.json",
+        "extra": "animations/extra.animation.json"
+      },
+      "texture": [
+        "textures/jane.png"
+      ]
+    },
+    "arrow": {
+      "model": "models/arrow.json",
+      "texture": "textures/jane.png"
+    }
+  }
+}

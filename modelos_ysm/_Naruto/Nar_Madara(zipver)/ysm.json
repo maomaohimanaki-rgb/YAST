@@ -1,0 +1,62 @@
+{
+  "spec": 2,
+  "metadata": {
+    "name": "宇智波斑",
+    "tips": "所谓秽土转生，就是召回死者的术\n但它有一个风险...\n只要知道印 被从秽土唤回的死者就可以主动解除秽土转生的召唤契约\n那样一来 你们就有大麻烦了\n去告诉术者 禁术可不能滥用\n\n秽土转生 开！",
+    "license": {
+      "type": "CC BY-NC-SA 4.0"
+    },
+    "authors": [
+      {
+        "name": "Likewind",
+        "role": "",
+        "avatar": "avatar/Likewind.png",
+        "contact": {
+          "Bilibili": "https://space.bilibili.com/2139113831"
+        },
+        "comment": "一个做事全凭兴趣使然的散人罢了"
+      }
+    ],
+    "link": {
+      "home": "https://space.bilibili.com/2139113831",
+      "donate": ""
+    }
+  },
+  "properties": {
+    "height_scale": 0.7,
+    "width_scale": 0.7,
+    "extra_animation": {
+      "extra1": "",
+      "extra2": "",
+      "extra3": "",
+      "extra4": "",
+      "extra5": "",
+      "extra6": "",
+      "extra7": "",
+      "extra0": "",
+      "extra8":"切换眼睛"
+      //"extra9":"切换表情"
+    },
+    "preview_animation": "gui",
+    "default_texture": "l",
+    "free": false
+  },
+  "files": {
+    "player": {
+      "model": {
+        "main": "models/main.json",
+        "arm": "models/arm.json"
+      },
+      "animation": {
+        "main": "animations/main.animation.json",
+        "arm": "animations/arm.animation.json",
+        "extra": "animations/extra.animation.json",
+        "arrow": "animations/arrow.animation.json"
+      },
+      "texture": [
+        "textures/madara.png"
+      ]
+    }
+    
+  }
+}

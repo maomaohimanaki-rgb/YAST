@@ -1,0 +1,55 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 1.5,
+				"visible_bounds_offset": [0, 0.25, 0]
+			},
+			"bones": [
+				{
+					"name": "bow",
+					"pivot": [8, 0, 0],
+					"rotation": [0, 90, 0],
+					"cubes": [
+						{
+							"origin": [5.75, -0.25, -14.5],
+							"size": [5.5, 2.5, 20.75],
+							"uv": {
+								"north": {"uv": [14, 1], "uv_size": [-14, 63]},
+								"east": {"uv": [14, 1], "uv_size": [-14, 63]},
+								"south": {"uv": [14, 1], "uv_size": [-14, 63]},
+								"west": {"uv": [14, 1], "uv_size": [-14, 63]},
+								"up": {"uv": [0, 64], "uv_size": [14, -63]},
+								"down": {"uv": [0, 64], "uv_size": [14, -63]}
+							}
+						}
+					]
+				},
+				{
+					"name": "crossbow",
+					"pivot": [8, 0, 0],
+					"rotation": [0, 90, 0],
+					"cubes": [
+						{
+							"origin": [5.75, -0.25, -14.5],
+							"size": [4.5, 1.5, 16.75],
+							"uv": {
+								"north": {"uv": [18, 63], "uv_size": [12, -52]},
+								"east": {"uv": [18, 63], "uv_size": [12, -52]},
+								"south": {"uv": [18, 63], "uv_size": [12, -52]},
+								"west": {"uv": [18, 63], "uv_size": [12, -52]},
+								"up": {"uv": [30, 11], "uv_size": [-12, 52]},
+								"down": {"uv": [30, 11], "uv_size": [-12, 52]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

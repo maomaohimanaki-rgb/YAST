@@ -1,0 +1,23 @@
+{
+	"format_version": "1.19.0",
+	"animation_controllers": {
+		"controller.animation.表情.new": {
+			"states": {
+				"default": {
+					"animations": [
+						{"震惊": "v.roaming.face==1"},
+						{"默认": "v.roaming.face==!2"}
+					],
+					"transitions": [
+						{"active": "v.roaming.face==biaoqing"}
+					]
+				},
+				"active": {
+					"transitions": [
+						{"default": "v.roaming.face==biaoqing"}
+					]
+				}
+			}
+		}
+	}
+}

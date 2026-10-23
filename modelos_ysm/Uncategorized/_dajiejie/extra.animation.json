@@ -1,0 +1,1 @@
+{"format_version":"1.8.0","animations":{"extra1":{"animation_length":1.5,"loop":"hold_on_last_frame","bones":{"LeftFoot":{"rotation":0.0,"position":0.0},"LeftForeArm":{"rotation":0.0,"position":0.0},"RightFoot":{"rotation":0.0,"position":0.0}},"timeline":{"0":["v.roaming.ac=1-v.roaming.b;"],"0.0417":["v.roaming.b=v.roaming.ac;"]}}}}

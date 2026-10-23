@@ -1,0 +1,53 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 16,
+				"texture_height": 16,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "LeftArm",
+					"pivot": [0.75, 25.27644, 0.12356],
+					"cubes": [
+						{
+							"origin": [0.25, 23.16042, 0.05657],
+							"size": [1, 2, 0],
+							"uv": {
+								"north": {"uv": [7, 0.25], "uv_size": [0.25, 0.5]},
+								"east": {"uv": [6.5, 4.75], "uv_size": [2, 2]},
+								"south": {"uv": [6.5, 4.75], "uv_size": [2, 2]},
+								"west": {"uv": [6.5, 4.75], "uv_size": [2, 2]},
+								"up": {"uv": [8.5, 6.75], "uv_size": [-2, -2]},
+								"down": {"uv": [8.5, 6.75], "uv_size": [-2, -2]}
+							}
+						}
+					]
+				},
+				{
+					"name": "RightArm",
+					"pivot": [-1.75, 25.27644, 0.12356],
+					"cubes": [
+						{
+							"origin": [-2.25, 23.16042, 0.05657],
+							"size": [1, 2, 0],
+							"uv": {
+								"north": {"uv": [7, 0.25], "uv_size": [0.25, 0.5]},
+								"east": {"uv": [6.5, 4.75], "uv_size": [2, 2]},
+								"south": {"uv": [6.5, 4.75], "uv_size": [2, 2]},
+								"west": {"uv": [6.5, 4.75], "uv_size": [2, 2]},
+								"up": {"uv": [8.5, 6.75], "uv_size": [-2, -2]},
+								"down": {"uv": [8.5, 6.75], "uv_size": [-2, -2]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

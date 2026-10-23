@@ -1,0 +1,57 @@
+{
+	"spec": 2,
+	"metadata": {
+		"name": "Aventurine YSM",
+		"tips": "<Unknown>",
+		"license": {
+			"type": "All Rights Reserved",
+			"desc:": "",
+			"desc": "Aventurine From Honkai Star Rail"
+		},
+		"authors": [
+			{
+				"name": "Welfare Waifu",
+				"avatar": "avatar/welfare waifu.png",
+				"role": "Sole Author",
+				"contact": {
+					"Planet Minecraft": "https://www.planetminecraft.com/member/welfarexwaifu/",
+					"Twitter": "https://x.com/WelfarexWaifu"
+				}
+			}
+		]
+	},
+	"files": {
+		"player": {
+			"model": {
+				"main": "models/main.json",
+				"arm": "models/arm.json"
+			},
+			"texture": [
+				{
+					"uv": "textures/Skin.png"
+				}
+			],
+			"animation": {
+				"main": "animations/aventurine.animation.json"
+			}
+		}
+	},
+	"properties": {
+		"height_scale": 0.7,
+		"width_scale": 0.7,
+		"extra_animation": {
+			"extra0": "",
+			"extra1": "",
+			"extra2": "",
+			"extra3": "",
+			"extra4": "",
+			"extra5": "",
+			"extra6": "",
+			"extra7": ""
+		},
+		"preview_animation": "idle",
+		"free": false,
+		"render_layers_first": false,
+		"default_texture": "Skin"
+	}
+}

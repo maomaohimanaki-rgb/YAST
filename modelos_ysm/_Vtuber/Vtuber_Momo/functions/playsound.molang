@@ -1,0 +1,6 @@
+v.isplaying = 1 - v.isplaying;
+v.isplaying ? {
+    ysm.play_sound('bgm', 'trance', 3);
+} : {
+    ysm.stop_sound('bgm');
+};

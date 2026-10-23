@@ -1,0 +1,23 @@
+ctrl.attacked ? {
+	v.roaming.suit == 0 ? {
+		ctrl.set_animation('attacked');
+    		return ctrl.state_continue;
+	}:{
+		ctrl.set_animation('attacked2');
+    		return ctrl.state_continue;
+
+	}
+    };
+
+ctrl.death ? {
+	v.roaming.suit == 0 ? {
+		ctrl.set_animation('death');
+    		return ctrl.state_continue;
+	}:{
+		ctrl.set_animation('death2');
+    		return ctrl.state_continue;
+
+	}
+    };
+
+return ctrl.state_bypass;
