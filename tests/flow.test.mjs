@@ -58,7 +58,51 @@ steve.headRot = { x: 40, y: 30 };
 steve.location = { x: 5, y: 64, z: 5 };
 steve.equip.Mainhand = { typeId: "minecraft:diamond_sword", getComponent: () => undefined };
 system._advance(10);
-assert.deepEqual(av.location, steve.location, "teleporte para o player");
+assert.deepEqual(av.location, steve.location, "parado: avatar exatamente no player");
+
+// 2b) Predição linear: andando a 0,25 bloco/tick em X, o avatar fica 2 ticks À FRENTE
+for (let i = 0; i < 12; i++) {
+  steve.location = { x: steve.location.x + 0.25, y: 64, z: 5 };
+  system._advance(1);
+}
+assert.ok(Math.abs(av.location.x - (steve.location.x + 0.5)) < 0.02, `prevê +0,5 bloco (lead 2): ${av.location.x - steve.location.x}`);
+assert.equal(av.location.y, 64, "no chão não prevê Y");
+// parou: o avanço some em poucos ticks (sem "deslizar" para longe)
+for (let i = 0; i < 4; i++) system._advance(1);
+assert.ok(Math.abs(av.location.x - steve.location.x) < 0.05, `parou: ${av.location.x - steve.location.x}`);
+// pulo (no ar): prevê Y também
+steve.isOnGround = false;
+for (let i = 0; i < 6; i++) {
+  steve.location = { x: steve.location.x, y: steve.location.y + 0.2, z: 5 };
+  system._advance(1);
+}
+assert.ok(av.location.y > steve.location.y + 0.3, "no ar prevê Y");
+steve.isOnGround = true;
+steve.location = { x: 5, y: 64, z: 5 };
+system._advance(5);
+// teleporte longo: encaixa sem extrapolar
+steve.location = { x: 500, y: 64, z: 5 };
+system._advance(1);
+assert.deepEqual(av.location, steve.location, "teleporte: sem predição");
+// limite de avanço: velocidade absurda (elytra/foguete) não joga o avatar a mais de 1,5 bloco
+for (let i = 0; i < 8; i++) {
+  steve.location = { x: steve.location.x + 3, y: 64, z: 5 };
+  system._advance(1);
+}
+assert.ok(av.location.x - steve.location.x <= 1.5 + 1e-9, "avanço limitado");
+steve.location = { x: 5, y: 64, z: 5 };
+system._advance(8);
+// calibração ao vivo
+system._fire("scriptEventReceive", { id: "yast:lead", message: "3", sourceEntity: steve });
+assert.equal(world.getDynamicProperty("yast:lead"), 3, "lead salvo no mundo");
+for (let i = 0; i < 12; i++) {
+  steve.location = { x: steve.location.x + 0.2, y: 64, z: 5 };
+  system._advance(1);
+}
+assert.ok(Math.abs(av.location.x - (steve.location.x + 0.6)) < 0.02, "lead 3 = +0,6 bloco");
+system._fire("scriptEventReceive", { id: "yast:lead", message: "2", sourceEntity: steve });
+steve.location = { x: 5, y: 64, z: 5 };
+system._advance(8);
 assert.equal(av.props["yast:st"] & 1, 1, "bit agachado");
 assert.equal(av.props["yast:st"] & 16, 16, "bit no chão");
 assert.equal(av.props["yast:pitch"], 40);

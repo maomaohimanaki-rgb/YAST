@@ -75,8 +75,13 @@ animações somam, então emote e idle ao mesmo tempo dariam pose dobrada.
 * **Hitbox** é a do player (1.8). O avatar é só visual — inclusive o tamanho (`width/height_scale` do YSM é ignorado).
 * **Primeira pessoa:** o avatar some quando a câmera está a menos de 1,9 bloco dele
   (`q.distance_from_camera`); fica o braço vanilla. Braço YSM em 1ª pessoa está no roadmap.
-* **Atraso de 1 tick:** o teleporte é feito pelo servidor; em 3ª pessoa correndo dá para ver o
-  avatar "arrastando" uns centímetros atrás.
+* **Predição linear (dead reckoning):** o servidor recebe a posição do player com atraso e o
+  cliente ainda interpola a entidade, então o avatar ficaria ~1 passo atrás. `sync.js` posiciona
+  o avatar em `posição + velocidade × leadTicks`, com a velocidade **medida** pelo deslocamento
+  real entre ticks (vale montado/knockback), filtro exponencial (0,6), limite de 1,5 bloco,
+  sem prever Y no chão e sem prever em teleporte (> 4 blocos/tick). O giro da cabeça/corpo é
+  previsto igual (máx. 35°). Padrão: 2 ticks; calibre no jogo com `/scriptevent yast:lead <0..6>`
+  (fica salvo no mundo; sem número mostra o valor atual). Com ping alto, aumente.
 * **Versão mínima: Minecraft 1.26.50** (`@minecraft/server` 2.9.0, `@minecraft/server-ui` 2.1.0).
   O golpe (inclusive no ar) vem de `playerSwingStart`; se o evento não existir, o código cai para
   os eventos de acerto em entidade/bloco.

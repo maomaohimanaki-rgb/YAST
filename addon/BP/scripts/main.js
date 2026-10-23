@@ -8,11 +8,11 @@
 //   todo tick       -> teleporte + Entity Properties (avatar/sync.js)
 //   eventos         -> golpe/uso/dano viram animação (avatar/actions.js)
 // =====================================================================
-import { world, system } from "@minecraft/server";
-import { ITEM_MENU_KEY, SWEEP_INTERVAL_TICKS } from "./config.js";
+import { world, system, Player } from "@minecraft/server";
+import { ITEM_MENU_KEY, SWEEP_INTERVAL_TICKS, DP_LEAD } from "./config.js";
 import { openMenu } from "./ui/menu.js";
 import { sessions, restore, dropSession, sweep } from "./avatar/manager.js";
-import { syncSession } from "./avatar/sync.js";
+import { syncSession, setLeadTicks, getLeadTicks } from "./avatar/sync.js";
 import { registerActionEvents } from "./avatar/actions.js";
 
 world.afterEvents.itemUse.subscribe((ev) => {
@@ -45,8 +45,22 @@ world.beforeEvents.playerLeave.subscribe((ev) => {
 
 registerActionEvents();
 
+// Calibração da predição em jogo:  /scriptevent yast:lead 2.5   (sem número = mostra o atual)
+system.afterEvents.scriptEventReceive.subscribe((ev) => {
+  if (ev.id !== "yast:lead") return;
+  const msg = (ev.message ?? "").trim();
+  if (msg) {
+    const v = setLeadTicks(msg);
+    world.setDynamicProperty(DP_LEAD, v);
+  }
+  const who = ev.sourceEntity;
+  if (who instanceof Player) who.sendMessage(`§e[YAST] §fpredição: ${getLeadTicks()} ticks`);
+});
+
 // /reload ou mundo carregado com jogadores já dentro: reconstrói tudo.
 system.run(() => {
+  const lead = world.getDynamicProperty(DP_LEAD);
+  if (typeof lead === "number") setLeadTicks(lead);
   sweep();
   for (const p of world.getAllPlayers()) restore(p);
 });

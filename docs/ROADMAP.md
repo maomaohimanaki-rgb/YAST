@@ -26,6 +26,8 @@ Abra o Content Log (Configurações → Criador → Content Log) antes de entrar
 - [ ] Andar/correr/agachar/pular/nadar/elytra/dormir/barco: animação certa.
 - [ ] Olhar para cima/baixo/lados: a cabeça segue **no sentido certo** (se inverter: trocar o sinal em `head_look`, `convert.py`).
 - [ ] Corpo gira atrás da cabeça como no vanilla (não "trava" na câmera).
+- [ ] Correndo em 3ª pessoa o avatar acompanha o player (sem ficar atrás nem passar à frente).
+      Ajuste com `/scriptevent yast:lead 1`, `2`, `3`... e anote o melhor valor.
 - [ ] Item na mão aparece na mão do avatar (se deslocado/rotacionado: ajustar o pivô do `rightItem` no conversor).
 - [ ] Golpear mob/bloco anima o braço; levar dano anima `attacked`; comer/arco anima `use_*`.
 - [ ] Magical Wine Fox: troca das 6 cores; Ajustes (esconder cajado / círculo) funcionam.
@@ -40,9 +42,9 @@ Abra o Content Log (Configurações → Criador → Content Log) antes de entrar
 ## 0.5.x — polimento depois do primeiro teste
 
 - ⏳ Ajustes finos que só o jogo mostra (sinal da cabeça, pivô do item, escala, limiar de 1ª pessoa).
-- ⏳ Suavizar o atraso do teleporte (testar `minecraft:rideable` no player com assento para a
-  família `yast_avatar` — o cliente posiciona o passageiro sem atraso; risco: lógica de
-  desmontar dos papagaios).
+- 🧪 Predição linear da posição/rotação (`/scriptevent yast:lead` para calibrar).
+- 💭 Se a predição não bastar: `minecraft:rideable` no player com assento para a família
+  `yast_avatar` (o cliente posiciona o passageiro sem atraso; risco: lógica de desmontar dos papagaios).
 - ⏳ Configs além de 12 por modelo: paginar por "grupo" ou empacotar checkboxes em bits.
 - ⏳ Animações de armadura do YSM (`head:default`, `chest$minecraft:...`) e `hold_*` restantes.
 - ⏳ Ícone por modelo no menu (renderizar a textura `avatar/` ou um recorte da skin).

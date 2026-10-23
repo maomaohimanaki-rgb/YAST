@@ -17,6 +17,18 @@ export const CONFIG_SLOTS = 12;
 export const RESPAWN_COOLDOWN_TICKS = 20;
 export const SWEEP_INTERVAL_TICKS = 100;
 
+// Predição linear (dead reckoning) — ver avatar/sync.js: predictMotion().
+// O avatar é posicionado pelo servidor, que já recebe a posição do player com atraso,
+// e o cliente ainda interpola a entidade: sem previsão ele fica ~1 passo atrás.
+export const PREDICTION = {
+  leadTicks: 2,         // quanto do futuro prever (ticks de 50 ms). Ajuste: /scriptevent yast:lead <0..6>
+  smoothing: 0.6,       // 0..1: peso da velocidade nova no filtro (1 = sem filtro, mais tremido)
+  maxOffset: 1.5,       // avanço máximo em blocos (evita "atravessar parede" ao parar de repente)
+  snapDistance: 4,      // deslocamento maior que isso num tick = teleporte/portal: não prever
+  maxYawLead: 35,       // graus máximos de avanço na rotação
+};
+export const DP_LEAD = "yast:lead";                    // DynamicProperty do mundo (ajuste ao vivo)
+
 // Bits de yast:st — espelho de tools/ysm2bedrock/molang.py (STATE_BITS) + HIDDEN_BIT.
 export const ST = {
   sneaking: 1, sprinting: 2, swimming: 4, gliding: 8, onGround: 16, inWater: 32, riding: 64,

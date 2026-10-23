@@ -6,7 +6,7 @@
 // A IA continua vendo o player real (hitbox 1.8); o avatar é só visual.
 // =====================================================================
 import { EquipmentSlot, GameMode, system } from "@minecraft/server";
-import { ST, ARMOR, ITEM_CAT, VEHICLE } from "../config.js";
+import { ST, ARMOR, ITEM_CAT, VEHICLE, PREDICTION } from "../config.js";
 import { ensureEntity, removeEntity, setProp } from "./manager.js";
 
 const wrap = (a) => ((((a + 180) % 360) + 360) % 360) - 180;
@@ -137,6 +137,60 @@ function armorBits(eq) {
   return a;
 }
 
+let leadTicks = PREDICTION.leadTicks;
+/** Ajuste ao vivo do avanço da predição (ticks). */
+export function setLeadTicks(t) {
+  leadTicks = clamp(Number(t) || 0, 0, 6);
+  return leadTicks;
+}
+export function getLeadTicks() {
+  return leadTicks;
+}
+
+/**
+ * Predição linear (dead reckoning): p_previsto = p + v * atraso.
+ *
+ * v é MEDIDA pelo deslocamento real entre ticks (não getVelocity), então vale também
+ * montado (barco, cavalo) e com knockback. Um filtro exponencial tira o tremido de
+ * ticks irregulares; ao parar, a velocidade filtrada cai em 1–2 ticks e o avanço some.
+ */
+export function predictMotion(sync, loc, head, onGround) {
+  const prev = sync.lastLoc;
+  sync.lastLoc = { x: loc.x, y: loc.y, z: loc.z };
+  const prevHead = sync.lastHead ?? head;
+  sync.lastHead = head;
+  if (!prev) {
+    sync.fv = { x: 0, y: 0, z: 0 };
+    sync.fyaw = 0;
+    return { loc, headLead: 0 };
+  }
+  const d = { x: loc.x - prev.x, y: loc.y - prev.y, z: loc.z - prev.z };
+  if (Math.hypot(d.x, d.y, d.z) > PREDICTION.snapDistance) {
+    sync.fv = { x: 0, y: 0, z: 0 };       // teleporte/portal/respawn: encaixa sem prever
+    sync.fyaw = 0;
+    return { loc, headLead: 0 };
+  }
+  const a = PREDICTION.smoothing;
+  const fv = sync.fv ?? { x: 0, y: 0, z: 0 };
+  fv.x += (d.x - fv.x) * a;
+  fv.y += (d.y - fv.y) * a;
+  fv.z += (d.z - fv.z) * a;
+  sync.fv = fv;
+  sync.fyaw = (sync.fyaw ?? 0) + (wrap(head - prevHead) - (sync.fyaw ?? 0)) * a;
+
+  let ox = fv.x * leadTicks;
+  let oz = fv.z * leadTicks;
+  const h = Math.hypot(ox, oz);
+  if (h > PREDICTION.maxOffset) {
+    ox *= PREDICTION.maxOffset / h;
+    oz *= PREDICTION.maxOffset / h;
+  }
+  // No chão a velocidade Y é só a gravidade empurrando: prever afundaria o avatar.
+  const oy = onGround ? 0 : clamp(fv.y * leadTicks, -PREDICTION.maxOffset, PREDICTION.maxOffset);
+  const headLead = clamp(sync.fyaw * leadTicks, -PREDICTION.maxYawLead, PREDICTION.maxYawLead);
+  return { loc: { x: loc.x + ox, y: loc.y + oy, z: loc.z + oz }, headLead };
+}
+
 /** Um tick de sincronização. */
 export function syncSession(s) {
   const p = s.player;
@@ -152,16 +206,16 @@ export function syncSession(s) {
   const e = ensureEntity(s);
   if (!e) return;
 
-  const loc = p.location;
   const rot = p.getRotation();
-  const vel = p.getVelocity(); // blocos/tick
-  const head = rot.y;
+  const vel = p.getVelocity(); // blocos/tick (só para animação; posição usa a predição)
+  const pred = predictMotion(s.sync, p.location, rot.y, p.isOnGround);
+  const head = wrap(rot.y + pred.headLead);
   const body = bodyYaw(s.sync, head, vel.x, vel.z);
   const yawSpeed = s.sync.body === undefined ? 0 : wrap(body - s.sync.body) * 20;
   s.sync.body = body;
 
   try {
-    e.teleport(loc, { dimension: p.dimension, rotation: { x: 0, y: body }, keepVelocity: false });
+    e.teleport(pred.loc, { dimension: p.dimension, rotation: { x: 0, y: body }, keepVelocity: false });
   } catch {
     return;
   }
