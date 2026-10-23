@@ -19,18 +19,22 @@ function isPlayer(e) {
 }
 
 export function registerActionEvents() {
-  world.afterEvents.entityHitEntity.subscribe((ev) => {
-    if (isPlayer(ev.damagingEntity)) bump(ev.damagingEntity, "swing");
-  });
-  world.afterEvents.entityHitBlock.subscribe((ev) => {
-    if (isPlayer(ev.damagingEntity)) bump(ev.damagingEntity, "swing");
-  });
-  world.afterEvents.playerPlaceBlock.subscribe((ev) => bump(ev.player, "swing"));
-  world.afterEvents.playerInteractWithBlock.subscribe((ev) => {
-    if (ev.isFirstEvent) bump(ev.player, "swing");
-  });
-  // Versões novas da API têm o golpe no ar; na 2.4.0 o evento não existe e isto é ignorado.
-  /** @type {any} */ (world.afterEvents).playerSwingStart?.subscribe((ev) => bump(ev.player, "swing"));
+  // API 2.9 (1.26.50+): todo golpe, inclusive no ar. Os eventos de acerto ficam só
+  // de reserva caso o evento não exista, para não contar o mesmo golpe duas vezes.
+  if (world.afterEvents.playerSwingStart) {
+    world.afterEvents.playerSwingStart.subscribe((ev) => bump(ev.player, "swing"));
+  } else {
+    world.afterEvents.entityHitEntity.subscribe((ev) => {
+      if (isPlayer(ev.damagingEntity)) bump(ev.damagingEntity, "swing");
+    });
+    world.afterEvents.entityHitBlock.subscribe((ev) => {
+      if (isPlayer(ev.damagingEntity)) bump(ev.damagingEntity, "swing");
+    });
+    world.afterEvents.playerPlaceBlock.subscribe((ev) => bump(ev.player, "swing"));
+    world.afterEvents.playerInteractWithBlock.subscribe((ev) => {
+      if (ev.isFirstEvent) bump(ev.player, "swing");
+    });
+  }
 
   world.afterEvents.entityHurt.subscribe(
     (ev) => bump(ev.hurtEntity, "hurt"),

@@ -28,7 +28,7 @@
 | Menu com 51 botões | roda principal + lista por coleção (40 por página) | Com 1100 modelos, 51 botões não cabem. A roda de 0.4.x foi mantida (mesmo protocolo de 15 botões). Opção 0 = **Resetar**. |
 | Uma página por variação de cor | um modelo, várias texturas (`yast:var`) | Ex.: Magical Wine Fox = 1 entrada com 6 cores. Render controller único indexa `Texture.v0..v15`. |
 | Reaproveitar `animation.player.*` com hierarquia canônica | animações do próprio YSM | Os modelos YSM já trazem idle/walk/run/sneak/swim/... feitos para o rig deles; reaproveitar as do player perderia toda a fidelidade. Só foram adicionados `rightItem`/`leftItem` (filhos de `RightHandLocator`/`LeftHandLocator`). |
-| `entity.getComponent('equippable').setEquipment` na entidade | `replaceitem entity @s slot.weapon.mainhand` | Na API 2.4.0 o componente `equippable` só existe em players. Encantamento (brilho) não é copiado. |
+| `entity.getComponent('equippable').setEquipment` na entidade | `replaceitem entity @s slot.weapon.mainhand` | Até a API 2.9.0 o componente `equippable` só existe em players. Encantamento (brilho) não é copiado. |
 | Prefixo `ysm_` nos ossos | removido | Ele existia porque o attachable usava o rig do player e ossos chamados `Head`, `Body`... herdavam a pose vanilla. Numa entidade própria nenhum osso tem comportamento automático. |
 
 ## O contrato padronizado (todo modelo igual)
@@ -77,7 +77,8 @@ animações somam, então emote e idle ao mesmo tempo dariam pose dobrada.
   (`q.distance_from_camera`); fica o braço vanilla. Braço YSM em 1ª pessoa está no roadmap.
 * **Atraso de 1 tick:** o teleporte é feito pelo servidor; em 3ª pessoa correndo dá para ver o
   avatar "arrastando" uns centímetros atrás.
-* **Golpe no ar** (sem acertar nada) não tem evento na API 2.4.0; só golpes que acertam
-  entidade/bloco animam. Na API 2.10 existe `playerSwingStart` e o código já o usa se existir.
+* **Versão mínima: Minecraft 1.26.50** (`@minecraft/server` 2.9.0, `@minecraft/server-ui` 2.1.0).
+  O golpe (inclusive no ar) vem de `playerSwingStart`; se o evento não existir, o código cai para
+  os eventos de acerto em entidade/bloco.
 * Máximo de 12 configs e 16 cores por modelo (limite de 32 propriedades por entidade).
 * Física/partículas que dependem de `ysm.bone_rot`, `ysm.particle`, mods (TaC, SlashBlade...) viram 0.

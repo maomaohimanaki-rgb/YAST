@@ -68,7 +68,8 @@ assert.ok(av.commands.some((c) => c.includes("slot.weapon.mainhand 0 minecraft:d
 assert.ok(Math.abs(av.props["yast:hyaw"]) <= 75, "cabeça a no máximo 75° do corpo");
 
 // 3) Golpe, dano e uso viram contadores/estado
-world._fire("entityHitEntity", { damagingEntity: steve, hitEntity: {} });
+world._fire("playerSwingStart", { player: steve, swingSource: "Attack" });
+world._fire("entityHitEntity", { damagingEntity: steve, hitEntity: {} }); // não pode contar de novo
 world._fire("entityHurt", { hurtEntity: steve, damage: 1 });
 world._fire("itemStartUse", { source: steve, itemStack: { typeId: "minecraft:diamond_sword" } });
 system._advance(1);

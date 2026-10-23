@@ -47,7 +47,7 @@ O avatar escolhido fica salvo no jogador e volta sozinho ao entrar no mundo.
 
 0.5.0 é a primeira versão da arquitetura nova: **ainda não foi testada dentro do jogo**.
 O conversor foi validado em todos os 1136 modelos (JSON, sintaxe Molang e referências), e os
-scripts foram checados contra as definições oficiais da Script API 2.4.0 — mas comportamento
+scripts foram checados contra as definições oficiais da Script API 2.9.0 (Minecraft 1.26.50 ou mais novo) — mas comportamento
 visual (alinhamento do item na mão, sentido de rotação, atraso do teleporte) só o jogo confirma.
 Veja o checklist em [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
