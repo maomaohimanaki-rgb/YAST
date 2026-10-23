@@ -1,0 +1,21 @@
+{
+ "format_version": "1.8.0",
+ "render_controllers": {
+  "controller.render.ysm_glow": {
+   "arrays": {},
+   "geometry": "Geometry.default",
+   "materials": [
+    {
+     "*": "Material.default"
+    },
+    {
+     "ysmGlow*": "Material.glow"
+    }
+   ],
+   "textures": [
+    "Texture.default",
+    "Texture.enchanted"
+   ]
+  }
+ }
+}

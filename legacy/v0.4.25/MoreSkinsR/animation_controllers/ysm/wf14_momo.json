@@ -1,0 +1,3473 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.ysm_wf14_momo.main": {
+      "initial_state": "idle",
+      "states": {
+        "sleep": {
+          "blend_transition": 0.2,
+          "animations": [
+            "sleep"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=1;"
+          ]
+        },
+        "elytra_fly": {
+          "blend_transition": 0.2,
+          "animations": [
+            "elytra_fly"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=2;"
+          ]
+        },
+        "swim": {
+          "blend_transition": 0.2,
+          "animations": [
+            "swim"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=3;"
+          ]
+        },
+        "ride": {
+          "blend_transition": 0.2,
+          "animations": [
+            "ride_pig"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=4;"
+          ]
+        },
+        "sneaking": {
+          "blend_transition": 0.2,
+          "animations": [
+            "sneak"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=5;"
+          ]
+        },
+        "sneak": {
+          "blend_transition": 0.2,
+          "animations": [
+            "sneaking"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=6;"
+          ]
+        },
+        "jump": {
+          "blend_transition": 0.2,
+          "animations": [
+            "jump"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "fly": "(q.life_time-v.lg)>0.5&&!q.is_in_water"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "run": "(((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "walk": "((q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "idle": "(!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=7;"
+          ]
+        },
+        "run": {
+          "blend_transition": 0.2,
+          "animations": [
+            "run"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "((!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)))&&(q.life_time-v.lg)>1.0"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=8;"
+          ]
+        },
+        "walk": {
+          "blend_transition": 0.2,
+          "animations": [
+            "walk"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "((!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "idle": "!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=9;"
+          ]
+        },
+        "idle": {
+          "blend_transition": 0.2,
+          "animations": [
+            "idle"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking))"
+            },
+            {
+              "run": "((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water))"
+            },
+            {
+              "walk": "(q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95)))"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=10;"
+          ]
+        },
+        "fly": {
+          "blend_transition": 0.2,
+          "animations": [
+            "fly"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_rearm": "(v.yast_action_id!=-1)&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            },
+            {
+              "sleep": "(q.is_sleeping)&&!((0))"
+            },
+            {
+              "elytra_fly": "(q.is_gliding)&&!((0)||(q.is_sleeping))"
+            },
+            {
+              "swim": "(q.is_swimming)&&!((0)||(q.is_sleeping)||(q.is_gliding))"
+            },
+            {
+              "ride": "(q.is_riding)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming))"
+            },
+            {
+              "sneaking": "((q.is_sneaking&&q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "((q.is_sneaking)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "run": "(((q.is_sprinting||q.modified_move_speed>0.95))&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "walk": "((q.modified_move_speed>0.05)&&!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))))&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "idle": "(!((0)||(q.is_sleeping)||(q.is_gliding)||(q.is_swimming)||(q.is_riding)||(q.is_sneaking&&q.modified_move_speed>0.05)||(q.is_sneaking)||(!q.is_on_ground&&!q.is_in_water)||((q.is_sprinting||q.modified_move_speed>0.95))||(q.modified_move_speed>0.05)))&&(q.is_on_ground||q.is_in_water)"
+            }
+          ],
+          "on_entry": [
+            "v.ysm_st=24;"
+          ]
+        },
+        "yast_act_a011b70": {
+          "animations": [
+            "a011b70"
+          ],
+          "on_entry": [
+            "v.ysm_st=21;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=10;"
+          ],
+          "transitions": [
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            }
+          ]
+        },
+        "yast_act_a1f5b0b": {
+          "animations": [
+            "a1f5b0b"
+          ],
+          "on_entry": [
+            "v.ysm_st=14;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=11;"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            }
+          ]
+        },
+        "yast_act_a224e2c": {
+          "animations": [
+            "a224e2c"
+          ],
+          "on_entry": [
+            "v.ysm_st=18;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=12;"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            },
+            {
+              "yast_rearm": "(q.life_time-v.yast_action_start)>=0.14&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            }
+          ]
+        },
+        "yast_act_a5e774d": {
+          "animations": [
+            "a5e774d"
+          ],
+          "on_entry": [
+            "v.ysm_st=11;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=13;"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            }
+          ]
+        },
+        "yast_act_a5fcf14": {
+          "animations": [
+            "a5fcf14"
+          ],
+          "on_entry": [
+            "v.ysm_st=20;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=14;"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            },
+            {
+              "yast_rearm": "(q.life_time-v.yast_action_start)>=5.86&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            }
+          ]
+        },
+        "yast_act_a61bcda": {
+          "animations": [
+            "a61bcda"
+          ],
+          "on_entry": [
+            "v.ysm_st=13;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=15;"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            },
+            {
+              "yast_rearm": "(q.life_time-v.yast_action_start)>=1.6&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            }
+          ]
+        },
+        "yast_act_a6f370b": {
+          "animations": [
+            "a6f370b"
+          ],
+          "on_entry": [
+            "v.ysm_st=12;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=16;"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            }
+          ]
+        },
+        "yast_act_a98f4e2": {
+          "animations": [
+            "a98f4e2"
+          ],
+          "on_entry": [
+            "v.ysm_st=22;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=17;"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            },
+            {
+              "yast_rearm": "(q.life_time-v.yast_action_start)>=99.94&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            }
+          ]
+        },
+        "yast_act_ab57a33": {
+          "animations": [
+            "ab57a33"
+          ],
+          "on_entry": [
+            "v.ysm_st=17;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=18;"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            },
+            {
+              "yast_rearm": "(q.life_time-v.yast_action_start)>=3.1&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            }
+          ]
+        },
+        "yast_act_acbc8fc": {
+          "animations": [
+            "acbc8fc"
+          ],
+          "on_entry": [
+            "v.ysm_st=15;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=19;"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            }
+          ]
+        },
+        "yast_act_af7ce99": {
+          "animations": [
+            "af7ce99"
+          ],
+          "on_entry": [
+            "v.ysm_st=16;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=20;"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            }
+          ]
+        },
+        "yast_act_dooble": {
+          "animations": [
+            "dooble"
+          ],
+          "on_entry": [
+            "v.ysm_st=19;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=21;"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_extra_ciallo": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_extra_ciallo')&&v.yast_action_id!=22"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            },
+            {
+              "yast_rearm": "(q.life_time-v.yast_action_start)>=73.54&&!(context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70', 'yast:signal_a_wf14_a1f5b0b', 'yast:signal_a_wf14_a224e2c', 'yast:signal_a_wf14_a5e774d', 'yast:signal_a_wf14_a5fcf14', 'yast:signal_a_wf14_a61bcda', 'yast:signal_a_wf14_a6f370b', 'yast:signal_a_wf14_a98f4e2', 'yast:signal_a_wf14_ab57a33', 'yast:signal_a_wf14_acbc8fc', 'yast:signal_a_wf14_af7ce99', 'yast:signal_a_wf14_dooble', 'yast:signal_a_wf14_extra_ciallo', 'yast:signal_s_wf14_player_size_0p2', 'yast:signal_s_wf14_player_size_0p6', 'yast:signal_s_wf14_player_size_1', 'yast:signal_s_wf14_player_size_2', 'yast:signal_s_wf14_player_size_5', 'yast:signal_s_wf14_hold_0', 'yast:signal_s_wf14_hold_1', 'yast:signal_s_wf14_hold_3', 'yast:signal_s_wf14_hold_5', 'yast:signal_s_wf14_hold_10', 'yast:signal_s_wf14_roaming_back_0', 'yast:signal_s_wf14_roaming_back_1', 'yast:signal_x_wf14_stop'))"
+            }
+          ]
+        },
+        "yast_act_extra_ciallo": {
+          "animations": [
+            "extra_ciallo"
+          ],
+          "on_entry": [
+            "v.ysm_st=23;",
+            "v.yast_action_start=q.life_time;",
+            "v.yast_action_id=22;"
+          ],
+          "transitions": [
+            {
+              "yast_act_a011b70": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a011b70')&&v.yast_action_id!=10"
+            },
+            {
+              "yast_act_a1f5b0b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a1f5b0b')&&v.yast_action_id!=11"
+            },
+            {
+              "yast_act_a224e2c": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a224e2c')&&v.yast_action_id!=12"
+            },
+            {
+              "yast_act_a5e774d": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5e774d')&&v.yast_action_id!=13"
+            },
+            {
+              "yast_act_a5fcf14": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a5fcf14')&&v.yast_action_id!=14"
+            },
+            {
+              "yast_act_a61bcda": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a61bcda')&&v.yast_action_id!=15"
+            },
+            {
+              "yast_act_a6f370b": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a6f370b')&&v.yast_action_id!=16"
+            },
+            {
+              "yast_act_a98f4e2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_a98f4e2')&&v.yast_action_id!=17"
+            },
+            {
+              "yast_act_ab57a33": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_ab57a33')&&v.yast_action_id!=18"
+            },
+            {
+              "yast_act_acbc8fc": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_acbc8fc')&&v.yast_action_id!=19"
+            },
+            {
+              "yast_act_af7ce99": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_af7ce99')&&v.yast_action_id!=20"
+            },
+            {
+              "yast_act_dooble": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_a_wf14_dooble')&&v.yast_action_id!=21"
+            },
+            {
+              "yast_reset": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_x_wf14_stop')"
+            },
+            {
+              "yast_set_hold_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_0')"
+            },
+            {
+              "yast_set_hold_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_1')"
+            },
+            {
+              "yast_set_hold_10": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_10')"
+            },
+            {
+              "yast_set_hold_3": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_3')"
+            },
+            {
+              "yast_set_hold_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_hold_5')"
+            },
+            {
+              "yast_set_player_size_0p2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p2')"
+            },
+            {
+              "yast_set_player_size_0p6": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_0p6')"
+            },
+            {
+              "yast_set_player_size_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_1')"
+            },
+            {
+              "yast_set_player_size_2": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_2')"
+            },
+            {
+              "yast_set_player_size_5": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_player_size_5')"
+            },
+            {
+              "yast_set_roaming_back_0": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_0')"
+            },
+            {
+              "yast_set_roaming_back_1": "context.owning_entity->query.is_item_name_any('slot.weapon.offhand', 0, 'yast:signal_s_wf14_roaming_back_1')"
+            },
+            {
+              "sleep": "q.is_sleeping"
+            },
+            {
+              "elytra_fly": "q.is_gliding"
+            },
+            {
+              "swim": "q.is_swimming"
+            },
+            {
+              "ride": "q.is_riding"
+            },
+            {
+              "sneaking": "(q.is_sneaking&&q.modified_move_speed>0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "sneak": "(q.is_sneaking&&q.modified_move_speed<=0.05)&&(q.is_on_ground||q.is_in_water)"
+            },
+            {
+              "jump": "(!q.is_on_ground&&!q.is_in_water)"
+            },
+            {
+              "run": "(q.is_sprinting||q.modified_move_speed>0.95)"
+            },
+            {
+              "walk": "q.modified_move_speed>0.05"
+            }
+          ]
+        },
+        "yast_set_hold_0": {
+          "on_entry": [
+            "v.hold=0;",
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        },
+        "yast_set_hold_1": {
+          "on_entry": [
+            "v.hold=1;",
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        },
+        "yast_set_hold_10": {
+          "on_entry": [
+            "v.hold=10;",
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        },
+        "yast_set_hold_3": {
+          "on_entry": [
+            "v.hold=3;",
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        },
+        "yast_set_hold_5": {
+          "on_entry": [
+            "v.hold=5;",
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        },
+        "yast_set_player_size_0p2": {
+          "on_entry": [
+            "v.player_size=0.2;",
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        },
+        "yast_set_player_size_0p6": {
+          "on_entry": [
+            "v.player_size=0.6;",
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        },
+        "yast_set_player_size_1": {
+          "on_entry": [
+            "v.player_size=1;",
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        },
+        "yast_set_player_size_2": {
+          "on_entry": [
+            "v.player_size=2;",
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        },
+        "yast_set_player_size_5": {
+          "on_entry": [
+            "v.player_size=5;",
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        },
+        "yast_set_roaming_back_0": {
+          "on_entry": [
+            "v.roaming_back=0;",
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        },
+        "yast_set_roaming_back_1": {
+          "on_entry": [
+            "v.roaming_back=1;",
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        },
+        "yast_reset": {
+          "on_entry": [
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        },
+        "yast_rearm": {
+          "on_entry": [
+            "v.yast_action_id=-1;"
+          ],
+          "transitions": [
+            {
+              "idle": "1"
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.ysm_wf14_momo.c_parallel_0": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "animations": [
+            "parallel0",
+            "parallel2",
+            "parallel3",
+            "parallel1",
+            "parallel4",
+            "parallel5",
+            "parallel6",
+            "parallel7"
+          ]
+        }
+      }
+    },
+    "controller.animation.ysm_wf14_momo.c_parallel_1": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "animations": [
+            "state"
+          ],
+          "transitions": [
+            {
+              "aa931b1_1": "q.is_eating"
+            }
+          ]
+        },
+        "aa931b1_1": {
+          "transitions": [
+            {
+              "ad75657_2": "q.all_animations_finished"
+            },
+            {
+              "a85ed76": "!q.is_eating"
+            }
+          ],
+          "on_entry": [
+            "v.eat=20;"
+          ]
+        },
+        "ad75657_2": {
+          "transitions": [
+            {
+              "a85ed76": "!q.is_eating"
+            }
+          ]
+        },
+        "a85ed76": {
+          "transitions": [
+            {
+              "default": "q.all_animations_finished"
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.ysm_wf14_momo.c_parallel_2": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "animations": [
+            "state"
+          ],
+          "transitions": [
+            {
+              "a2d229d_dooble_1": "v.dooble"
+            }
+          ],
+          "blend_transition": 0.05
+        },
+        "a2d229d_dooble_1": {
+          "animations": [
+            "dooble_cycle"
+          ],
+          "transitions": [
+            {
+              "ac7a9ac_dooble_2": "q.all_animations_finished"
+            },
+            {
+              "default": "1-v.dooble||q.is_swimming"
+            },
+            {
+              "a1f6405_dooble_1_1": "v.dooble_switch"
+            }
+          ]
+        },
+        "ac7a9ac_dooble_2": {
+          "animations": [
+            "dooble_cycle"
+          ],
+          "transitions": [
+            {
+              "a2d229d_dooble_1": "q.all_animations_finished"
+            },
+            {
+              "default": "1-v.dooble||q.is_swimming"
+            },
+            {
+              "a1f6405_dooble_1_1": "v.dooble_switch"
+            }
+          ]
+        },
+        "a1f6405_dooble_1_1": {
+          "animations": [
+            "dooble_cycle_1"
+          ],
+          "transitions": [
+            {
+              "ac9f31e_dooble_1_2": "q.all_animations_finished"
+            },
+            {
+              "default": "1-v.dooble||q.is_swimming"
+            },
+            {
+              "a2d229d_dooble_1": "1-v.dooble_switch"
+            }
+          ]
+        },
+        "ac9f31e_dooble_1_2": {
+          "animations": [
+            "dooble_cycle_1"
+          ],
+          "transitions": [
+            {
+              "a1f6405_dooble_1_1": "q.all_animations_finished"
+            },
+            {
+              "default": "1-v.dooble||q.is_swimming"
+            },
+            {
+              "a2d229d_dooble_1": "1-v.dooble_switch"
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.ysm_wf14_momo.c_parallel_3": {
+      "initial_state": "default",
+      "states": {
+        "a2448fe_2": {
+          "animations": [
+            "ctrl_sanfenmaiba"
+          ],
+          "transitions": [
+            {
+              "a89eb61_1": "q.all_animations_finished"
+            },
+            {
+              "default": "1-v.sf_m_b"
+            }
+          ]
+        },
+        "a89eb61_1": {
+          "animations": [
+            "ctrl_sanfenmaiba"
+          ],
+          "transitions": [
+            {
+              "a2448fe_2": "q.all_animations_finished"
+            },
+            {
+              "default": "1-v.sf_m_b"
+            }
+          ]
+        },
+        "default": {
+          "animations": [
+            "state"
+          ],
+          "transitions": [
+            {
+              "ae846e0_2_1": "(v.owo==5?1:0)&&(v.huhuyao==4?1:0)"
+            },
+            {
+              "a89eb61_1": "v.sf_m_b"
+            },
+            {
+              "aedd2a0_1_1": "0"
+            },
+            {
+              "a21f9fb_2_1": "(v.owo>0?1:0)&&(v.huhuyao==2?1:0)"
+            },
+            {
+              "a706fdb_3_1": "(v.owo>0?1:0)&&(v.huhuyao==1?1:0)"
+            }
+          ]
+        },
+        "ae846e0_2_1": {
+          "animations": [
+            "ab0f121_2"
+          ],
+          "transitions": [
+            {
+              "ac256e6_2_2": "q.all_animations_finished"
+            },
+            {
+              "abe897c_1_1": "v.owo==21?1:0"
+            },
+            {
+              "a71cee6_3_1": "v.owo==23?1:0"
+            },
+            {
+              "default": "v.owo==0?1:0"
+            }
+          ]
+        },
+        "ac256e6_2_2": {
+          "animations": [
+            "ab0f121_2"
+          ],
+          "transitions": [
+            {
+              "ae846e0_2_1": "q.all_animations_finished"
+            },
+            {
+              "abe897c_1_1": "v.owo==21?1:0"
+            },
+            {
+              "a71cee6_3_1": "v.owo==23?1:0"
+            },
+            {
+              "default": "v.owo==0?1:0"
+            }
+          ]
+        },
+        "abe897c_1_1": {
+          "animations": [
+            "a5e3079_1"
+          ],
+          "transitions": [
+            {
+              "a7c509b_1_2": "q.all_animations_finished"
+            },
+            {
+              "ae846e0_2_1": "v.owo==12?1:0"
+            },
+            {
+              "a71cee6_3_1": "v.owo==13?1:0"
+            },
+            {
+              "default": "v.owo==0?1:0"
+            }
+          ]
+        },
+        "a7c509b_1_2": {
+          "animations": [
+            "a5e3079_1"
+          ],
+          "transitions": [
+            {
+              "abe897c_1_1": "q.all_animations_finished"
+            },
+            {
+              "ae846e0_2_1": "v.owo==12?1:0"
+            },
+            {
+              "a71cee6_3_1": "v.owo==13?1:0"
+            },
+            {
+              "default": "v.owo==0?1:0"
+            }
+          ]
+        },
+        "a71cee6_3_1": {
+          "animations": [
+            "a353162_3"
+          ],
+          "transitions": [
+            {
+              "a5ab9ec_3_2": "q.all_animations_finished"
+            },
+            {
+              "abe897c_1_1": "v.owo==31?1:0"
+            },
+            {
+              "ae846e0_2_1": "v.owo==32?1:0"
+            },
+            {
+              "default": "v.owo==0?1:0"
+            }
+          ]
+        },
+        "a5ab9ec_3_2": {
+          "animations": [
+            "a353162_3"
+          ],
+          "transitions": [
+            {
+              "a71cee6_3_1": "q.all_animations_finished"
+            },
+            {
+              "abe897c_1_1": "v.owo==31?1:0"
+            },
+            {
+              "ae846e0_2_1": "v.owo==32?1:0"
+            },
+            {
+              "default": "v.owo==0?1:0"
+            }
+          ]
+        },
+        "aedd2a0_1_1": {
+          "animations": [
+            "a5e3079_1"
+          ],
+          "transitions": [
+            {
+              "a3902b8_1_2": "q.all_animations_finished"
+            },
+            {
+              "default": "v.owo==0?1:0"
+            }
+          ]
+        },
+        "a3902b8_1_2": {
+          "animations": [
+            "a5e3079_1"
+          ],
+          "transitions": [
+            {
+              "aedd2a0_1_1": "q.all_animations_finished"
+            },
+            {
+              "default": "v.owo==0?1:0"
+            }
+          ]
+        },
+        "a21f9fb_2_1": {
+          "animations": [
+            "ab0f121_2"
+          ],
+          "transitions": [
+            {
+              "a37b5d7_2_2": "q.all_animations_finished"
+            },
+            {
+              "default": "v.owo==0?1:0"
+            }
+          ]
+        },
+        "a37b5d7_2_2": {
+          "animations": [
+            "ab0f121_2"
+          ],
+          "transitions": [
+            {
+              "a21f9fb_2_1": "q.all_animations_finished"
+            },
+            {
+              "default": "v.owo==0?1:0"
+            }
+          ]
+        },
+        "a706fdb_3_1": {
+          "animations": [
+            "a353162_3"
+          ],
+          "transitions": [
+            {
+              "af96fe4_3_2": "q.all_animations_finished"
+            },
+            {
+              "default": "v.owo==0?1:0"
+            }
+          ]
+        },
+        "af96fe4_3_2": {
+          "animations": [
+            "a353162_3"
+          ],
+          "transitions": [
+            {
+              "a706fdb_3_1": "q.all_animations_finished"
+            },
+            {
+              "default": "v.owo==0?1:0"
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.ysm_wf14_momo.c_parallel_4": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "animations": [
+            "state"
+          ],
+          "transitions": [
+            {
+              "a4f07b3": "(v.z_d==1?1:0)&&v.z_cs"
+            },
+            {
+              "a0b47a3": "(v.z_d==2?1:0)&&v.z_cs"
+            },
+            {
+              "a3eb2b3": "(v.z_d==0?1:0)&&v.z_cs"
+            }
+          ]
+        },
+        "a4f07b3": {
+          "animations": [
+            "a1b9175"
+          ],
+          "transitions": [
+            {
+              "default": "q.all_animations_finished"
+            }
+          ],
+          "on_exit": [
+            "v.z_cs=0;"
+          ],
+          "blend_transition": 0.05
+        },
+        "a0b47a3": {
+          "animations": [
+            "ada169c"
+          ],
+          "transitions": [
+            {
+              "default": "q.all_animations_finished"
+            }
+          ],
+          "on_exit": [
+            "v.z_cs=0;"
+          ],
+          "blend_transition": 0.05
+        },
+        "a3eb2b3": {
+          "animations": [
+            "a27004b"
+          ],
+          "transitions": [
+            {
+              "default": "q.all_animations_finished"
+            }
+          ],
+          "on_exit": [
+            "v.z_cs=0;"
+          ],
+          "blend_transition": 0.05
+        }
+      }
+    },
+    "controller.animation.ysm_wf14_momo.c_parallel_5": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "animations": [
+            "state"
+          ],
+          "transitions": [
+            {
+              "a72e0f5": "v.swing_hand&&v.roaming_end_rod"
+            }
+          ]
+        },
+        "a72e0f5": {
+          "animations": [
+            "huhu_end_rod"
+          ],
+          "transitions": [
+            {
+              "default": "q.all_animations_finished"
+            }
+          ],
+          "on_entry": [
+            "v.swing_hand=0;"
+          ]
+        }
+      }
+    },
+    "controller.animation.ysm_wf14_momo.c_pre_parallel_0": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "animations": [
+            "pre_parallel0",
+            "pre_parallel1",
+            "pre_parallel2",
+            "pre_parallel3",
+            "pre_parallel4",
+            "pre_parallel5",
+            "pre_parallel6",
+            "pre_parallel7"
+          ]
+        }
+      }
+    },
+    "controller.animation.ysm_wf14_momo.init": {
+      "initial_state": "init",
+      "states": {
+        "init": {
+          "on_entry": [
+            "v.bg=0;v.bv=0;v.by=0;v.dooble=0;v.dooble_switch=0;v.e_sw=0;v.eat=0;v.f=0;v.hg=0;v.hold=0;v.huhuyao=0;v.hv=0;v.in_land=0;v.is_state=0;v.l10_c=0;v.l10_f=0;v.l10_k1=0;v.l10_k2=0;v.l10_k3=0;v.l10_p0=0;v.l10_p0dot=0;v.l10_p1=0;v.l10_p1dot=0;v.l10_r=0;v.l11_c=0;v.l11_f=0;v.l11_k1=0;v.l11_k2=0;v.l11_k3=0;v.l11_p0=0;v.l11_p0dot=0;v.l11_p1=0;v.l11_p1dot=0;v.l11_r=0;v.l12_c=0;v.l12_f=0;v.l12_k1=0;v.l12_k2=0;v.l12_k3=0;v.l12_p0=0;v.l12_p0dot=0;v.l12_p1=0;v.l12_p1dot=0;v.l12_r=0;v.l13_c=0;v.l13_f=0;v.l13_k1=0;v.l13_k2=0;v.l13_k3=0;v.l13_p01y=0;v.l13_p01ydot=0;v.l13_p01z=0;v.l13_p01zdot=0;v.l13_p02y=0;v.l13_p02ydot=0;v.l13_p02z=0;v.l13_p02zdot=0;v.l13_p03y=0;v.l13_p03ydot=0;v.l13_p03z=0;v.l13_p03zdot=0;v.l13_p04y=0;v.l13_p04ydot=0;v.l13_p04z=0;v.l13_p04zdot=0;v.l13_p05y=0;v.l13_p05ydot=0;v.l13_p05z=0;v.l13_p05zdot=0;v.l13_p06y=0;v.l13_p06ydot=0;v.l13_p06z=0;v.l13_p06zdot=0;v.l13_p11y=0;v.l13_p11ydot=0;v.l13_p11z=0;v.l13_p11zdot=0;v.l13_p12y=0;v.l13_p12ydot=0;v.l13_p12z=0;v.l13_p12zdot=0;v.l13_p13y=0;v.l13_p13ydot=0;v.l13_p13z=0;v.l13_p13zdot=0;v.l13_p14y=0;v.l13_p14ydot=0;v.l13_p14z=0;v.l13_p14zdot=0;v.l13_p15y=0;v.l13_p15ydot=0;v.l13_p15z=0;v.l13_p15zdot=0;v.l13_p16y=0;v.l13_p16ydot=0;v.l13_p16z=0;v.l13_p16zdot=0;v.l13_r=0;v.l1_c=0;v.l1_f=0;v.l1_k1=0;v.l1_k2=0;v.l1_k3=0;v.l1_p0=0;v.l1_p0dot=0;v.l1_p1=0;v.l1_p1dot=0;v.l1_r=0;v.l2_c=0;v.l2_f=0;v.l2_k1=0;v.l2_k2=0;v.l2_k3=0;v.l2_p0=0;v.l2_p0dot=0;v.l2_p1=0;v.l2_p1dot=0;v.l2_r=0;v.l3_c=0;v.l3_f=0;v.l3_k1=0;v.l3_k2=0;v.l3_k3=0;v.l3_p0=0;v.l3_p0dot=0;v.l3_p1=0;v.l3_p1dot=0;v.l3_r=0;v.l4_c=0;v.l4_f=0;v.l4_k1=0;v.l4_k2=0;v.l4_k3=0;v.l4_p0=0;v.l4_p0dot=0;v.l4_p1=0;v.l4_p1dot=0;v.l4_r=0;v.l5_c=0;v.l5_f=0;v.l5_k1=0;v.l5_k2=0;v.l5_k3=0;v.l5_p0=0;v.l5_p0dot=0;v.l5_p1=0;v.l5_p1dot=0;v.l5_r=0;v.l6_c=0;v.l6_f=0;v.l6_k1=0;v.l6_k2=0;v.l6_k3=0;v.l6_p0=0;v.l6_p00=0;v.l6_p00dot=0;v.l6_p0dot=0;v.l6_p1=0;v.l6_p10=0;v.l6_p10dot=0;v.l6_p1dot=0;v.l6_r=0;v.l7_c=0;v.l7_f=0;v.l7_k1=0;v.l7_k2=0;v.l7_k3=0;v.l7_p0=0;v.l7_p0dot=0;v.l7_p1=0;v.l7_p1dot=0;v.l7_r=0;v.l8_c=0;v.l8_f=0;v.l8_k1=0;v.l8_k2=0;v.l8_k3=0;v.l8_p0=0;v.l8_p0dot=0;v.l8_p1=0;v.l8_p1dot=0;v.l8_r=0;v.l9_c=0;v.l9_f=0;v.l9_k1=0;v.l9_k2=0;v.l9_k3=0;v.l9_p0=0;v.l9_p0dot=0;v.l9_p1=0;v.l9_p1dot=0;v.l9_r=0;v.owo=0;v.player_size=1;v.roaming_a=0;v.roaming_b=0;v.roaming_back=0;v.roaming_c=0;v.roaming_d=0;v.roaming_end_rod=0;v.roaming_eyestyle=0;v.roaming_h=0;v.roaming_is_comfortable=0;v.roaming_isn_comfortable=0;v.roaming_wu=0;v.s=0;v.sf_m_b=0;v.swing_hand=0;v.tail1y=0;v.tail1z=0;v.tail2y=0;v.tail2z=0;v.tail3y=0;v.tail3z=0;v.tail4y=0;v.tail4z=0;v.tail5y=0;v.tail5z=0;v.tail6y=0;v.tail6z=0;v.ysm_extra=0;v.z_cs=0;v.z_d=0;"
+          ]
+        }
+      }
+    }
+  }
+}

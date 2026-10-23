@@ -1,0 +1,23 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:item": {
+    "description": {
+      "identifier": "yast:signal_a_wf21_extra2",
+      "menu_category": {
+        "category": "none"
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "yast_signal"
+        }
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:allow_off_hand": true,
+      "minecraft:display_name": {
+        "value": "YAST Internal Signal"
+      }
+    }
+  }
+}

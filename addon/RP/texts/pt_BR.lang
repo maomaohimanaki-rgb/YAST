@@ -1,0 +1,4 @@
+item.yast:menu_key.name=Chave do Menu YAST
+entity.yast:avatar.name=Avatar YAST
+pack.name=YAST
+pack.description=Avatares YSM como entidade sombra

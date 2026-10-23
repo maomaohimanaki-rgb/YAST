@@ -1,0 +1,38 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "pa:jessy.player",
+      "item": {
+        "pa:jessy": "query.owner_identifier == 'minecraft:player'"
+      },
+      "materials": {
+        "default": "armor",
+        "enchanted": "armor_enchanted"
+      },
+      "textures": {
+        "default": "textures/entity/pamobile/jessy",
+        "enchanted": "textures/misc/enchanted_item_glint"
+      },
+      "geometry": {
+        "default": "geometry.jessy"
+      },
+      "animations": {
+        "idle": "animation.Jessy.idle",
+        "walk": "animation.Jessy.walk",
+        "sit": "animation.Jessy.sit",
+        "run": "animation.Jessy.run",
+        "jump": "animation.Jessy.jump",
+        "control": "controller.animation.pa_janedoe"
+      },
+      "scripts": {
+        "animate": [
+          "control"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.armor"
+      ]
+    }
+  }
+}

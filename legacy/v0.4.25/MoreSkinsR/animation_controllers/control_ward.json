@@ -1,0 +1,117 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.ward": {
+			"initial_state": "idle",
+			"states": {
+				"idle": {
+					"animations": [
+						"idle"
+					],
+					"transitions": [
+						{
+							"walking": "query.modified_move_speed>0.1 && query.modified_move_speed<0.86 && query.is_on_ground"
+						},
+						{
+							"running": "query.modified_move_speed>0.90 && query.is_on_ground"
+						},
+						{
+							"jump": "query.is_jumping"
+						},
+						{
+							"fly": "!query.is_on_ground && query.modified_move_speed<0.1"
+						},
+						{
+							"fly_move": "!query.is_on_ground && query.modified_move_speed>0.1"
+						},
+						{
+							"sitting": "query.is_sneaking"
+						}
+					],
+					"blend_transition": 0.2
+				},
+				"walking": {
+					"animations": [
+						"walk"
+					],
+					"transitions": [
+						{
+							"idle": "query.modified_move_speed<0.1"
+						},
+						{
+							"running": "query.modified_move_speed>0.90 && query.is_on_ground"
+						},
+						{
+							"sitting": "query.is_sneaking"
+						}
+					],
+					"blend_transition": 0.2
+				},
+				"jump": {
+					"animations": [
+						"jump"
+					],
+					"transitions": [
+						{
+							"idle": "!query.is_jumping"
+						}
+					],
+					"blend_transition": 0.2
+				},
+				"fly": {
+					"animations": [
+						"fly"
+					],
+					"blend_transition": 0.2,
+					"transitions": [
+						{
+							"idle": "query.is_on_ground"
+						},
+						{
+							"fly_move": "!query.is_on_ground && query.modified_move_speed>0.1"
+						}
+					]
+				},
+				"fly_move": {
+					"animations": [
+						"fly_move"
+					],
+					"blend_transition": 0.2,
+					"transitions": [
+						{
+							"idle": "query.is_on_ground"
+						},
+						{
+							"fly": "!query.is_on_ground && query.modified_move_speed<0.1"
+						}
+					]
+				},
+				"running": {
+					"animations": [
+						"run"
+					],
+					"transitions": [
+						{
+							"idle": "query.modified_move_speed<0.1 && query.is_on_ground"
+						},
+						{
+							"walking": "query.modified_move_speed<0.90 && query.is_on_ground"
+						}
+					],
+					"blend_transition": 0.2
+				},
+				"sitting": {
+					"animations": [
+						"sit"
+					],
+					"transitions": [
+						{
+							"idle": "!query.is_sneaking"
+						}
+					],
+					"blend_transition": 0.2
+				}
+			}
+		}
+	}
+}

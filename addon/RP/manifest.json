@@ -1,0 +1,46 @@
+{
+  "format_version": 2,
+  "metadata": {
+    "authors": [
+      "JebusArt",
+      "ShadowDxrk00",
+      "Autores dos modelos YSM (ver CREDITS)"
+    ]
+  },
+  "header": {
+    "name": "YAST {PACK} RP",
+    "description": "YAST — modelos, animações e roda de ações ({N} modelos)",
+    "uuid": "{auto}",
+    "version": [
+      0,
+      5,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      50
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "{auto}",
+      "version": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "{BP}",
+      "version": [
+        0,
+        5,
+        0
+      ]
+    }
+  ]
+}
