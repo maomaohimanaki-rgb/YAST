@@ -1,0 +1,15 @@
+{
+  "name": "debug",
+  "version": [0, 5, 0],
+  "description": "Pack de teste: os Wine Fox do add-on 0.4.25 + um modelo de cada formato do repositório.",
+  "models": [
+    "_WineFox/*",
+    "_2.5DimensionalSeduction/2.5D_Amano-Lilysa_v1.0",
+    "Uncategorized/MT_Hiro",
+    "Uncategorized/_Huowang",
+    "_GenshinImpact/GI_Furina",
+    "_GenshinImpact/GI_Raiden-Shogun_v4.0",
+    "_BlueArchive/BA_Alice(Maid)_2.0",
+    "_HonkaiStarRail/HSR_Aventurine"
+  ]
+}

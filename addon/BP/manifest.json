@@ -1,0 +1,65 @@
+{
+  "format_version": 2,
+  "metadata": {
+    "authors": [
+      "JebusArt",
+      "ShadowDxrk00",
+      "Autores dos modelos YSM (ver CREDITS)"
+    ]
+  },
+  "header": {
+    "name": "YAST {PACK} BP",
+    "description": "YAST — avatares YSM como entidade sombra ({N} modelos)",
+    "uuid": "{auto}",
+    "version": [
+      0,
+      5,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      26,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "{auto}",
+      "version": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "{auto}",
+      "version": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "{RP}",
+      "version": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.4.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.0.0"
+    }
+  ]
+}

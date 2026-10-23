@@ -1,0 +1,625 @@
+"""Converte um YsmModel em um "pacote de avatar" padronizado (entidade sombra).
+
+Saída de um modelo <id>:
+  RP/models/entity/yast/<id>.geo.json          geometry.yast.<id>
+  RP/animations/yast/<id>.animation.json       animation.yast.<id>.*
+  RP/animation_controllers/yast/<id>.ac.json   controller.animation.yast.<id>.*
+  RP/entity/yast/<id>.entity.json              cliente de yast:av_<id>
+  RP/textures/yast/<id>/v<n>.png               variações (cores)
+  BP/entities/yast/<id>.json                   servidor de yast:av_<id>
+e um dicionário de catálogo (nome, variações, emotes, configs) para o script.
+
+Todos os modelos saem com o MESMO contrato: mesmas propriedades, mesmo shim,
+mesmos nomes de controladores. Bug na cadeia principal se corrige uma vez aqui.
+"""
+import copy
+import hashlib
+import json
+import os
+import re
+import shutil
+
+from .molang import Rewriter, MAIN_STATE_CODE, CONFIG_SLOTS
+
+MAX_VARIANTS = 16
+MAX_EXTRAS = 64
+SCALE = "0.9375"          # mesma escala do player vanilla (o attachable antigo herdava isso)
+FP_HIDE_DISTANCE = 1.9    # câmera mais perto que isso = dono em 1ª pessoa
+
+# --- Contrato de propriedades (BP) ------------------------------------------------
+PROPERTIES = {
+    "yast:st": {"type": "int", "range": [0, 65535], "default": 16, "client_sync": True},
+    "yast:var": {"type": "int", "range": [0, 63], "default": 0, "client_sync": True},
+    "yast:pitch": {"type": "float", "range": [-90.0, 90.0], "default": 0.0, "client_sync": True},
+    "yast:hyaw": {"type": "float", "range": [-180.0, 180.0], "default": 0.0, "client_sync": True},
+    "yast:yspd": {"type": "float", "range": [-3000.0, 3000.0], "default": 0.0, "client_sync": True},
+    "yast:vx": {"type": "float", "range": [-100.0, 100.0], "default": 0.0, "client_sync": True},
+    "yast:vy": {"type": "float", "range": [-100.0, 100.0], "default": 0.0, "client_sync": True},
+    "yast:vz": {"type": "float", "range": [-100.0, 100.0], "default": 0.0, "client_sync": True},
+    "yast:hp": {"type": "float", "range": [0.0, 4096.0], "default": 20.0, "client_sync": True},
+    "yast:mhp": {"type": "float", "range": [1.0, 4096.0], "default": 20.0, "client_sync": True},
+    "yast:food": {"type": "int", "range": [0, 20], "default": 20, "client_sync": True},
+    "yast:main": {"type": "int", "range": [0, 63], "default": 0, "client_sync": True},
+    "yast:off": {"type": "int", "range": [0, 63], "default": 0, "client_sync": True},
+    "yast:armor": {"type": "int", "range": [0, 31], "default": 0, "client_sync": True},
+    "yast:swing": {"type": "int", "range": [0, 255], "default": 0, "client_sync": True},
+    "yast:hurt": {"type": "int", "range": [0, 255], "default": 0, "client_sync": True},
+    "yast:use": {"type": "int", "range": [0, 2], "default": 0, "client_sync": True},
+    "yast:veh": {"type": "int", "range": [0, 7], "default": 0, "client_sync": True},
+    "yast:act": {"type": "int", "range": [-1, 63], "default": -1, "client_sync": True},
+    "yast:aseq": {"type": "int", "range": [0, 255], "default": 0, "client_sync": True},
+}
+for _i in range(CONFIG_SLOTS):
+    PROPERTIES[f"yast:c{_i}"] = {"type": "float", "range": [-100000.0, 100000.0], "default": 0.0, "client_sync": True}
+assert len(PROPERTIES) <= 32, "Bedrock aceita no máximo 32 propriedades por entidade"
+
+HIDDEN_BIT = 32768  # bit extra de yast:st: player invisível (poção) -> avatar some
+
+
+def slug(text, maxlen=40):
+    s = re.sub(r"[^a-z0-9]+", "_", text.lower()).strip("_")
+    return s[:maxlen].strip("_")
+
+
+def short_hash(text, n=6):
+    return hashlib.sha1(text.encode("utf-8")).hexdigest()[:n]
+
+
+def _anim_short(name, used):
+    base = slug(name.replace(":", "_").replace("$", "_").replace("#", "_"), 48)
+    if not base or not name.isascii():
+        base = (base + "_" if base else "a") + short_hash(name)
+    s, n = base, 2
+    while s in used:
+        s, n = f"{base}_{n}", n + 1
+    used.add(s)
+    return s
+
+
+# ======================================================================================
+class Converter:
+    def __init__(self, model, model_id, out_root):
+        self.m = model
+        self.id = model_id
+        self.out = out_root
+        self.entity = f"yast:av_{model_id}"
+        self.prefix_anim = f"animation.yast.{model_id}"
+        self.prefix_ctrl = f"controller.animation.yast.{model_id}"
+        self.configs = model.configs[:CONFIG_SLOTS]
+        cmap = {}
+        for i, c in enumerate(self.configs):
+            cmap[_flat_var(c.variable)] = i
+        self.rw = Rewriter(cmap)
+        self.notes = list(model.warnings)
+        if len(model.configs) > CONFIG_SLOTS:
+            self.notes.append(f"{len(model.configs) - CONFIG_SLOTS} configs além do limite de {CONFIG_SLOTS} ignoradas")
+
+    # ------------------------------------------------------------------ geometria
+    def geometry(self):
+        src = self.m.main_geo
+        geos = src.get("minecraft:geometry") or []
+        if not geos:
+            raise ValueError("main.json sem minecraft:geometry")
+        g = copy.deepcopy(geos[0])
+        desc = g.setdefault("description", {})
+        desc["identifier"] = f"geometry.yast.{self.id}"
+        desc.setdefault("texture_width", 64)
+        desc.setdefault("texture_height", 64)
+        desc["visible_bounds_width"] = max(float(desc.get("visible_bounds_width", 0) or 0), 4)
+        desc["visible_bounds_height"] = max(float(desc.get("visible_bounds_height", 0) or 0), 4.5)
+        desc["visible_bounds_offset"] = [0, 1.75, 0]
+        bones = g.get("bones") or []
+        seen = {}
+        for b in bones:                       # nomes de osso duplicados quebram o modelo inteiro
+            low = b["name"].lower()
+            if low in seen:
+                seen[low] += 1
+                b["name"] = f"{b['name']}_dup{seen[low]}"
+                self.notes.append(f"osso duplicado renomeado: {b['name']}")
+            else:
+                seen[low] = 0
+        by = {b["name"].lower(): b for b in bones}
+        self.head_bone = next((by[n]["name"] for n in ("head", "allhead") if n in by), None)
+        if not self.head_bone:
+            self.notes.append("sem osso Head: cabeça não segue a câmera")
+        # rightItem/leftItem: pivô oficial do item na mão (Fase 5)
+        for side, loc, arm in (("right", "righthandlocator", "rightarm"), ("left", "lefthandlocator", "leftarm")):
+            name = f"{side}Item"
+            if name.lower() in by:
+                continue
+            parent = by.get(loc) or by.get(f"{side}forearm") or by.get(arm)
+            if not parent:
+                self.notes.append(f"sem {loc}/{arm}: item na mão {side} não aparece")
+                continue
+            pv = parent.get("pivot") or [0, 0, 0]
+            if parent is not by.get(loc):
+                pv = [pv[0], pv[1] - 10, pv[2]]
+            bones.append({"name": name, "parent": parent["name"], "pivot": list(pv)})
+        g["bones"] = bones
+        self.bone_names = {b["name"] for b in bones}
+        return {"format_version": "1.12.0", "minecraft:geometry": [g]}
+
+    # ------------------------------------------------------------------ animações
+    def animations(self):
+        used = set()
+        self.short = {}
+        for name in self.m.animations:
+            self.short[name] = _anim_short(name, used)
+        out = {}
+        for name, a in self.m.animations.items():
+            out[f"{self.prefix_anim}.{self.short[name]}"] = self._anim(a)
+        # olhar da cabeça: no YSM é automático no osso Head; aqui é uma animação.
+        if self.head_bone:
+            self.short["__head_look"] = _anim_short("yast_head_look", used)
+            out[f"{self.prefix_anim}.{self.short['__head_look']}"] = {
+                "loop": True,
+                "bones": {self.head_bone: {"rotation": ["math.clamp(v.yq_pitch,-90,90)", "math.clamp(v.yq_hyaw,-85,85)", 0]}},
+            }
+        return {"format_version": "1.8.0", "animations": out}
+
+    def _anim(self, a):
+        o = {}
+        loop = a.get("loop", False)
+        if isinstance(loop, str) and loop not in ("hold_on_last_frame",):
+            loop = loop.lower() == "true"
+        o["loop"] = loop
+        for k in ("animation_length", "override_previous_animation"):
+            if k in a:
+                o[k] = a[k]
+        for k in ("start_delay", "loop_delay", "anim_time_update", "blend_weight"):
+            if k in a:
+                o[k] = self.rw.expr(a[k])
+        bones = {}
+        for bname, chans in (a.get("bones") or {}).items():
+            if not isinstance(chans, dict):
+                continue
+            is_head = self.head_bone and bname.lower() == self.head_bone.lower()
+            nb = {}
+            for ch in ("rotation", "position", "scale"):
+                if ch in chans:
+                    v = chans[ch]
+                    if is_head and ch == "rotation":
+                        v = _strip_head_look(v)
+                    nb[ch] = self._channel(v)
+            if "relative_to" in chans:
+                nb["relative_to"] = chans["relative_to"]
+            if nb:
+                bones[bname] = nb
+        if bones:
+            o["bones"] = bones
+        tl = a.get("timeline")
+        if isinstance(tl, dict):
+            ntl = {}
+            for t, s in tl.items():
+                ss = s if isinstance(s, list) else [s]
+                ss = [y for y in (self.rw.stmts(x) for x in ss if isinstance(x, str) and x.strip()) if y]
+                if ss:
+                    ntl[t] = ss
+            if ntl:
+                o["timeline"] = ntl
+        return o
+
+    def _channel(self, v):
+        if isinstance(v, dict):
+            out = {}
+            for t, kf in v.items():
+                try:
+                    float(t)
+                except ValueError:
+                    continue
+                if isinstance(kf, dict):
+                    nk = {}
+                    for kk in ("pre", "post"):
+                        if kk in kf:
+                            nk[kk] = self._vec(kf[kk])
+                    if "vector" in kf and "post" not in nk:
+                        nk["post"] = self._vec(kf["vector"])
+                    if kf.get("lerp_mode") in ("linear", "catmullrom", "step"):
+                        nk["lerp_mode"] = kf["lerp_mode"]
+                    if "pre" not in nk and "post" not in nk:
+                        continue
+                    out[t] = nk
+                else:
+                    out[t] = self._vec(kf)
+            return out
+        return self._vec(v)
+
+    def _vec(self, v):
+        if isinstance(v, list):
+            return [self.rw.expr(x) for x in v]
+        return self.rw.expr(v)
+
+    # ------------------------------------------------------------------ controladores
+    def controllers(self):
+        ctrls = {}
+        self.animate = []
+        has = lambda n: n in self.short
+        s = lambda n: self.short[n]
+
+        # --- controladores do próprio modelo (YSM 2) ---
+        referenced = set()
+        model_ctrls = []
+        for cid, c in self.m.controllers.items():
+            if not isinstance(c, dict) or not isinstance(c.get("states"), dict):
+                continue
+            nid = _anim_short(cid, set(self.short.values()) | {x[0] for x in model_ctrls})
+            states = {}
+            for sn, st in c["states"].items():
+                if not isinstance(st, dict):
+                    continue
+                ns = {}
+                anims = []
+                for a in st.get("animations") or []:
+                    if isinstance(a, str) and a in self.short:
+                        anims.append(s(a)); referenced.add(a)
+                    elif isinstance(a, dict):
+                        for an, cond in a.items():
+                            if an in self.short:
+                                anims.append({s(an): self.rw.expr(cond)}); referenced.add(an)
+                if anims:
+                    ns["animations"] = anims
+                for k in ("on_entry", "on_exit"):
+                    if st.get(k):
+                        ns[k] = [y for y in (self.rw.stmts(x) for x in st[k] if isinstance(x, str)) if y]
+                tr = []
+                for t in st.get("transitions") or []:
+                    if isinstance(t, dict):
+                        for tn, cond in t.items():
+                            if tn in c["states"]:
+                                tr.append({tn: self.rw.expr(cond)})
+                if tr:
+                    ns["transitions"] = tr
+                bt = st.get("blend_transition")
+                if isinstance(bt, (int, float)):
+                    ns["blend_transition"] = bt
+                elif isinstance(bt, dict):
+                    try:
+                        ns["blend_transition"] = max(float(k) for k in bt)
+                    except ValueError:
+                        pass
+                if st.get("blend_via_shortest_path"):
+                    ns["blend_via_shortest_path"] = True
+                states[sn] = ns
+            if not states:
+                continue
+            init = c.get("initial_state") if c.get("initial_state") in states else ("default" if "default" in states else next(iter(states)))
+            model_ctrls.append((nid, {"initial_state": init, "states": states}))
+
+        # --- principal: locomoção + emotes (estados exclusivos, evita soma de poses) ---
+        main = {"initial_state": "idle", "states": {}}
+        want = self._want_chain(has)
+        loco = []
+        for st in MAIN_STATE_CODE:
+            if st in ("extra",):
+                continue
+            anim = st
+            if st == "idle" or has(anim):
+                loco.append(st)
+        for st in loco:
+            code = MAIN_STATE_CODE[st]
+            node = {"on_entry": [f"v.yq_mst={code};"], "blend_transition": 0.2,
+                    "transitions": [{o: f"v.yq_want=={MAIN_STATE_CODE[o]}"} for o in loco if o != st]}
+            if has(st):
+                node["animations"] = [s(st)]
+            main["states"][st] = node
+        extras = [(n, label) for n, label in self.m.extras if has(n)][:MAX_EXTRAS]
+        self.extras = extras
+        for i, (an, _label) in enumerate(extras):
+            sn = f"extra_{i}"
+            loops = self.m.animations[an].get("loop") in (True, "true", "hold_on_last_frame")
+            # sai do emote ao parar (act=-1), trocar de emote, andar rápido ou mudar de pose (pular, agachar...)
+            end = "v.yq_act!={i}||v.yq_aseq!=v.yast_seen||v.yq_ground_speed>1.2||(v.yq_want!={idle}&&v.yq_want!={walk})".format(
+                i=i, idle=MAIN_STATE_CODE["idle"], walk=MAIN_STATE_CODE["walk"])
+            if not loops:
+                end += "||q.all_animations_finished"
+            main["states"][sn] = {
+                "animations": [s(an)], "blend_transition": 0.2,
+                "on_entry": ["v.yast_seen=v.yq_aseq;", f"v.yq_mst={MAIN_STATE_CODE['extra']};"],
+                "transitions": [{"idle": end}],
+            }
+        if extras:
+            trig = [{f"extra_{i}": f"v.yq_act=={i}&&v.yq_aseq!=v.yast_seen"} for i in range(len(extras))]
+            for st in loco:
+                main["states"][st]["transitions"] = trig + main["states"][st]["transitions"]
+        ctrls[f"{self.prefix_ctrl}.main"] = main
+        self.animate.append("yast_main")
+        self.want_script = want
+
+        if "__head_look" in self.short:
+            self.animate.append(s("__head_look"))
+
+        # --- paralelas sempre ligadas (o YSM toca pre_parallelN/parallelN o tempo todo) ---
+        for n in [f"pre_parallel{i}" for i in range(9)] + [f"parallel{i}" for i in range(9)]:
+            if has(n) and n not in referenced:
+                self.animate.append(s(n))
+
+        for nid, c in model_ctrls:
+            full = f"{self.prefix_ctrl}.m_{nid}"
+            ctrls[full] = c
+            self.animate.append(f"m_{nid}")
+            self.ctrl_alias = getattr(self, "ctrl_alias", {})
+            self.ctrl_alias[f"m_{nid}"] = full
+
+        # --- ações (Fase 6): golpe, uso de item, dano ---
+        self._action_controllers(ctrls, has, s, referenced)
+        return {"format_version": "1.10.0", "animation_controllers": ctrls}
+
+    def _want_chain(self, has):
+        """pre_animation: decide o estado de locomoção desejado (v.yq_want).
+
+        Ordem de prioridade igual à do conversor 0.4.x (validada em jogo), com
+        fallback para estados que o modelo não tem.
+        """
+        C = MAIN_STATE_CODE
+        st = lambda b: f"(math.mod(math.floor(v.yq_st/{b}),2)>=1)"
+        dead, sneak, sprint, swim, glide, ground, water, riding, sleep, fly, climb = (
+            st(4096), st(1), st(2), st(4), st(8), st(16), st(32), st(64), st(128), st(512), st(1024))
+        pick = lambda *names: next((n for n in names if n == "idle" or has(n)), "idle")
+        moving = "v.yq_ground_speed>0.25"
+        chain = [
+            (dead, pick("death", "sleep")),
+            (sleep, pick("sleep")),
+            (f"{riding}&&v.yq_veh==1", pick("boat", "sit", "ride")),
+            (f"{riding}&&v.yq_veh==2", pick("sit", "ride")),
+            (f"{riding}&&v.yq_veh==4", pick("ride_pig", "ride", "sit")),
+            (riding, pick("ride", "sit")),
+            (glide, pick("elytra_fly", "fly", "jump")),
+            (swim, pick("swim", "swim_stand")),
+            (f"{water}&&!{ground}", pick("swim_stand", "swim", "idle")),
+            (f"{climb}&&v.yq_vertical_speed>0.1", pick("ladder_up", "climb", "climbing")),
+            (f"{climb}&&v.yq_vertical_speed<-0.1", pick("ladder_down", "climbing", "climb")),
+            (f"{climb}&&!{ground}", pick("ladder_stillness", "climbing", "climb")),
+            (f"{sneak}&&{moving}", pick("sneak", "sneaking", "walk")),
+            (sneak, pick("sneaking", "sneak")),
+            (fly, pick("fly", "jump")),
+            (f"!{ground}&&!{water}&&v.yq_air_time>0.6", pick("fly", "jump")),
+            (f"!{ground}&&!{water}", pick("jump")),
+            (f"{sprint}||v.yq_mms>0.95", pick("run", "walk")),
+            ("v.yq_mms>0.05", pick("walk")),
+        ]
+        expr = str(C["idle"])
+        for cond, target in reversed(chain):
+            expr = f"({cond})?{C[target]}:({expr})"
+        return f"v.yq_want={expr};"
+
+    def _action_controllers(self, ctrls, has, s, referenced):
+        # golpe: dois estados alternados permitem reiniciar a animação a cada clique
+        sw = "swing_hand" if has("swing_hand") else None
+        if sw and sw not in referenced:
+            def swing_anims():
+                opts = []
+                for cat, n in (("1", "swing:sword"), ("7", "swing:axe")):
+                    if has(n):
+                        opts.append({s(n): f"v.yq_main=={cat}"})
+                if opts:
+                    cond = "&&".join(f"v.yq_main!={c}" for c, n in (("1", "swing:sword"), ("7", "swing:axe")) if has(n))
+                    opts.append({s(sw): cond})
+                    return opts
+                return [s(sw)]
+            ctrls[f"{self.prefix_ctrl}.swing"] = {"initial_state": "default", "states": {
+                "default": {"transitions": [{"a": "v.yq_swing!=v.yast_swing_seen"}]},
+                "a": {"animations": swing_anims(), "on_entry": ["v.yast_swing_seen=v.yq_swing;"], "blend_transition": 0.1,
+                      "transitions": [{"b": "v.yq_swing!=v.yast_swing_seen"}, {"default": "q.all_animations_finished"}]},
+                "b": {"animations": swing_anims(), "on_entry": ["v.yast_swing_seen=v.yq_swing;"], "blend_transition": 0.1,
+                      "transitions": [{"a": "v.yq_swing!=v.yast_swing_seen"}, {"default": "q.all_animations_finished"}]},
+            }}
+            self.animate.append("yast_swing")
+        # uso de item (comer, arco, escudo...)
+        states = {"default": {"transitions": []}}
+        for hand, code in (("mainhand", 1), ("offhand", 2)):
+            base = f"use_{hand}"
+            if not has(base) or base in referenced:
+                continue
+            slot = "v.yq_main" if code == 1 else "v.yq_off"
+            for cat, suffix in ((2, "bow"), (3, "crossbow"), (5, "spear"), (12, "eat"), (13, "drink"), (14, "spyglass"), (4, "shield")):
+                n = f"{base}:{suffix}"
+                if suffix == "shield" and not has(n):
+                    n = f"{base}$minecraft:shield"
+                if has(n):
+                    sn = f"{hand}_{suffix}"
+                    cond = f"v.yq_use=={code}&&{slot}=={cat}"
+                    states[sn] = {"animations": [s(n)], "blend_transition": 0.15, "transitions": [{"default": f"!({cond})"}]}
+                    states["default"]["transitions"].append({sn: cond})
+            states[hand] = {"animations": [s(base)], "blend_transition": 0.15, "transitions": [{"default": f"v.yq_use!={code}"}]}
+            states["default"]["transitions"].append({hand: f"v.yq_use=={code}"})
+        if len(states) > 1:
+            ctrls[f"{self.prefix_ctrl}.use"] = {"initial_state": "default", "states": states}
+            self.animate.append("yast_use")
+        # segurando item (YSM 2: hold_mainhand:<tipo>)
+        for hand, slot in (("mainhand", "v.yq_main"), ("offhand", "v.yq_off")):
+            hs = {"default": {"transitions": []}}
+            for cat, suffix in ((1, "sword"), (2, "bow"), (4, "shield"), (5, "spear"), (6, "pickaxe"), (7, "axe"),
+                                (10, "$minecraft:mace"), (15, "fishing"), (21, "charged_crossbow")):
+                n = f"hold_{hand}:{suffix}" if not suffix.startswith("$") else f"hold_{hand}{suffix}"
+                if has(n) and n not in referenced:
+                    sn = re.sub(r"\W", "_", suffix).strip("_")
+                    hs[sn] = {"animations": [s(n)], "blend_transition": 0.15, "transitions": [{"default": f"{slot}!={cat}"}]}
+                    hs["default"]["transitions"].append({sn: f"{slot}=={cat}"})
+            if len(hs) > 1:
+                ctrls[f"{self.prefix_ctrl}.hold_{hand}"] = {"initial_state": "default", "states": hs}
+                self.animate.append(f"yast_hold_{hand}")
+        # dano
+        if has("attacked") and "attacked" not in referenced:
+            ctrls[f"{self.prefix_ctrl}.hurt"] = {"initial_state": "default", "states": {
+                "default": {"transitions": [{"hit": "v.yq_hurt!=v.yast_hurt_seen"}]},
+                "hit": {"animations": [s("attacked")], "on_entry": ["v.yast_hurt_seen=v.yq_hurt;"],
+                        "blend_transition": 0.1, "transitions": [{"default": "q.all_animations_finished||v.yq_hurt_time>0.6"}]},
+            }}
+            self.animate.append("yast_hurt")
+
+    # ------------------------------------------------------------------ entidade cliente
+    def client_entity(self, texture_paths):
+        anims = {}
+        for name, short in self.short.items():
+            anims[short] = f"{self.prefix_anim}.{short}"
+        anims["yast_main"] = f"{self.prefix_ctrl}.main"
+        for k in ("swing", "use", "hold_mainhand", "hold_offhand", "hurt"):
+            anims[f"yast_{k}"] = f"{self.prefix_ctrl}.{k}"
+        anims.update(getattr(self, "ctrl_alias", {}))
+        anims = {k: v for k, v in anims.items() if k in self.animate or v.startswith(self.prefix_anim)}
+        textures = {f"v{i}": texture_paths[min(i, len(texture_paths) - 1)] for i in range(MAX_VARIANTS)}
+        pre = shim_script(len(self.configs)) + [self.want_script] + self.rw.dynamics_scripts() + self._radio_scripts()
+        return {
+            "format_version": "1.10.0",
+            "minecraft:client_entity": {"description": {
+                "identifier": self.entity,
+                "materials": {"default": "entity_alphatest", "glow": "entity_emissive_alpha"},
+                "textures": textures,
+                "geometry": {"default": f"geometry.yast.{self.id}"},
+                "render_controllers": [{"controller.render.yast.avatar": "!v.yast_hide"}],
+                "enable_attachables": True,
+                "scripts": {
+                    "scale": SCALE,
+                    "initialize": ["v.yast_seen=0;", "v.yast_swing_seen=0;", "v.yast_hurt_seen=0;", "v.yq_mst=0;", "v.yq_want=0;"],
+                    "pre_animation": pre,
+                    "animate": self.animate,
+                    "should_update_bones_and_effects_offscreen": True,
+                },
+                "animations": anims,
+            }},
+        }
+
+    def _radio_scripts(self):
+        out = []
+        for i, c in enumerate(self.configs):
+            if c.kind != "radio":
+                continue
+            parts = [f"t.c=v.yast_cfg{i};"]
+            for n, (_label, stmts) in enumerate(c.labels):
+                body = self.rw.stmts(stmts)
+                if body:
+                    parts.append(f"(t.c=={n})?{{{body}}};")
+            out.append("".join(parts))
+        return out
+
+    # ------------------------------------------------------------------ entidade servidor
+    def server_entity(self):
+        return server_entity_json(self.entity)
+
+    # ------------------------------------------------------------------ tudo
+    def run(self):
+        rp = os.path.join(self.out, "RP")
+        bp = os.path.join(self.out, "BP")
+        geo = self.geometry()
+        anim = self.animations()
+        ac = self.controllers()
+        tex_rel = []
+        texs = self.m.textures[:MAX_VARIANTS]
+        if not texs:
+            raise ValueError("modelo sem textura")
+        if len(self.m.textures) > MAX_VARIANTS:
+            self.notes.append(f"{len(self.m.textures) - MAX_VARIANTS} variações além de {MAX_VARIANTS} ignoradas")
+        for i, t in enumerate(texs):
+            dst = os.path.join(rp, "textures", "yast", self.id, f"v{i}.png")
+            os.makedirs(os.path.dirname(dst), exist_ok=True)
+            shutil.copyfile(t.path, dst)
+            tex_rel.append(f"textures/yast/{self.id}/v{i}")
+        ce = self.client_entity(tex_rel)
+        _write(os.path.join(rp, "models", "entity", "yast", f"{self.id}.geo.json"), geo)
+        _write(os.path.join(rp, "animations", "yast", f"{self.id}.animation.json"), anim)
+        _write(os.path.join(rp, "animation_controllers", "yast", f"{self.id}.ac.json"), ac)
+        _write(os.path.join(rp, "entity", "yast", f"{self.id}.entity.json"), ce)
+        _write(os.path.join(bp, "entities", "yast", f"{self.id}.json"), self.server_entity())
+        default = min(self.m.default_texture, len(texs) - 1)
+        return {
+            "id": self.id, "entity": self.entity, "name": self.m.name, "collection": self.m.collection,
+            "format": self.m.fmt, "license": self.m.license, "authors": self.m.authors[:6],
+            "variants": [t.name for t in texs], "defaultVariant": default,
+            "extras": [label for _a, label in self.extras],
+            "configs": [_config_entry(i, c) for i, c in enumerate(self.configs)],
+            "report": {"unsupported": dict(self.rw.report.most_common()), "notes": self.notes,
+                       "animations": len(self.short), "dynamics": len(self.rw.dynamics),
+                       "invalid_molang": self.rw.invalid[:50]},
+        }
+
+
+def _config_entry(i, c):
+    e = {"slot": i, "kind": c.kind, "title": c.title}
+    if c.kind == "radio":
+        e["labels"] = [label for label, _ in c.labels]
+    if c.kind == "range":
+        e.update({"min": c.min, "max": c.max, "step": c.step, "default": c.default})
+    return e
+
+
+def _flat_var(v):
+    v = v.strip().lower().replace("variable.", "v.")
+    parts = v.split(".")
+    return parts[0] + "." + "_".join(parts[1:])
+
+
+_HEAD_LOOK_RE = re.compile(r"(?:ysm\.head_pitch|ysm\.head_yaw|q(?:uery)?\.(?:target|head|eye_target)_[xy]_rotation)", re.I)
+
+
+def _strip_head_look(v):
+    """O olhar já vem da animação head_look; remove do canal Head para não somar duas vezes."""
+    if isinstance(v, str):
+        return _HEAD_LOOK_RE.sub("0", v)
+    if isinstance(v, list):
+        return [_strip_head_look(x) for x in v]
+    if isinstance(v, dict):
+        return {k: _strip_head_look(x) for k, x in v.items()}
+    return v
+
+
+def shim_script(n_configs):
+    """pre_animation comum a todos os avatares: Entity Properties -> v.yq_*."""
+    p = lambda n: f"q.property('yast:{n}')"
+    lines = [
+        "v.yq_dt=math.clamp(q.delta_time,0.001,0.1);t.a=math.clamp(v.yq_dt*15,0,1);",
+        f"v.yq_st={p('st')};v.yq_var={p('var')};v.yq_vx={p('vx')};v.yq_vy={p('vy')};v.yq_vz={p('vz')};",
+        f"v.yq_pitch=math.lerp(v.yq_pitch??{p('pitch')},{p('pitch')},t.a);"
+        f"v.yq_hyaw=math.lerp(v.yq_hyaw??{p('hyaw')},{p('hyaw')},t.a);"
+        f"v.yq_yaw_speed=math.lerp(v.yq_yaw_speed??0,{p('yspd')},t.a);",
+        "v.yq_ground_speed=math.sqrt(v.yq_vx*v.yq_vx+v.yq_vz*v.yq_vz);v.yq_vertical_speed=v.yq_vy;"
+        "v.yq_mms=math.clamp(v.yq_ground_speed/5.6,0,1);v.yq_dist=(v.yq_dist??0)+v.yq_ground_speed*v.yq_dt;"
+        "v.yq_pdx=v.yq_vx*v.yq_dt;v.yq_pdy=v.yq_vy*v.yq_dt;v.yq_pdz=v.yq_vz*v.yq_dt;",
+        f"v.yq_health={p('hp')};v.yq_max_health={p('mhp')};v.yq_food={p('food')};v.yq_main={p('main')};"
+        f"v.yq_off={p('off')};v.yq_armor={p('armor')};v.yq_use={p('use')};v.yq_veh={p('veh')};"
+        f"v.yq_act={p('act')};v.yq_aseq={p('aseq')};",
+        f"t.s={p('swing')};v.yq_swing_t0=(t.s!=(v.yq_swing??t.s))?q.life_time:(v.yq_swing_t0??-100);v.yq_swing=t.s;"
+        "v.yq_swing_time=q.life_time-v.yq_swing_t0;",
+        f"t.h={p('hurt')};v.yq_hurt_t0=(t.h!=(v.yq_hurt??t.h))?q.life_time:(v.yq_hurt_t0??-100);v.yq_hurt=t.h;"
+        "v.yq_hurt_time=q.life_time-v.yq_hurt_t0;",
+        "v.yq_use_t0=(v.yq_use>0)?(v.yq_use_t0??q.life_time):q.life_time;v.yq_use_time=q.life_time-v.yq_use_t0;",
+        "t.g=(math.mod(math.floor(v.yq_st/16),2)>=1)||(math.mod(math.floor(v.yq_st/32),2)>=1);"
+        "v.yq_ground_t=t.g?q.life_time:(v.yq_ground_t??q.life_time);v.yq_air_time=q.life_time-v.yq_ground_t;"
+        "v.yq_ground_since=t.g?(v.yq_ground_since??q.life_time):q.life_time;v.yq_ground_time=q.life_time-v.yq_ground_since;",
+        f"v.yast_hide=q.distance_from_camera<{FP_HIDE_DISTANCE}||(math.mod(math.floor(v.yq_st/{HIDDEN_BIT}),2)>=1);",
+    ]
+    if n_configs:
+        lines.append("".join(f"v.yast_cfg{i}={p(f'c{i}')};" for i in range(n_configs)))
+    return lines
+
+
+def server_entity_json(identifier):
+    return {
+        "format_version": "1.21.0",
+        "minecraft:entity": {
+            "description": {"identifier": identifier, "is_spawnable": False, "is_summonable": True,
+                            "properties": PROPERTIES},
+            "components": {
+                "minecraft:type_family": {"family": ["yast_avatar", "inanimate"]},
+                "minecraft:collision_box": {"width": 0.01, "height": 0.01},
+                "minecraft:physics": {"has_gravity": False, "has_collision": False},
+                "minecraft:pushable": {"is_pushable": False, "is_pushable_by_piston": False},
+                "minecraft:damage_sensor": {"triggers": [{"cause": "all", "deals_damage": "no"}]},
+                "minecraft:health": {"value": 1, "max": 1},
+                "minecraft:knockback_resistance": {"value": 1.0},
+                "minecraft:fire_immune": {},
+                "minecraft:movement": {"value": 0},
+                "minecraft:nameable": {"always_show": False, "allow_name_tag_renaming": False},
+                "minecraft:equipment": {"slot_drop_chance": [
+                    {"slot": "slot.weapon.mainhand", "drop_chance": 0},
+                    {"slot": "slot.weapon.offhand", "drop_chance": 0}]},
+                "minecraft:conditional_bandwidth_optimization": {"default_values": {
+                    "max_optimized_distance": 0.0, "max_dropped_ticks": 0, "use_motion_prediction_hints": True}},
+            },
+        },
+    }
+
+
+def _write(path, data):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
