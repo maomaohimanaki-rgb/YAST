@@ -23,6 +23,7 @@ from .molang import Rewriter, MAIN_STATE_CODE, CONFIG_SLOTS
 
 MAX_VARIANTS = 16
 MAX_EXTRAS = 64
+TICK_ANIM_MAX_LENGTH = 0.05   # loop mais curto que isso + timeline = passo de física por frame
 SCALE = "0.9375"          # mesma escala do player vanilla (o attachable antigo herdava isso)
 FP_HIDE_DISTANCE = 1.9    # câmera mais perto que isso = dono em 1ª pessoa
 
@@ -90,6 +91,8 @@ class Converter:
         for i, c in enumerate(self.configs):
             cmap[_flat_var(c.variable)] = i
         self.rw = Rewriter(cmap)
+        self.tick_scripts = []
+        self.const_init = []
         self.notes = list(model.warnings)
         if len(model.configs) > CONFIG_SLOTS:
             self.notes.append(f"{len(model.configs) - CONFIG_SLOTS} configs além do limite de {CONFIG_SLOTS} ignoradas")
@@ -171,7 +174,7 @@ class Converter:
                 o[k] = self.rw.expr(a[k])
         bones = {}
         for bname, chans in (a.get("bones") or {}).items():
-            if not isinstance(chans, dict):
+            if not isinstance(chans, dict) or not bname.strip():
                 continue
             is_head = self.head_bone and bname.lower() == self.head_bone.lower()
             nb = {}
@@ -190,43 +193,76 @@ class Converter:
         tl = a.get("timeline")
         if isinstance(tl, dict):
             ntl = {}
-            for t, s in tl.items():
-                ss = s if isinstance(s, list) else [s]
+            for t, st in sorted(tl.items(), key=lambda kv: _num(kv[0])):
+                ss = st if isinstance(st, list) else [st]
                 ss = [y for y in (self.rw.stmts(x) for x in ss if isinstance(x, str) and x.strip()) if y]
                 if ss:
                     ntl[t] = ss
-            if ntl:
+            length = _num(a.get("animation_length", 0))
+            if ntl and loop is True and 0 < length <= TICK_ANIM_MAX_LENGTH:
+                # "Motor de física" YSM: animação de 1 frame cuja timeline integra molas em
+                # passo fixo. No Bedrock os eventos de timeline de um loop menor que o frame
+                # disparam irregularmente (FPS do celular varia) -> cabelo trava/explode.
+                # Aqui a timeline vira código no pre_animation, rodado N vezes por frame
+                # para manter o ritmo de 60 Hz para o qual o modelo foi escrito.
+                self.tick_scripts.append((length, "".join(x for t in ntl for x in ntl[t])))
+            elif ntl:
                 o["timeline"] = ntl
+                # Constantes de mola (v.L1_F=0.6; v.L1_K2=1/...) ficam espalhadas numa
+                # timeline de 0,5 s: até ela tocar, K=0 e a física divide por zero.
+                # Atribuições que não leem estado do player também rodam no initialize.
+                for t in ntl:
+                    for x in ntl[t]:
+                        if not _READS_STATE.search(x):
+                            self.const_init.append(x)
         return o
 
     def _channel(self, v):
-        if isinstance(v, dict):
-            out = {}
-            for t, kf in v.items():
-                try:
-                    float(t)
-                except ValueError:
+        if not isinstance(v, dict):
+            return self._vec(v)
+        out = {}
+        for t, kf in v.items():
+            if _num(t, None) is None:
+                continue
+            if isinstance(kf, dict):
+                nk = {}
+                for kk in ("pre", "post"):
+                    if kk in kf:
+                        nk[kk] = self._vec3(kf[kk])
+                if "vector" in kf and "post" not in nk:
+                    nk["post"] = self._vec3(kf["vector"])
+                if kf.get("lerp_mode") in ("linear", "catmullrom", "step"):
+                    nk["lerp_mode"] = kf["lerp_mode"]
+                if "pre" not in nk and "post" not in nk:
                     continue
-                if isinstance(kf, dict):
-                    nk = {}
-                    for kk in ("pre", "post"):
-                        if kk in kf:
-                            nk[kk] = self._vec(kf[kk])
-                    if "vector" in kf and "post" not in nk:
-                        nk["post"] = self._vec(kf["vector"])
-                    if kf.get("lerp_mode") in ("linear", "catmullrom", "step"):
-                        nk["lerp_mode"] = kf["lerp_mode"]
-                    if "pre" not in nk and "post" not in nk:
-                        continue
-                    out[t] = nk
-                else:
-                    out[t] = self._vec(kf)
-            return out
-        return self._vec(v)
+                out[t] = nk
+            else:
+                out[t] = self._vec3(kf)
+        # Bedrock: interpolação catmullrom só aceita keyframes constantes.
+        def dynamic(x):
+            vals = [x.get("pre"), x.get("post")] if isinstance(x, dict) else [x]
+            return any(isinstance(c, str) for vv in vals if isinstance(vv, list) for c in vv)
+        if any(dynamic(x) for x in out.values()):
+            for x in out.values():
+                if isinstance(x, dict) and x.get("lerp_mode") == "catmullrom":
+                    x["lerp_mode"] = "linear"
+        return out
+
+    def _vec3(self, v):
+        """Valor de keyframe: o Bedrock exige [x, y, z] (o YSM aceita número solto)."""
+        while isinstance(v, dict):
+            v = v.get("post", v.get("pre", v.get("vector", 0)))
+        if not isinstance(v, list):
+            v = [v, v, v]
+        elif len(v) == 1:
+            v = v * 3
+        elif len(v) != 3:
+            v = (list(v) + [0, 0, 0])[:3]
+        return [self.rw.expr(x) for x in v]
 
     def _vec(self, v):
-        if isinstance(v, list):
-            return [self.rw.expr(x) for x in v]
+        if isinstance(v, (list, dict)):
+            return self._vec3(v)
         return self.rw.expr(v)
 
     # ------------------------------------------------------------------ controladores
@@ -243,6 +279,12 @@ class Converter:
             if not isinstance(c, dict) or not isinstance(c.get("states"), dict):
                 continue
             nid = _anim_short(cid, set(self.short.values()) | {x[0] for x in model_ctrls})
+            # Bedrock só aceita nome de estado ASCII ("默认", "交给我吧1" derrubavam o controlador)
+            used_states = set()
+            smap = {}
+            for sn in c["states"]:
+                smap[sn] = sn if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", sn) and sn not in used_states else _anim_short(sn, used_states)
+                used_states.add(smap[sn])
             states = {}
             for sn, st in c["states"].items():
                 if not isinstance(st, dict):
@@ -266,7 +308,7 @@ class Converter:
                     if isinstance(t, dict):
                         for tn, cond in t.items():
                             if tn in c["states"]:
-                                tr.append({tn: self.rw.expr(cond)})
+                                tr.append({smap[tn]: self.rw.expr(cond)})
                 if tr:
                     ns["transitions"] = tr
                 bt = st.get("blend_transition")
@@ -279,10 +321,12 @@ class Converter:
                         pass
                 if st.get("blend_via_shortest_path"):
                     ns["blend_via_shortest_path"] = True
-                states[sn] = ns
+                states[smap[sn]] = ns
             if not states:
                 continue
-            init = c.get("initial_state") if c.get("initial_state") in states else ("default" if "default" in states else next(iter(states)))
+            init = smap.get(c.get("initial_state"), "default")
+            if init not in states:
+                init = "default" if "default" in states else next(iter(states))
             model_ctrls.append((nid, {"initial_state": init, "states": states}))
 
         # --- principal: locomoção + emotes (estados exclusivos, evita soma de poses) ---
@@ -448,7 +492,7 @@ class Converter:
             self.animate.append("yast_hurt")
 
     # ------------------------------------------------------------------ entidade cliente
-    def client_entity(self, texture_paths):
+    def client_entity(self, texture_paths, generated=()):
         anims = {}
         for name, short in self.short.items():
             anims[short] = f"{self.prefix_anim}.{short}"
@@ -458,7 +502,15 @@ class Converter:
         anims.update(getattr(self, "ctrl_alias", {}))
         anims = {k: v for k, v in anims.items() if k in self.animate or v.startswith(self.prefix_anim)}
         textures = {f"v{i}": texture_paths[min(i, len(texture_paths) - 1)] for i in range(MAX_VARIANTS)}
-        pre = shim_script(len(self.configs)) + [self.want_script] + self.rw.dynamics_scripts() + self._radio_scripts()
+        ticks = []
+        for length, body in self.tick_scripts:
+            # passos fixos do tamanho que o modelo espera, quantos couberem no frame (tempo real)
+            ticks.append(f"t.n=math.clamp(math.round(v.yq_dt/{_fmt_num(length)}),1,6);loop(t.n,{{{body}}});")
+        pre = (shim_script(len(self.configs)) + [self.want_script] + ticks
+               + self.rw.dynamics_scripts() + self._radio_scripts())
+        init = ["v.yast_seen=0;v.yast_swing_seen=0;v.yast_hurt_seen=0;v.yq_mst=0;v.yq_want=0;"]
+        init += _init_vars([pre, *generated])
+        init += _chunk(self.const_init)
         return {
             "format_version": "1.10.0",
             "minecraft:client_entity": {"description": {
@@ -470,7 +522,7 @@ class Converter:
                 "enable_attachables": True,
                 "scripts": {
                     "scale": SCALE,
-                    "initialize": ["v.yast_seen=0;", "v.yast_swing_seen=0;", "v.yast_hurt_seen=0;", "v.yq_mst=0;", "v.yq_want=0;"],
+                    "initialize": init,
                     "pre_animation": pre,
                     "animate": self.animate,
                     "should_update_bones_and_effects_offscreen": True,
@@ -514,7 +566,7 @@ class Converter:
             os.makedirs(os.path.dirname(dst), exist_ok=True)
             shutil.copyfile(t.path, dst)
             tex_rel.append(f"textures/yast/{self.id}/v{i}")
-        ce = self.client_entity(tex_rel)
+        ce = self.client_entity(tex_rel, (anim, ac))
         _write(os.path.join(rp, "models", "entity", "yast", f"{self.id}.geo.json"), geo)
         _write(os.path.join(rp, "animations", "yast", f"{self.id}.animation.json"), anim)
         _write(os.path.join(rp, "animation_controllers", "yast", f"{self.id}.ac.json"), ac)
@@ -540,6 +592,82 @@ def _config_entry(i, c):
     if c.kind == "range":
         e.update({"min": c.min, "max": c.max, "step": c.step, "default": c.default})
     return e
+
+
+_VAR_RE = re.compile(r"\bv(?:ariable)?\.([a-z_][a-z0-9_]*)", re.I)
+_OURS = ("yq_", "yast_", "yso")
+_GUARD_RE = re.compile(r"\bv(?:ariable)?\.([a-z_][a-z0-9_]*)\s*\?\?", re.I)
+
+
+def _init_vars(objs):
+    """Toda variável lida pelo modelo começa em 0.
+
+    No YSM variável não definida vale 0; no Bedrock ler uma variável que ainda não
+    existe dá erro e a EXPRESSÃO INTEIRA vira 0. Num canal scale isso some com o osso
+    (Magical Wine Fox: AllBody = 1-v.roaming_a -> 0 -> corpo invisível, só o cajado
+    aparecia). Também eram os 240 mil erros "unknown variable" do Content Log.
+    """
+    names = set()
+    def walk(o):
+        if isinstance(o, str):
+            names.update(m.lower() for m in _VAR_RE.findall(o))
+        elif isinstance(o, dict):
+            for k, v in o.items():
+                walk(k)
+                walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+    walk(list(objs))
+    # `v.x ?? padrão` já trata o caso "não definida" — iniciar em 0 mataria o padrão.
+    guarded = set()
+    def walk_g(o):
+        if isinstance(o, str):
+            guarded.update(m.lower() for m in _GUARD_RE.findall(o))
+        elif isinstance(o, dict):
+            for v in o.values():
+                walk_g(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk_g(v)
+    walk_g(list(objs))
+    names = sorted(n for n in names if not n.startswith(_OURS) and n not in guarded)
+    out, cur = [], ""
+    for n in names:
+        piece = f"v.{n}=0;"
+        if len(cur) + len(piece) > 2000:
+            out.append(cur)
+            cur = ""
+        cur += piece
+    if cur:
+        out.append(cur)
+    return out
+
+
+_READS_STATE = re.compile(r"\b(?:q|query|ysm|ctrl|c|context)\.|\bv\.yq_|\bv\.yso|\bt\.|\breturn\b|\?", re.I)
+
+
+def _fmt_num(x):
+    return f"{x:.6f}".rstrip("0").rstrip(".")
+
+
+def _chunk(stmts, limit=2000):
+    out, cur = [], ""
+    for x in stmts:
+        if cur and len(cur) + len(x) > limit:
+            out.append(cur)
+            cur = ""
+        cur += x
+    if cur:
+        out.append(cur)
+    return out
+
+
+def _num(x, default=0.0):
+    try:
+        return float(x)
+    except (TypeError, ValueError):
+        return default
 
 
 def _flat_var(v):

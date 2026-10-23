@@ -157,6 +157,26 @@ def tokenize(s):
     return out
 
 
+def _brace_values(toks):
+    """`{expr}` sem `;` dentro é valor, não bloco: o Bedrock recusa ("Brace sections must
+    only contain semicolon-delimited expressions"). Vira `(expr)`."""
+    toks = list(toks)
+    stack = []
+    for i, (k, v) in enumerate(toks):
+        if v == "{":
+            stack.append([i, False])
+        elif v == ";" and stack:
+            stack[-1][1] = True
+        elif v == "}" and stack:
+            start, has_semi = stack.pop()
+            if not has_semi:
+                toks[start] = ("op", "(")
+                toks[i] = ("op", ")")
+                if i == start + 1:          # {} vazio
+                    toks[i] = ("op", "0)")
+    return toks
+
+
 def _detok(toks):
     s = []
     prev = None
@@ -199,7 +219,7 @@ class Rewriter:
         if not isinstance(s, str):
             return s
         out = self._rewrite(s).strip()
-        if out and not out.endswith(";") and not out.endswith("}"):
+        if out and not out.endswith(";"):
             out += ";"
         if out and not self._valid(out, s):
             return ""
@@ -219,7 +239,7 @@ class Rewriter:
     def _rewrite(self, s):
         toks = tokenize(s)
         out, _ = self._walk(toks, 0, len(toks))
-        return _detok(out)
+        return _detok(_brace_values(out))
 
     def _walk(self, toks, i, end):
         out = []

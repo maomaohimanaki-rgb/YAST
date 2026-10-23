@@ -26,6 +26,7 @@
           "variable.hand_bob = 0.0;"
         ],
         "pre_animation": [
+          "variable.melee_spear_equipped = query.is_item_name_any('slot.weapon.mainhand', 0, 'minecraft:wooden_spear', 'minecraft:stone_spear', 'minecraft:copper_spear', 'minecraft:iron_spear', 'minecraft:golden_spear', 'minecraft:diamond_spear', 'minecraft:netherite_spear');",
           "variable.helmet_layer_visible = !query.has_head_gear;",
           "variable.leg_layer_visible = 1.0;",
           "variable.boot_layer_visible = 1.0;",

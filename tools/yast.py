@@ -67,7 +67,8 @@ def cmd_audit(args):
                 unsupported[k] += v
             for x in e["report"]["notes"]:
                 notes[x.split(":")[0][:60]] += 1
-            for err in validate_dir(os.path.join(out, "RP")):
+            rpo = os.path.join(out, "RP")
+            for err in validate_dir(rpo) + [(f, "", x) for f, x in validate_structure(rpo)]:
                 molang_errs.append((rel,) + err)
         except Exception as ex:  # noqa: BLE001 — relatório, não aborta
             fails.append((rel, f"{type(ex).__name__}: {ex}"[:200]))

@@ -74,8 +74,13 @@ class _P:
         self.expr()
 
     def block(self):
+        # Bedrock: dentro de { } todo statement termina em ';' (mesmo um só)
         self.take("{")
-        self.statements("}")
+        while self.peek()[1] != "}":
+            if self.peek()[0] == "eof":
+                raise MolangError("'}' faltando")
+            self.statement()
+            self.take(";")
         self.take("}")
 
     def expr(self):
@@ -144,9 +149,6 @@ class _P:
             self.take()
             self.expr()
             self.take(")")
-        elif v == "{":
-            self.block()
-            return
         else:
             raise MolangError(f"token inesperado {v!r}")
         while self.peek()[1] in ("->", "["):
@@ -166,6 +168,35 @@ def check(expr):
     p.statements()
     if p.peek()[0] != "eof":
         raise MolangError(f"sobrou {p.peek()[1]!r}")
+
+
+def _schema_errors(a):
+    """Regras de schema que o Bedrock aplica (vistas no Content Log do 1.26.52)."""
+    errs = []
+    for bone, chans in (a.get("bones") or {}).items():
+        if not bone.strip():
+            errs.append("osso com nome vazio")
+        for ch in ("rotation", "position", "scale"):
+            v = chans.get(ch)
+            if not isinstance(v, dict):
+                if isinstance(v, list) and len(v) != 3:
+                    errs.append(f"{bone}.{ch}: vetor com {len(v)} valores")
+                continue
+            dynamic, cubic = False, False
+            for t, kf in v.items():
+                parts = [kf.get("pre"), kf.get("post")] if isinstance(kf, dict) else [kf]
+                for p in parts:
+                    if p is None:
+                        continue
+                    if not isinstance(p, list) or len(p) != 3:
+                        errs.append(f"{bone}.{ch}@{t}: keyframe precisa ser [x,y,z]")
+                    elif any(isinstance(c, str) for c in p):
+                        dynamic = True
+                if isinstance(kf, dict) and kf.get("lerp_mode") == "catmullrom":
+                    cubic = True
+            if dynamic and cubic:
+                errs.append(f"{bone}.{ch}: catmullrom com keyframe não constante")
+    return errs
 
 
 def _anim_exprs(a):
@@ -210,9 +241,11 @@ def validate_dir(rp):
             with open(path, encoding="utf-8") as fh:
                 d = json.load(fh)
             if kind == "a":
-                for a in d["animations"].values():
+                for an, a in d["animations"].items():
                     for e in _anim_exprs(a):
                         chk(path, e)
+                    for err in _schema_errors(a):
+                        errs.append((os.path.relpath(path, rp), an, err))
             elif kind == "c":
                 for c in d["animation_controllers"].values():
                     for st in c["states"].values():
@@ -260,6 +293,9 @@ def validate_structure(rp):
                 errs.append((f, f"animate {name} não declarado"))
         for cid, c in ctrls.items():
             states = c["states"]
+            for sn in states:
+                if not sn.isascii() or not sn.replace("_", "a").isalnum():
+                    errs.append((f, f"{cid}: nome de estado inválido {sn!r}"))
             if c.get("initial_state", "default") not in states:
                 errs.append((f, f"{cid}: initial_state inexistente"))
             for sn, st in states.items():
