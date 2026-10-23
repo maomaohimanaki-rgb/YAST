@@ -297,7 +297,7 @@ class Converter:
                     elif isinstance(a, dict):
                         for an, cond in a.items():
                             if an in self.short:
-                                anims.append({s(an): self.rw.expr(cond)}); referenced.add(an)
+                                anims.append({s(an): _as_str(self.rw.expr(cond))}); referenced.add(an)
                 if anims:
                     ns["animations"] = anims
                 for k in ("on_entry", "on_exit"):
@@ -308,7 +308,7 @@ class Converter:
                     if isinstance(t, dict):
                         for tn, cond in t.items():
                             if tn in c["states"]:
-                                tr.append({smap[tn]: self.rw.expr(cond)})
+                                tr.append({smap[tn]: _as_str(self.rw.expr(cond))})
                 if tr:
                     ns["transitions"] = tr
                 bt = st.get("blend_transition")
@@ -645,6 +645,13 @@ def _init_vars(objs):
 
 
 _READS_STATE = re.compile(r"\b(?:q|query|ysm|ctrl|c|context)\.|\bv\.yq_|\bv\.yso|\bt\.|\breturn\b|\?", re.I)
+
+
+def _as_str(v):
+    """Transições e condições de controlador só aceitam string ("0", não 0)."""
+    if isinstance(v, bool):
+        return "1" if v else "0"
+    return v if isinstance(v, str) else _fmt_num(float(v))
 
 
 def _fmt_num(x):

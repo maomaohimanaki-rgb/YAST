@@ -303,8 +303,13 @@ def validate_structure(rp):
                     name = a if isinstance(a, str) else next(iter(a))
                     if name not in amap:
                         errs.append((f, f"{cid}.{sn}: animação {name} não declarada"))
+                for a in st.get("animations", []):
+                    if isinstance(a, dict) and not all(isinstance(x, str) for x in a.values()):
+                        errs.append((f, f"{cid}.{sn}: condição de animação precisa ser string"))
                 for t in st.get("transitions", []):
-                    for target in t:
+                    for target, cond in t.items():
+                        if not isinstance(cond, str):
+                            errs.append((f, f"{cid}.{sn}: transição {target} precisa ser string"))
                         if target not in states:
                             errs.append((f, f"{cid}.{sn}: transição para {target} inexistente"))
     return errs
