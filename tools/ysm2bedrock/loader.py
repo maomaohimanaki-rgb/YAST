@@ -31,6 +31,7 @@ class ConfigForm:
     title: str
     variable: str      # variável YSM controlada (ex.: v.roaming.B)
     labels: list = field(default_factory=list)   # radio: [(rótulo, statements)]
+    states: tuple = ()   # checkbox: (rótulo quando 1, rótulo quando 0) — vem de "A&B" na descrição
     min: float = 0.0
     max: float = 1.0
     step: float = 1.0
@@ -75,6 +76,27 @@ def read_json(path):
         txt = re.sub(r'"\s*\n\s*"', '",\n"', txt)       # vírgula esquecida entre linhas
         txt = re.sub(r'([}\]])\s*\n\s*"', r'\1,\n"', txt)
         return json.loads(txt, strict=False)
+
+
+CJK = re.compile(r"[\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff\uac00-\ud7af]")
+
+
+def pretty_folder(folder):
+    """'GI_Hu-Tao_v2.0' -> 'Hu Tao v2.0' (tira prefixo de série curto e separadores)."""
+    n = re.sub(r"^_+", "", folder)
+    n = re.sub(r"^[A-Za-z0-9.]{1,5}_(?=[A-Z])", "", n)      # GI_, HSR_, BA_, Ak_, Wuwa_, 2.5D_ ...
+    n = re.sub(r"^[A-Za-z]{1,3}_(?=[A-Z])", "", n)
+    n = n.replace("_", " ").replace("-", " ")
+    return re.sub(r"\s+", " ", n).strip() or folder
+
+
+def display_name(lang_name, meta_name, folder):
+    for cand in (lang_name, meta_name):
+        if cand and not CJK.search(cand):
+            return _strip_fmt(cand)
+    if not CJK.search(folder):
+        return pretty_folder(folder)
+    return _strip_fmt(lang_name or meta_name or folder)
 
 
 def _lang(folder):
@@ -192,6 +214,15 @@ def _load_spec2(folder, collection, y, warnings):
             _extras_from_map(cl.get("extra_animation"), anims, lang, extras)
     seen = set()
     extras = [e for e in extras if not (e[0] in seen or seen.add(e[0]))]
+    # extraN que existe no arquivo mas não está no mapa (ou está com rótulo vazio) também é
+    # emote — antes sumia do menu. Os que apontam para botão de config ("#...") ficam de fora.
+    as_button = {k for k, v in (props.get("extra_animation") or {}).items() if isinstance(v, str) and v.startswith("#")}
+    for k in sorted((a for a in anims if re.fullmatch(r"extra\d+", a)), key=lambda a: int(a[5:])):
+        if k not in seen and k not in as_button:
+            extras.append((k, _strip_fmt(lang.get(f"properties.extra_animation.{k}") or "")))
+            seen.add(k)
+    extras = [(k, label if label and label != k else f"Emote {int(k[5:]) + 1}" if re.fullmatch(r"extra\d+", k) else k)
+              for k, label in extras]
 
     configs = []
     for b in props.get("extra_animation_buttons") or []:
@@ -208,7 +239,7 @@ def _load_spec2(folder, collection, y, warnings):
             authors.append(a)
     lic = meta.get("license")
     lic = lic.get("type", "") if isinstance(lic, dict) else (lic or "")
-    name = lang.get("metadata.name") or meta.get("name") or os.path.basename(folder)
+    name = display_name(lang.get("metadata.name"), meta.get("name"), os.path.basename(folder))
     return YsmModel(
         src=folder, fmt="spec2", name=_strip_fmt(name), collection=collection, authors=authors,
         license=lic, tips=_strip_fmt(lang.get("metadata.tips") or meta.get("tips") or ""),
@@ -241,8 +272,13 @@ def _config(cf, lang, button_id, n):
         except (TypeError, ValueError):
             return None
         return ConfigForm("range", title, var, min=mn, max=mx, step=step, default=dv)
-    # checkbox e tipos customizados ("狸猫开关") se comportam como liga/desliga
-    return ConfigForm("checkbox", title, var)
+    # checkbox e tipos customizados ("狸猫开关") se comportam como liga/desliga.
+    # Descrição "A&B" = nome do estado marcado (1) & desmarcado (0): "隐藏&显示" (esconder &
+    # mostrar) com `v.roaming.B==0 -> cajado visível` confirma a ordem.
+    desc = lang.get(f"properties.extra_animation_buttons.{button_id}.config_forms.{n}.description") or cf.get("description") or ""
+    parts = [_strip_fmt(x) for x in re.split(r"\s*[&＆]\s*", str(desc)) if x.strip()]
+    states = (parts[0], parts[1]) if len(parts) == 2 and all(len(x) <= 24 for x in parts) else ()
+    return ConfigForm("checkbox", title, var, states=states)
 
 
 def _load_flat(folder, collection, info, warnings):
@@ -258,14 +294,14 @@ def _load_flat(folder, collection, info, warnings):
     extras = []
     for k in sorted((a for a in anims if re.fullmatch(r"extra\d+", a)), key=lambda a: int(a[5:])):
         i = int(k[5:])
-        label = names[i] if i < len(names) and names[i] else f"Extra {i}"
+        label = names[i] if i < len(names) and names[i] else f"Emote {i + 1}"
         extras.append((k, _strip_fmt(str(label))))
     authors = info.get("authors") or []
     if isinstance(authors, str):
         authors = [authors]
     return YsmModel(
         src=folder, fmt="legacy" if info else "flat",
-        name=_strip_fmt(info.get("name") or os.path.basename(folder)), collection=collection,
+        name=display_name(None, info.get("name"), os.path.basename(folder)), collection=collection,
         authors=[str(a) for a in authors], license=str(info.get("license") or ""),
         tips=_strip_fmt(info.get("tips") or ""), main_geo=geo, animations=anims, controllers={},
         textures=textures, default_texture=0, extras=extras, configs=[], warnings=warnings,

@@ -87,3 +87,32 @@ animações somam, então emote e idle ao mesmo tempo dariam pose dobrada.
   os eventos de acerto em entidade/bloco.
 * Máximo de 12 configs e 16 cores por modelo (limite de 32 propriedades por entidade).
 * Física/partículas que dependem de `ysm.bone_rot`, `ysm.particle`, mods (TaC, SlashBlade...) viram 0.
+
+## Regras do YSM reproduzidas (teste 02)
+
+* **Prioridade**: `pre_parallelN` < animação principal (idle, run, emote...) < `parallelN`.
+  No Bedrock tudo soma/multiplica; o conversor neutraliza o canal do `pre_parallel` enquanto um
+  estado principal que mexe no mesmo osso está ativo (`_pre_parallel_priority`).
+* **Brilho**: ossos `ysmGlow*` (13.550 nos modelos) saem num 2º render controller com
+  `ignore_lighting`, então brilham no escuro independente do alfa da textura.
+* **Configs**: `yast:cN = -99999` significa "o jogador nunca mexeu" e o modelo usa o próprio
+  padrão (`v.x ?? N`). A propriedade só é aplicada quando muda, para não desfazer variáveis que
+  o próprio modelo altera (transformação).
+* **Física de busto padrão** para modelos que têm o osso e não o animam.
+
+## Ajustes em jogo (sem rebuild)
+
+| Comando | Efeito |
+|---|---|
+| `/scriptevent yast:lead <0..6>` | ticks de predição (padrão 3) |
+| `/scriptevent yast:sync impulse\|teleport` | modo de movimento do avatar |
+| `/scriptevent yast:axis pitch\|yaw 1\|-1` | sinal do olhar (cabeça/cabelo) |
+
+Todos ficam salvos no mundo.
+
+## Diagnóstico sem o jogo
+
+`tools/ysm2bedrock/simulate.py` + `molang_eval.py`: interpretador de Molang com a semântica do
+Bedrock (variável inexistente zera a expressão etc.). Roda initialize, pre_animation,
+controladores e animações dos primeiros frames e calcula a escala real de cada osso —
+mostra modelo invisível, tamanho errado e acessórios ligados/desligados.

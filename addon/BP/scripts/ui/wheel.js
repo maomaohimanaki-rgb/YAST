@@ -68,23 +68,25 @@ export async function show(player, form) {
 }
 
 /**
- * Loop de uma roda paginada. Retorna o `value` escolhido, "center" ou undefined (fechou).
- * Fatias vazias e troca de página são resolvidas aqui dentro.
+ * Loop de uma roda paginada. Retorna { value, page }: value é o `value` escolhido,
+ * "center" ou undefined (fechou). Fatias vazias e troca de página são resolvidas aqui.
  */
-export async function pickWheel(player, title, items, center = "Voltar") {
-  let page = 0;
+export async function pickWheelAt(player, title, items, center = "Voltar", page = 0) {
   while (player.isValid) {
     const w = buildWheel(title, items, page, center);
     const r = await show(player, w.form);
-    if (r.canceled || r.selection === undefined) return undefined;
+    if (r.canceled || r.selection === undefined) return { value: undefined, page: w.page };
     const a = w.map[r.selection];
     if (!a) continue;
     if (a.type === "page") {
       page = w.page + a.dir;
       continue;
     }
-    if (a.type === "center") return "center";
-    return a.value;
+    return { value: a.type === "center" ? "center" : a.value, page: w.page };
   }
-  return undefined;
+  return { value: undefined, page };
+}
+
+export async function pickWheel(player, title, items, center = "Voltar", page = 0) {
+  return (await pickWheelAt(player, title, items, center, page)).value;
 }

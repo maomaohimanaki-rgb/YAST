@@ -26,6 +26,7 @@ from ysm2bedrock.molang_check import validate_dir, validate_structure  # noqa: E
 
 MODELS = os.path.join(ROOT, "modelos_ysm")
 IDS = os.path.join(ROOT, "catalog", "model_ids.json")
+TRANSLATIONS = os.path.join(ROOT, "catalog", "traducoes_ptbr.json")
 CORE = os.path.join(ROOT, "addon")
 DIST = os.path.join(ROOT, "dist")
 
@@ -138,6 +139,22 @@ def cmd_build(args):
     molang_errs = validate_dir(rp) + [(f, "", e) for f, e in validate_structure(rp)]
     if molang_errs:
         print(f"  {len(molang_errs)} expressões Molang inválidas (ver conversion_report.json)")
+
+    # tradução (catalog/traducoes_ptbr.json): tudo que o jogador lê no menu
+    tr = {}
+    if os.path.isfile(TRANSLATIONS):
+        with open(TRANSLATIONS, encoding="utf-8") as f:
+            tr = json.load(f)
+    t = lambda x: tr.get(x, x) if isinstance(x, str) else x
+    for e in catalog:
+        e["name"] = t(e["name"])
+        e["variants"] = [t(v) for v in e["variants"]]
+        e["extras"] = [t(v) for v in e["extras"]]
+        for c in e["configs"]:
+            c["title"] = t(c["title"])
+            for k in ("labels", "states"):
+                if k in c:
+                    c[k] = [t(v) for v in c[k]]
 
     # catálogo para o script (sem o relatório, que só serve para depuração)
     slim = [{k: v for k, v in e.items() if k not in ("report",)} for e in catalog]

@@ -1,37 +1,50 @@
 // =====================================================================
-// menu.js — fluxo do menu aberto pela Chave do Menu.
+// menu.js — fluxo do menu aberto pela Chave do Menu. Tudo na roda (ui/wheel.js).
 //
-//   Roda principal ─┬─ Avatares  -> coleções -> modelos (lista vanilla, rolável)
-//                   ├─ Cor        -> variações do avatar atual (roda)
-//                   ├─ Emotes     -> extras do avatar atual (roda paginada)
+//   Roda principal ─┬─ Avatares  -> coleções -> modelos (roda paginada)
+//                   ├─ Cor        -> variações do avatar atual
+//                   ├─ Emotes     -> extras do avatar atual
 //                   ├─ Parar emote
-//                   ├─ Ajustes    -> ModalFormData (checkbox / radio / slider)
+//                   ├─ Ajustes    -> uma fatia por opção do YSM:
+//                   │                 checkbox = toque alterna (mostra o estado por extenso)
+//                   │                 rádio    = sub-roda com as opções
+//                   │                 slider   = sub-roda com valores prontos
 //                   └─ Resetar    -> "opção 0": volta a ser o player normal
 //
 // Radio button: escolher outro avatar substitui o atual direto.
 // =====================================================================
-import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
-import { C, pickWheel, show } from "./wheel.js";
+import { C, pickWheel, pickWheelAt } from "./wheel.js";
 import { allModels, collections } from "../avatar/catalog.js";
+import { configValue } from "../avatar/store.js";
+import { CONFIG_UNSET } from "../config.js";
 import { sessions, activate, reset, setVariant, setConfig, playEmote, stopEmote } from "../avatar/manager.js";
 
-const LIST_PAGE = 40;            // botões por página na lista vanilla
-const FLAT_LIST_LIMIT = 60;      // até isso, pula o nível "coleções"
+const FLAT_LIST_LIMIT = 40;      // até isso, pula o nível "coleções"
+const ON = "§a";
+const OFF = "§7";
+
+function short(text, n = 18) {
+  const t = String(text);
+  return t.length > n ? t.slice(0, n - 1) + "…" : t;
+}
 
 export async function openMenu(player) {
+  let page = 0;
   while (player.isValid) {
     const s = sessions.get(player.id);
-    const items = [{ label: `${C.cat}Avatares${s ? `\n§a${short(s.model.name)}` : ""}`, value: "browse" }];
+    const items = [{ label: `${C.cat}Avatares${s ? `\n${ON}${short(s.model.name)}` : ""}`, value: "browse" }];
     if (s) {
-      if (s.model.variants.length > 1) items.push({ label: `${C.cat}Cor\n§a${short(s.model.variants[s.prefs.v])}`, value: "variant" });
+      if (s.model.variants.length > 1) items.push({ label: `${C.cat}Cor\n${ON}${short(s.model.variants[s.prefs.v])}`, value: "variant" });
       if (s.model.extras.length) {
         items.push({ label: `${C.cat}Emotes`, value: "emotes" });
         items.push({ label: `${C.off}Parar emote`, value: "stop" });
       }
       if (s.model.configs.length) items.push({ label: `${C.cat}Ajustes`, value: "configs" });
-      items.push({ label: `${C.off}Resetar\n§7player normal`, value: "reset" });
+      items.push({ label: `${C.off}Resetar\n${OFF}player normal`, value: "reset" });
     }
-    const pick = await pickWheel(player, "YAST", items, "Fechar");
+    const r = await pickWheelAt(player, "YAST", items, "Fechar", page);
+    page = r.page;
+    const pick = r.value;
     if (pick === undefined || pick === "center") return;
     if (pick === "browse") {
       if (await browse(player)) return;
@@ -41,7 +54,7 @@ export async function openMenu(player) {
     } else if (pick === "stop") {
       stopEmote(player);
       return;
-    } else if (pick === "configs") await configForm(player);
+    } else if (pick === "configs") await configWheel(player);
     else if (pick === "reset") {
       reset(player);
       player.onScreenDisplay.setActionBar("§e[YAST] §fAvatar removido");
@@ -50,68 +63,34 @@ export async function openMenu(player) {
   }
 }
 
-function short(text, n = 18) {
-  return text.length > n ? text.slice(0, n - 1) + "…" : text;
-}
-
-/** Lista vanilla paginada. Retorna o value escolhido, "back" ou undefined. */
-async function pickList(player, title, body, entries) {
-  let page = 0;
-  const pages = Math.max(1, Math.ceil(entries.length / LIST_PAGE));
-  while (player.isValid) {
-    const form = new ActionFormData().title(pages > 1 ? `${title} (${page + 1}/${pages})` : title).body(body);
-    const map = [];
-    form.button("§l< Voltar");
-    map.push("back");
-    if (page > 0) {
-      form.button("§7<< Página anterior");
-      map.push("prev");
-    }
-    for (const e of entries.slice(page * LIST_PAGE, (page + 1) * LIST_PAGE)) {
-      form.button(e.label);
-      map.push({ v: e.value });
-    }
-    if (page < pages - 1) {
-      form.button("§7Próxima página >>");
-      map.push("next");
-    }
-    const r = await show(player, form);
-    if (r.canceled || r.selection === undefined) return undefined;
-    const a = map[r.selection];
-    if (a === "prev") page--;
-    else if (a === "next") page++;
-    else if (a === "back") return "back";
-    else if (typeof a === "object") return a.v;
-  }
-  return undefined;
-}
-
 /** true = fechou o menu inteiro (avatar escolhido). */
 async function browse(player) {
-  const current = sessions.get(player.id)?.model.id;
-  const label = (m) => `${m.id === current ? "§a● " : "§f"}${short(m.name, 30)}${m.variants.length > 1 ? ` §7(${m.variants.length} cores)` : ""}`;
-  let models;
+  const current = () => sessions.get(player.id)?.model.id;
+  const modelItem = (m) => ({
+    label: `${m.id === current() ? `${ON}§l● ` : C.off}${short(m.name, 16)}${m.variants.length > 1 ? `\n${OFF}${m.variants.length} cores` : ""}`,
+    value: m,
+  });
   if (allModels().length <= FLAT_LIST_LIMIT) {
-    models = allModels();
-  } else {
-    for (;;) {
-      const cols = collections();
-      const col = await pickList(player, "Avatares", "§7Escolha uma coleção", cols.map((c) => ({
-        label: `${c.models.some((m) => m.id === current) ? "§a● " : "§f"}${c.name} §7(${c.models.length})`,
-        value: c,
-      })));
-      if (col === undefined) return true;
-      if (col === "back") return false;
-      const m = await pickList(player, col.name, "", col.models.map((x) => ({ label: label(x), value: x })));
-      if (m === undefined) return true;
-      if (m === "back") continue;
-      return choose(player, m);
-    }
+    const m = await pickWheel(player, "Avatares", allModels().map(modelItem));
+    if (m === undefined) return true;
+    if (m === "center") return false;
+    return choose(player, m);
   }
-  const m = await pickList(player, "Avatares", "", models.map((x) => ({ label: label(x), value: x })));
-  if (m === undefined) return true;
-  if (m === "back") return false;
-  return choose(player, m);
+  let colPage = 0;
+  for (;;) {
+    const cols = collections();
+    const r = await pickWheelAt(player, "Avatares - Coleções", cols.map((c) => ({
+      label: `${c.models.some((m) => m.id === current()) ? `${ON}§l● ` : C.cat}${short(c.name, 16)}\n${OFF}${c.models.length}`,
+      value: c,
+    })), "Voltar", colPage);
+    colPage = r.page;
+    if (r.value === undefined) return true;
+    if (r.value === "center") return false;
+    const m = await pickWheel(player, short(r.value.name, 24), r.value.models.map(modelItem));
+    if (m === undefined) return true;
+    if (m === "center") continue;
+    return choose(player, m);
+  }
 }
 
 async function choose(player, model) {
@@ -127,7 +106,7 @@ async function choose(player, model) {
 async function variantWheel(player) {
   const s = sessions.get(player.id);
   if (!s) return;
-  const items = s.model.variants.map((name, i) => ({ label: `${i === s.prefs.v ? C.on : C.off}${short(name, 16)}`, value: i }));
+  const items = s.model.variants.map((name, i) => ({ label: `${i === s.prefs.v ? `${ON}§l` : C.off}${short(name, 16)}`, value: i }));
   const v = await pickWheel(player, `${short(s.model.name, 22)} - Cor`, items);
   if (typeof v === "number") setVariant(player, v);
 }
@@ -142,23 +121,70 @@ async function emoteWheel(player) {
   return true;
 }
 
-async function configForm(player) {
-  const s = sessions.get(player.id);
-  if (!s) return;
-  const cfgs = s.model.configs;
-  const form = new ModalFormData().title(`${short(s.model.name, 22)} - Ajustes`);
-  for (const c of cfgs) {
-    const cur = s.prefs.c[c.slot] ?? 0;
-    if (c.kind === "checkbox") form.toggle(c.title, { defaultValue: cur >= 1 });
-    else if (c.kind === "radio") form.dropdown(c.title, c.labels, { defaultValueIndex: Math.max(0, Math.min(c.labels.length - 1, Math.round(cur))) });
-    else form.slider(c.title, c.min, c.max, { valueStep: c.step > 0 ? c.step : 0.1, defaultValue: Math.max(c.min, Math.min(c.max, cur)) });
+// ----------------------------------------------------------------------------- ajustes
+/** Texto do estado atual de uma opção (sem "lado do toggle": o estado vem escrito). */
+function stateText(cfg, val) {
+  if (cfg.kind === "checkbox") {
+    const on = val >= 1;
+    if (cfg.states?.length === 2) return `${on ? ON : OFF}${short(on ? cfg.states[0] : cfg.states[1], 14)}`;
+    return on ? `${ON}Ligado` : `${OFF}Desligado`;
   }
-  form.submitButton("Aplicar");
-  const r = await show(player, form);
-  if (r.canceled || !r.formValues) return;
-  cfgs.forEach((c, i) => {
-    const raw = r.formValues[i];
-    const val = typeof raw === "boolean" ? (raw ? 1 : 0) : Number(raw);
-    if (Number.isFinite(val) && val !== s.prefs.c[c.slot]) setConfig(player, c.slot, val);
-  });
+  if (cfg.kind === "radio") return `${ON}${short(cfg.labels[Math.round(val)] ?? cfg.labels[0], 14)}`;
+  return `${ON}${fmt(val)}`;
+}
+
+function fmt(x) {
+  return Number.isInteger(x) ? String(x) : x.toFixed(2).replace(/0+$/, "").replace(/\.$/, "");
+}
+
+async function configWheel(player) {
+  let page = 0;
+  while (player.isValid) {
+    const s = sessions.get(player.id);
+    if (!s) return;
+    const items = s.model.configs.map((cfg) => ({
+      label: `${C.cat}${short(cfg.title, 16)}\n${stateText(cfg, configValue(s.prefs, cfg))}`,
+      value: cfg,
+    }));
+    items.push({ label: `${C.off}Restaurar\n${OFF}padrões`, value: "defaults" });
+    const r = await pickWheelAt(player, `${short(s.model.name, 22)} - Ajustes`, items, "Voltar", page);
+    page = r.page;
+    if (r.value === undefined || r.value === "center") return;
+    if (r.value === "defaults") {
+      for (const cfg of s.model.configs) setConfig(player, cfg.slot, CONFIG_UNSET);
+      continue;
+    }
+    const cfg = r.value;
+    const cur = configValue(s.prefs, cfg);
+    if (cfg.kind === "checkbox") {
+      setConfig(player, cfg.slot, cur >= 1 ? 0 : 1);       // um toque alterna; a roda reabre já atualizada
+    } else if (cfg.kind === "radio") {
+      const opts = cfg.labels.map((label, i) => ({ label: `${i === Math.round(cur) ? `${ON}§l` : C.off}${short(label, 16)}`, value: i }));
+      const v = await pickWheel(player, short(cfg.title, 24), opts);
+      if (typeof v === "number") setConfig(player, cfg.slot, v);
+    } else {
+      const v = await pickWheel(player, `${short(cfg.title, 18)}: ${fmt(cur)}`, rangeOptions(cfg, cur));
+      if (typeof v === "number") setConfig(player, cfg.slot, v);
+    }
+  }
+}
+
+/** Slider vira valores prontos: mínimo, ¼, ½, ¾, máximo, padrão e ± um passo. */
+function rangeOptions(cfg, cur) {
+  const step = cfg.step > 0 ? cfg.step : (cfg.max - cfg.min) / 20 || 0.1;
+  const snap = (x) => Math.min(cfg.max, Math.max(cfg.min, Math.round((x - cfg.min) / step) * step + cfg.min));
+  const vals = [
+    ["- passo", snap(cur - step)],
+    ["+ passo", snap(cur + step)],
+    ["Mínimo", cfg.min],
+    ["25%", snap(cfg.min + (cfg.max - cfg.min) * 0.25)],
+    ["50%", snap(cfg.min + (cfg.max - cfg.min) * 0.5)],
+    ["75%", snap(cfg.min + (cfg.max - cfg.min) * 0.75)],
+    ["Máximo", cfg.max],
+    ["Padrão", cfg.default ?? cfg.min],
+  ];
+  return vals.map(([name, v]) => ({
+    label: `${Math.abs(v - cur) < 1e-9 ? `${ON}§l` : C.off}${name}\n${OFF}${fmt(Number(v.toFixed(4)))}`,
+    value: Number(v.toFixed(4)),
+  }));
 }

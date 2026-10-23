@@ -577,11 +577,11 @@ class Converter:
         for length, body in self.tick_scripts:
             # passos fixos do tamanho que o modelo espera, quantos couberem no frame (tempo real)
             ticks.append(f"t.n=math.clamp(math.round(v.yq_dt/{_fmt_num(length)}),1,6);loop(t.n,{{{body}}});")
-        pre = (shim_script(len(self.configs)) + [self.want_script] + ticks
+        self.config_defaults = self._config_defaults(generated)
+        pre = (shim_script(len(self.configs), self.config_defaults) + [self.want_script] + ticks
                + self.rw.dynamics_scripts() + self._radio_scripts())
         init = ["v.yast_seen=0;v.yast_swing_seen=0;v.yast_hurt_seen=0;v.yq_mst=0;v.yq_want=0;"]
         init += _init_vars([pre, *generated])
-        self.config_defaults = self._config_defaults(generated)
         if self.config_defaults:
             init.append("".join(f"v.yast_cfg{i}={_fmt_num(d)};" for i, d in enumerate(self.config_defaults)))
         init += _chunk(self.const_init)
@@ -688,6 +688,8 @@ def _config_entry(i, c):
     e = {"slot": i, "kind": c.kind, "title": c.title}
     if c.kind == "radio":
         e["labels"] = [label for label, _ in c.labels]
+    if c.kind == "checkbox" and c.states:
+        e["states"] = list(c.states)
     if c.kind == "range":
         e.update({"min": c.min, "max": c.max, "step": c.step, "default": c.default})
     return e
@@ -845,7 +847,7 @@ def _strip_head_look(v):
     return v
 
 
-def shim_script(n_configs):
+def shim_script(n_configs, defaults=()):
     """pre_animation comum a todos os avatares: Entity Properties -> v.yq_*."""
     p = lambda n: f"q.property('yast:{n}')"
     lines = [
@@ -874,9 +876,11 @@ def shim_script(n_configs):
     # Config: só aplica quando a propriedade MUDA (e não é o "sem valor" CONFIG_UNSET).
     # Assim o padrão do próprio modelo vale até o jogador mexer, e emotes que alternam a
     # mesma variável (transformação) não são desfeitos a cada frame.
+    # Voltar para CONFIG_UNSET ("Restaurar padrões") recoloca o padrão do modelo.
     for i in range(n_configs):
+        d = _fmt_num(defaults[i]) if i < len(defaults) else "0"
         lines.append(f"t.c={p(f'c{i}')};(t.c!=(v.yast_cfgp{i}??{CONFIG_UNSET}))?{{v.yast_cfgp{i}=t.c;"
-                     f"(t.c>{CONFIG_UNSET + 1})?{{v.yast_cfg{i}=t.c;}};}};")
+                     f"v.yast_cfg{i}=(t.c>{CONFIG_UNSET + 1})?t.c:{d};}};")
     return lines
 
 

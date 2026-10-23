@@ -25,10 +25,18 @@ system._advance(2);
 
 const flush = () => new Promise((r) => setTimeout(r, 0));
 const avatars = () => [..._dims.overworld.entities].filter((e) => e.typeId.startsWith("yast:av_"));
-const pickButton = (match) => (form) => {
-  const i = form.buttons.findIndex((b) => b.includes(match));
-  assert.ok(i >= 0, `botão "${match}" não encontrado em ${JSON.stringify(form.buttons)}`);
-  return { canceled: false, selection: i };
+// Roda paginada (8 por página): procura o botão; se não estiver nesta página, aperta
+// "Pág. N >" e tenta de novo na próxima (a mesma resposta volta para a fila).
+const pickButton = (match) => {
+  const f = (form) => {
+    const i = form.buttons.findIndex((b) => b.includes(match));
+    if (i >= 0) return { canceled: false, selection: i };
+    const next = form.buttons.findIndex((b) => /Pág\. \d+ >/.test(b));
+    assert.ok(next >= 0, `botão "${match}" não encontrado em ${JSON.stringify(form.buttons)}`);
+    ui.responses.unshift(f);
+    return { canceled: false, selection: next };
+  };
+  return f;
 };
 
 // 1) Menu -> Avatares -> modelo com várias cores -> escolhe a 3ª cor
@@ -37,8 +45,8 @@ console.log(`modelo de teste: ${target.id} (${target.variants.length} cores, ${t
 const collectionLevel = CATALOG.length > 60;
 ui.responses.push(pickButton("Avatares"));
 if (collectionLevel) ui.responses.push(pickButton(target.collection));
-ui.responses.push(pickButton(target.name.slice(0, 20)));
-ui.responses.push(pickButton(target.variants[2].slice(0, 15)));
+ui.responses.push(pickButton(target.name.slice(0, 12)));
+ui.responses.push(pickButton(target.variants[2].slice(0, 12)));
 world._fire("itemUse", { itemStack: { typeId: "yast:menu_key" }, source: steve });
 for (let i = 0; i < 10; i++) await flush();
 
@@ -156,12 +164,30 @@ for (let i = 0; i < 10; i++) await flush();
 assert.equal(av.props["yast:act"], 0);
 assert.equal(av.props["yast:aseq"], 1);
 
+// Ajustes na roda: checkbox alterna com um toque e a fatia mostra o estado por extenso
+const cfg0 = target.configs[0];
+assert.equal(av.props[`yast:c${cfg0.slot}`], -99999, "config nunca mexida = padrão do modelo");
+let wheelAfterToggle;
 ui.responses.push(pickButton("Ajustes"));
-ui.responses.push((form) => ({ canceled: false, formValues: form.controls.map((c) => (c[0] === "toggle" ? true : c[0] === "dropdown" ? 1 : c[3])) }));
+ui.responses.push(pickButton(cfg0.title.slice(0, 12)));
+ui.responses.push((form) => { wheelAfterToggle = form.buttons; return { canceled: true }; });
+world._fire("itemUse", { itemStack: { typeId: "yast:menu_key" }, source: steve });
+for (let i = 0; i < 10; i++) await flush();
+const expected = cfg0.kind === "checkbox" ? (cfg0.default >= 1 ? 0 : 1) : undefined;
+if (expected !== undefined) {
+  assert.equal(av.props[`yast:c${cfg0.slot}`], expected, "checkbox alternado");
+  if (cfg0.states) {
+    const shownState = expected >= 1 ? cfg0.states[0] : cfg0.states[1];
+    assert.ok(wheelAfterToggle.some((b) => b.includes(shownState.slice(0, 10))), `estado por extenso na fatia: ${shownState}`);
+  }
+}
+// Restaurar padrões volta a "sem valor"
+ui.responses.push(pickButton("Ajustes"));
+ui.responses.push(pickButton("Restaurar"));
 ui.responses.push({ canceled: true });
 world._fire("itemUse", { itemStack: { typeId: "yast:menu_key" }, source: steve });
 for (let i = 0; i < 10; i++) await flush();
-assert.equal(av.props[`yast:c${target.configs[0].slot}`], target.configs[0].kind === "range" ? target.configs[0].max : 1, "config aplicada");
+assert.equal(av.props[`yast:c${cfg0.slot}`], -99999, "restaurar padrões");
 
 // 5) Entidade some (/kill, chunk): volta sozinha após o cooldown
 av.remove();
@@ -190,7 +216,7 @@ const other = CATALOG.find((m) => m.id !== target.id);
 if (other) {
   ui.responses.push(pickButton("Avatares"));
   if (collectionLevel) ui.responses.push(pickButton(other.collection));
-  ui.responses.push(pickButton(other.name.slice(0, 20)));
+  ui.responses.push(pickButton(other.name.slice(0, 12)));
   ui.responses.push({ canceled: true });
   world._fire("itemUse", { itemStack: { typeId: "yast:menu_key" }, source: steve });
   for (let i = 0; i < 10; i++) await flush();
@@ -207,7 +233,7 @@ assert.equal(steve.getDynamicProperty("yast:avatar"), undefined);
 // 9) Morte: entidade some; respawn do player traz de volta
 ui.responses.push(pickButton("Avatares"));
 if (collectionLevel) ui.responses.push(pickButton(target.collection));
-ui.responses.push(pickButton(target.name.slice(0, 20)));
+ui.responses.push(pickButton(target.name.slice(0, 12)));
 ui.responses.push({ canceled: true });
 world._fire("itemUse", { itemStack: { typeId: "yast:menu_key" }, source: steve });
 for (let i = 0; i < 10; i++) await flush();
