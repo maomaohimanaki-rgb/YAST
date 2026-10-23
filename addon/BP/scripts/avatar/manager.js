@@ -6,7 +6,7 @@
 // momento (playerSpawn, entidade descarregada, troca de dimensão, /kill).
 // =====================================================================
 import { system, world } from "@minecraft/server";
-import { AVATAR_FAMILY, DP_OWNER, PLAYER_FLAG, RESPAWN_COOLDOWN_TICKS, CONFIG_SLOTS, DEBUG } from "../config.js";
+import { AVATAR_FAMILY, DP_OWNER, PLAYER_FLAG, RESPAWN_COOLDOWN_TICKS, CONFIG_SLOTS, CONFIG_UNSET, DEBUG } from "../config.js";
 import { getModel } from "./catalog.js";
 import { savedAvatar, saveAvatar, loadPrefs, savePrefs } from "./store.js";
 
@@ -136,7 +136,7 @@ export function setProp(s, key, value) {
 export function pushStatic(s) {
   if (!s.entity?.isValid) return;
   setProp(s, "yast:var", s.prefs.v);
-  for (let i = 0; i < CONFIG_SLOTS; i++) setProp(s, `yast:c${i}`, s.prefs.c[i] ?? 0);
+  for (let i = 0; i < CONFIG_SLOTS; i++) setProp(s, `yast:c${i}`, s.prefs.c[i] ?? CONFIG_UNSET);
   setProp(s, "yast:act", s.counters.act);
   setProp(s, "yast:aseq", s.counters.aseq);
 }

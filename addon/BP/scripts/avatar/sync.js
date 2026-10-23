@@ -6,7 +6,7 @@
 // A IA continua vendo o player real (hitbox 1.8); o avatar é só visual.
 // =====================================================================
 import { EquipmentSlot, GameMode, system } from "@minecraft/server";
-import { ST, ARMOR, ITEM_CAT, VEHICLE, PREDICTION } from "../config.js";
+import { ST, ARMOR, ITEM_CAT, VEHICLE, PREDICTION, AXIS, SYNC } from "../config.js";
 import { ensureEntity, removeEntity, setProp } from "./manager.js";
 
 const wrap = (a) => ((((a + 180) % 360) + 360) % 360) - 180;
@@ -137,6 +137,13 @@ function armorBits(eq) {
   return a;
 }
 
+const axis = { ...AXIS };
+/** Sinal dos eixos da cabeça (1 ou -1). */
+export function setAxis(name, sign) {
+  if (name in axis && (sign === 1 || sign === -1)) axis[name] = sign;
+  return { ...axis };
+}
+
 let leadTicks = PREDICTION.leadTicks;
 /** Ajuste ao vivo do avanço da predição (ticks). */
 export function setLeadTicks(t) {
@@ -191,6 +198,60 @@ export function predictMotion(sync, loc, head, onGround) {
   return { loc: { x: loc.x + ox, y: loc.y + oy, z: loc.z + oz }, headLead };
 }
 
+let syncMode = SYNC.mode;
+export function setSyncMode(mode) {
+  if (mode === "impulse" || mode === "teleport") syncMode = mode;
+  return syncMode;
+}
+export function getSyncMode() {
+  return syncMode;
+}
+
+/**
+ * Leva o avatar até `target`. Modo impulso: a entidade recebe velocidade igual ao erro
+ * (chega no próximo tick) e o cliente interpola o caminho, então não "pisca". Erro grande
+ * (spawn, portal, travou) ou sessão em modo teleporte: teleporta.
+ */
+function moveAvatar(s, e, target, bodyYaw) {
+  const sync = s.sync;
+  let cur;
+  try {
+    cur = e.location;
+  } catch {
+    return false;
+  }
+  const err = { x: target.x - cur.x, y: target.y - cur.y, z: target.z - cur.z };
+  const dist = Math.hypot(err.x, err.y, err.z);
+  const mode = sync.forceTeleport ? "teleport" : syncMode;
+  try {
+    if (mode === "teleport" || dist > SYNC.snapDistance || !sync.moved) {
+      e.teleport(target, { dimension: s.player.dimension, rotation: { x: 0, y: bodyYaw }, keepVelocity: false });
+      if (!sync.moved) sync.stuck = 0;   // o teleporte de correção NÃO zera: senão o fallback nunca dispara
+      sync.moved = true;
+      sync.lastImpulse = undefined;
+      return true;
+    }
+    // A entidade obedeceu o impulso do tick anterior? Se não andou nada várias vezes
+    // seguidas, este motor ignora velocidade nela: usa teleporte daqui em diante.
+    if (sync.lastImpulse) {
+      const moved = Math.hypot(cur.x - sync.lastImpulse.from.x, cur.z - sync.lastImpulse.from.z);
+      const asked = Math.hypot(sync.lastImpulse.v.x, sync.lastImpulse.v.z);
+      sync.stuck = asked > 0.05 && moved < asked * 0.2 ? (sync.stuck ?? 0) + 1 : 0;
+      if (sync.stuck >= SYNC.stuckTicks) {
+        sync.forceTeleport = true;
+        console.warn("[YAST] impulso ignorado pela entidade; usando teleporte nesta sessão");
+      }
+    }
+    e.clearVelocity();
+    e.applyImpulse(err);
+    e.setRotation({ x: 0, y: bodyYaw });
+    sync.lastImpulse = { from: { x: cur.x, y: cur.y, z: cur.z }, v: err };
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 /** Um tick de sincronização. */
 export function syncSession(s) {
   const p = s.player;
@@ -214,17 +275,13 @@ export function syncSession(s) {
   const yawSpeed = s.sync.body === undefined ? 0 : wrap(body - s.sync.body) * 20;
   s.sync.body = body;
 
-  try {
-    e.teleport(pred.loc, { dimension: p.dimension, rotation: { x: 0, y: body }, keepVelocity: false });
-  } catch {
-    return;
-  }
+  if (!moveAvatar(s, e, pred.loc, body)) return;
 
   s.sync.vehicle = vehicleKind(p);
   setProp(s, "yast:st", stateBits(p, s));
   setProp(s, "yast:veh", s.sync.vehicle);
-  setProp(s, "yast:pitch", round(clamp(rot.x, -90, 90), 0.5));
-  setProp(s, "yast:hyaw", round(wrap(head - body), 0.5));
+  setProp(s, "yast:pitch", round(clamp(rot.x * axis.pitch, -90, 90), 0.5));
+  setProp(s, "yast:hyaw", round(wrap(head - body) * axis.yaw, 0.5));
   setProp(s, "yast:yspd", round(clamp(yawSpeed, -3000, 3000), 5));
   setProp(s, "yast:vx", round(clamp(vel.x * 20, -100, 100), 0.05));
   setProp(s, "yast:vy", round(clamp(vel.y * 20, -100, 100), 0.05));

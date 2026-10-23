@@ -60,7 +60,10 @@ steve.equip.Mainhand = { typeId: "minecraft:diamond_sword", getComponent: () => 
 system._advance(10);
 assert.deepEqual(av.location, steve.location, "parado: avatar exatamente no player");
 
-// 2b) Predição linear: andando a 0,25 bloco/tick em X, o avatar fica 2 ticks À FRENTE
+// 2b) Predição linear (modo teleporte, lead 2 para contas redondas):
+//     andando a 0,25 bloco/tick em X, o avatar fica 2 ticks À FRENTE
+system._fire("scriptEventReceive", { id: "yast:sync", message: "teleport", sourceEntity: steve });
+system._fire("scriptEventReceive", { id: "yast:lead", message: "2", sourceEntity: steve });
 for (let i = 0; i < 12; i++) {
   steve.location = { x: steve.location.x + 0.25, y: 64, z: 5 };
   system._advance(1);
@@ -103,9 +106,30 @@ assert.ok(Math.abs(av.location.x - (steve.location.x + 0.6)) < 0.02, "lead 3 = +
 system._fire("scriptEventReceive", { id: "yast:lead", message: "2", sourceEntity: steve });
 steve.location = { x: 5, y: 64, z: 5 };
 system._advance(8);
+
+// 2c) Modo impulso: anda por velocidade (sem teleporte por tick) e converge para o alvo
+system._fire("scriptEventReceive", { id: "yast:sync", message: "impulse", sourceEntity: steve });
+system._advance(3);
+const tp0 = av.teleports ?? 0;
+for (let i = 0; i < 20; i++) {
+  steve.location = { x: steve.location.x + 0.2, y: 64, z: 5 };
+  system._advance(1);
+}
+assert.equal(av.teleports ?? 0, tp0, "impulso: nenhum teleporte andando normalmente");
+assert.ok(Math.abs(av.location.x - (steve.location.x + 0.4)) < 0.25, `impulso acompanha: ${av.location.x - steve.location.x}`);
+// 2d) Motor que ignora velocidade: cai sozinho para teleporte
+av.ignoresImpulse = true;
+for (let i = 0; i < 25; i++) {
+  steve.location = { x: steve.location.x + 0.2, y: 64, z: 5 };
+  system._advance(1);
+}
+assert.ok(Math.abs(av.location.x - (steve.location.x + 0.4)) < 0.05, `fallback para teleporte: ${av.location.x - steve.location.x}`);
+av.ignoresImpulse = false;
+steve.location = { x: 5, y: 64, z: 5 };
+system._advance(8);
 assert.equal(av.props["yast:st"] & 1, 1, "bit agachado");
 assert.equal(av.props["yast:st"] & 16, 16, "bit no chão");
-assert.equal(av.props["yast:pitch"], 40);
+assert.equal(av.props["yast:pitch"], -40, "pitch invertido (AXIS.pitch = -1, teste 02)");
 assert.equal(av.props["yast:main"], 1, "categoria espada");
 assert.ok(Math.abs(av.props["yast:vz"] - 1.2) < 0.06, "velocidade em m/s");
 assert.ok(av.commands.some((c) => c.includes("slot.weapon.mainhand 0 minecraft:diamond_sword")), "item espelhado");

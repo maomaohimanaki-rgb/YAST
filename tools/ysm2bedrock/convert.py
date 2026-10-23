@@ -51,10 +51,11 @@ PROPERTIES = {
     "yast:aseq": {"type": "int", "range": [0, 255], "default": 0, "client_sync": True},
 }
 for _i in range(CONFIG_SLOTS):
-    PROPERTIES[f"yast:c{_i}"] = {"type": "float", "range": [-100000.0, 100000.0], "default": 0.0, "client_sync": True}
+    PROPERTIES[f"yast:c{_i}"] = {"type": "float", "range": [-100000.0, 100000.0], "default": -99999.0, "client_sync": True}
 assert len(PROPERTIES) <= 32, "Bedrock aceita no máximo 32 propriedades por entidade"
 
-HIDDEN_BIT = 32768  # bit extra de yast:st: player invisível (poção) -> avatar some
+HIDDEN_BIT = 32768
+CONFIG_UNSET = -99999  # yast:cN com esse valor = "use o padrão do modelo"  # bit extra de yast:st: player invisível (poção) -> avatar some
 
 
 def slug(text, maxlen=40):
@@ -150,7 +151,9 @@ class Converter:
             self.short[name] = _anim_short(name, used)
         out = {}
         for name, a in self.m.animations.items():
-            out[f"{self.prefix_anim}.{self.short[name]}"] = self._anim(a)
+            out[f"{self.prefix_anim}.{self.short[name]}"] = self._anim(a, name)
+        self._pre_parallel_priority(out)
+        self._breast_physics(out, used)
         # olhar da cabeça: no YSM é automático no osso Head; aqui é uma animação.
         if self.head_bone:
             self.short["__head_look"] = _anim_short("yast_head_look", used)
@@ -160,7 +163,63 @@ class Converter:
             }
         return {"format_version": "1.8.0", "animations": out}
 
-    def _anim(self, a):
+    def _breast_physics(self, out, used):
+        """Física padrão de busto para modelos que têm o osso mas não o animam (~120 de 685).
+
+        Os outros 565 já trazem a própria (ysm.second_order), reaproveitada como está.
+        Mola de 2ª ordem (mesma do YSM) reagindo a pulo/queda e à passada.
+        """
+        names = [b for b in self.bone_names if b.lower() in ("breast", "bust", "body_breast", "xiong")]
+        if not names:
+            return
+        anim_bones = {b.lower() for a in self.m.animations.values() for b in (a.get("bones") or {})}
+        names = [b for b in names if b.lower() not in anim_bones]
+        if not names:
+            return
+        so = self.rw.expr("ysm.second_order('__yast_breast', math.clamp(-q.vertical_speed*4,-20,20)"
+                          "+math.sin(q.walk_distance*230)*math.min(q.ground_speed,5)*0.8, 2.2, 0.22, 0)")
+        self.short["__breast"] = _anim_short("yast_breast", used)
+        out[f"{self.prefix_anim}.{self.short['__breast']}"] = {
+            "loop": True, "bones": {b: {"rotation": [f"math.clamp({so},-18,18)", 0, 0]} for b in names}}
+        self.notes.append(f"física de busto padrão em {', '.join(names)}")
+
+    def _pre_parallel_priority(self, out):
+        """pre_parallelN tem prioridade MENOR que a animação principal no YSM.
+
+        No YSM, se `run` define a escala de um osso, ela substitui a do pre_parallel; no
+        Bedrock as escalas multiplicam e rotações/posições somam. Ex.: Magical Wine Fox
+        esconde os círculos no pre_parallel (escala 0) e o `run` mostra (0,3): aqui dava
+        0 × 0,3 = 0 e os círculos nunca apareciam. Solução (a mesma do conversor 0.4.x):
+        enquanto um estado principal que mexe naquele osso/canal está ativo, o valor do
+        pre_parallel vira neutro (escala 1, rotação/posição 0).
+        """
+        main = {}
+        for st, code in MAIN_STATE_CODE.items():
+            if st in self.m.animations:
+                main[st] = (f"v.yq_mst=={code}", self.m.animations[st])
+        extras = [n for n, _l in self.m.extras if n in self.m.animations][:MAX_EXTRAS]
+        for i, n in enumerate(extras):
+            main[f"extra_{i}"] = (f"(v.yq_mst=={MAIN_STATE_CODE['extra']}&&v.yq_act=={i})", self.m.animations[n])
+        touched = {}
+        for cond, a in main.values():
+            for b, chans in (a.get("bones") or {}).items():
+                if isinstance(chans, dict):
+                    for ch in ("rotation", "position", "scale"):
+                        if ch in chans:
+                            touched.setdefault((b.lower(), ch), []).append(cond)
+        for name in self.m.animations:
+            if not re.fullmatch(r"pre_parallel\d+", name):
+                continue
+            a = out[f"{self.prefix_anim}.{self.short[name]}"]
+            for b, chans in (a.get("bones") or {}).items():
+                for ch in ("rotation", "position", "scale"):
+                    conds = touched.get((b.lower(), ch))
+                    if ch in chans and conds:
+                        ident = 1 if ch == "scale" else 0
+                        cond = "||".join(sorted(set(conds)))
+                        chans[ch] = _neutral_when(chans[ch], cond, ident)
+
+    def _anim(self, a, name=""):
         o = {}
         loop = a.get("loop", False)
         if isinstance(loop, str) and loop not in ("hold_on_last_frame",):
@@ -211,10 +270,20 @@ class Converter:
                 # Constantes de mola (v.L1_F=0.6; v.L1_K2=1/...) ficam espalhadas numa
                 # timeline de 0,5 s: até ela tocar, K=0 e a física divide por zero.
                 # Atribuições que não leem estado do player também rodam no initialize.
-                for t in ntl:
-                    for x in ntl[t]:
-                        if not _READS_STATE.search(x):
-                            self.const_init.append(x)
+                # SÓ de animações sempre ligadas (pre_parallelN/parallelN): timeline de emote
+                # (ex.: transformação "v.roaming.a=1-v.roaming.b") não pode rodar no spawn —
+                # foi o que fez os Wine Fox nascerem como raposa no teste 02.
+                if _ALWAYS_ON.fullmatch(name):
+                    known = set()
+                    for t in ntl:
+                        for x in ntl[t]:
+                            m = _CONST_ASSIGN.fullmatch(x)
+                            if not m or _READS_STATE.search(m.group(2)):
+                                continue
+                            reads = {r.lower() for r in _VAR_RE.findall(m.group(2))}
+                            if reads <= known:
+                                self.const_init.append(x)
+                                known.add(m.group(1).lower())
         return o
 
     def _channel(self, v):
@@ -371,6 +440,8 @@ class Converter:
 
         if "__head_look" in self.short:
             self.animate.append(s("__head_look"))
+        if "__breast" in self.short:
+            self.animate.append(s("__breast"))
 
         # --- paralelas sempre ligadas (o YSM toca pre_parallelN/parallelN o tempo todo) ---
         for n in [f"pre_parallel{i}" for i in range(9)] + [f"parallel{i}" for i in range(9)]:
@@ -510,15 +581,20 @@ class Converter:
                + self.rw.dynamics_scripts() + self._radio_scripts())
         init = ["v.yast_seen=0;v.yast_swing_seen=0;v.yast_hurt_seen=0;v.yq_mst=0;v.yq_want=0;"]
         init += _init_vars([pre, *generated])
+        self.config_defaults = self._config_defaults(generated)
+        if self.config_defaults:
+            init.append("".join(f"v.yast_cfg{i}={_fmt_num(d)};" for i, d in enumerate(self.config_defaults)))
         init += _chunk(self.const_init)
         return {
             "format_version": "1.10.0",
             "minecraft:client_entity": {"description": {
                 "identifier": self.entity,
-                "materials": {"default": "entity_alphatest", "glow": "entity_emissive_alpha"},
+                "materials": {"default": "entity_alphatest"},
                 "textures": textures,
                 "geometry": {"default": f"geometry.yast.{self.id}"},
-                "render_controllers": [{"controller.render.yast.avatar": "!v.yast_hide"}],
+                # 2º controlador: ossos ysmGlow* sem iluminação (brilham no escuro, como no YSM)
+                "render_controllers": [{"controller.render.yast.avatar": "!v.yast_hide"},
+                                       {"controller.render.yast.avatar_glow": "!v.yast_hide"}],
                 "enable_attachables": True,
                 "scripts": {
                     "scale": SCALE,
@@ -530,6 +606,29 @@ class Converter:
                 "animations": anims,
             }},
         }
+
+    def _config_defaults(self, generated):
+        """Valor inicial de cada config = o que o próprio modelo usa quando ninguém mexeu.
+
+        Procura `v.<cfg> ?? N` (padrão explícito) e depois `v.<cfg> = N` (init do modelo).
+        Sem pista: slider começa em 1 se couber no intervalo (tamanho!), senão no mínimo;
+        checkbox/radio em 0. Antes o slider ia para o mínimo: "tamanho de formiga".
+        """
+        blob = json.dumps(list(generated), ensure_ascii=False)
+        out = []
+        for i, c in enumerate(self.configs):
+            m = re.search(rf"v\.yast_cfg{i}\s*\?\?\s*(-?\d+(?:\.\d+)?)", blob) or \
+                re.search(rf"v\.yast_cfg{i}\s*=\s*(-?\d+(?:\.\d+)?)\s*;", blob)
+            if m:
+                d = float(m.group(1))
+            elif c.kind == "range":
+                d = 1.0 if c.min <= 1 <= c.max else c.min
+            else:
+                d = 0.0
+            if c.kind == "range":
+                d = min(max(d, c.min), c.max)
+            out.append(d)
+        return out
 
     def _radio_scripts(self):
         out = []
@@ -578,7 +677,7 @@ class Converter:
             "format": self.m.fmt, "license": self.m.license, "authors": self.m.authors[:6],
             "variants": [t.name for t in texs], "defaultVariant": default,
             "extras": [label for _a, label in self.extras],
-            "configs": [_config_entry(i, c) for i, c in enumerate(self.configs)],
+            "configs": [dict(_config_entry(i, c), default=self.config_defaults[i]) for i, c in enumerate(self.configs)],
             "report": {"unsupported": dict(self.rw.report.most_common()), "notes": self.notes,
                        "animations": len(self.short), "dynamics": len(self.rw.dynamics),
                        "invalid_molang": self.rw.invalid[:50]},
@@ -596,6 +695,7 @@ def _config_entry(i, c):
 
 _VAR_RE = re.compile(r"\bv(?:ariable)?\.([a-z_][a-z0-9_]*)", re.I)
 _OURS = ("yq_", "yast_", "yso")
+_GUARD_DEFAULT_RE = re.compile(r"\bv(?:ariable)?\.([a-z_][a-z0-9_]*)\s*\?\?\s*(-?\d+(?:\.\d+)?)", re.I)
 _GUARD_RE = re.compile(r"\bv(?:ariable)?\.([a-z_][a-z0-9_]*)\s*\?\?", re.I)
 
 
@@ -631,10 +731,24 @@ def _init_vars(objs):
             for v in o:
                 walk_g(v)
     walk_g(list(objs))
-    names = sorted(n for n in names if not n.startswith(_OURS) and n not in guarded)
+    defaults = {}
+    def walk_d(o):
+        if isinstance(o, str):
+            for n, val in _GUARD_DEFAULT_RE.findall(o):
+                defaults.setdefault(n.lower(), val)
+        elif isinstance(o, dict):
+            for v in o.values():
+                walk_d(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk_d(v)
+    walk_d(list(objs))
+    # Antes as protegidas por ?? ficavam sem init e erravam quando lidas em outro lugar
+    # (v.z_d, v.roaming_eyestyle no log do teste 02). Agora recebem o próprio padrão.
+    names = sorted(n for n in names if not n.startswith(_OURS))
     out, cur = [], ""
     for n in names:
-        piece = f"v.{n}=0;"
+        piece = f"v.{n}={defaults.get(n, '0') if n in guarded else '0'};"
         if len(cur) + len(piece) > 2000:
             out.append(cur)
             cur = ""
@@ -644,7 +758,41 @@ def _init_vars(objs):
     return out
 
 
+_ALWAYS_ON = re.compile(r"(?:pre_)?parallel\d+")
+_CONST_ASSIGN = re.compile(r"\s*v\.([a-z_][a-z0-9_]*)\s*=\s*([^;=]+);?\s*", re.I)
 _READS_STATE = re.compile(r"\b(?:q|query|ysm|ctrl|c|context)\.|\bv\.yq_|\bv\.yso|\bt\.|\breturn\b|\?", re.I)
+
+
+def _neutral_when(v, cond, ident):
+    """Cada componente vira `(cond)?ident:(valor)` (valor já igual ao neutro fica como está)."""
+    def comp(x):
+        if isinstance(x, (int, float)) and not isinstance(x, bool) and float(x) == ident:
+            return x
+        if isinstance(x, str) and (";" in x or "return" in x):
+            return x                # expressão complexa não cabe num ternário: fica como está
+        return f"({cond})?{ident}:({x})"
+    def vec(x):
+        if isinstance(x, list):
+            return [comp(c) for c in x]
+        if isinstance(x, dict):
+            return {k: vec(c) for k, c in x.items()} if "pre" in x or "post" in x else x
+        return comp(x)
+    if isinstance(v, dict):
+        out = {}
+        for t, kf in v.items():
+            if isinstance(kf, dict):
+                out[t] = {k: (vec(c) if k in ("pre", "post") else c) for k, c in kf.items()}
+            else:
+                out[t] = vec(kf)
+        dynamic = any(isinstance(c, str) for kf in out.values()
+                      for part in ([kf.get("pre"), kf.get("post")] if isinstance(kf, dict) else [kf])
+                      if isinstance(part, list) for c in part)
+        if dynamic:                 # Bedrock: catmullrom só com keyframes constantes
+            for kf in out.values():
+                if isinstance(kf, dict) and kf.get("lerp_mode") == "catmullrom":
+                    kf["lerp_mode"] = "linear"
+        return out
+    return vec(v)
 
 
 def _as_str(v):
@@ -701,8 +849,9 @@ def shim_script(n_configs):
     """pre_animation comum a todos os avatares: Entity Properties -> v.yq_*."""
     p = lambda n: f"q.property('yast:{n}')"
     lines = [
-        "v.yq_dt=math.clamp(q.delta_time,0.001,0.1);t.a=math.clamp(v.yq_dt*15,0,1);",
+        "v.yq_dt=math.clamp(q.delta_time,0.001,0.1);",
         f"v.yq_st={p('st')};v.yq_var={p('var')};v.yq_vx={p('vx')};v.yq_vy={p('vy')};v.yq_vz={p('vz')};",
+        "t.a=math.clamp(math.clamp(q.delta_time,0.001,0.1)*15,0,1);"
         f"v.yq_pitch=math.lerp(v.yq_pitch??{p('pitch')},{p('pitch')},t.a);"
         f"v.yq_hyaw=math.lerp(v.yq_hyaw??{p('hyaw')},{p('hyaw')},t.a);"
         f"v.yq_yaw_speed=math.lerp(v.yq_yaw_speed??0,{p('yspd')},t.a);",
@@ -722,8 +871,12 @@ def shim_script(n_configs):
         "v.yq_ground_since=t.g?(v.yq_ground_since??q.life_time):q.life_time;v.yq_ground_time=q.life_time-v.yq_ground_since;",
         f"v.yast_hide=q.distance_from_camera<{FP_HIDE_DISTANCE}||(math.mod(math.floor(v.yq_st/{HIDDEN_BIT}),2)>=1);",
     ]
-    if n_configs:
-        lines.append("".join(f"v.yast_cfg{i}={p(f'c{i}')};" for i in range(n_configs)))
+    # Config: só aplica quando a propriedade MUDA (e não é o "sem valor" CONFIG_UNSET).
+    # Assim o padrão do próprio modelo vale até o jogador mexer, e emotes que alternam a
+    # mesma variável (transformação) não são desfeitos a cada frame.
+    for i in range(n_configs):
+        lines.append(f"t.c={p(f'c{i}')};(t.c!=(v.yast_cfgp{i}??{CONFIG_UNSET}))?{{v.yast_cfgp{i}=t.c;"
+                     f"(t.c>{CONFIG_UNSET + 1})?{{v.yast_cfg{i}=t.c;}};}};")
     return lines
 
 

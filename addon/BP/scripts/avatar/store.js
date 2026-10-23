@@ -7,7 +7,7 @@
 //                          lembrado por modelo, então voltar a um avatar
 //                          restaura a cor e os ajustes que você deixou nele.
 // =====================================================================
-import { DP_AVATAR, DP_PREFS, CONFIG_SLOTS } from "../config.js";
+import { DP_AVATAR, DP_PREFS, CONFIG_SLOTS, CONFIG_UNSET } from "../config.js";
 import { getModel } from "./catalog.js";
 
 /** Id salvo, ou undefined se nenhum / modelo não existe neste pack. */
@@ -28,12 +28,18 @@ export function loadPrefs(player, model) {
     raw = {};
   }
   const v = Number.isInteger(raw.v) && raw.v >= 0 && raw.v < model.variants.length ? raw.v : model.defaultVariant;
-  const c = new Array(CONFIG_SLOTS).fill(0);
+  const c = new Array(CONFIG_SLOTS).fill(CONFIG_UNSET);
   for (const cfg of model.configs) {
-    const saved = Array.isArray(raw.c) ? Number(raw.c[cfg.slot]) : NaN;
-    c[cfg.slot] = Number.isFinite(saved) ? saved : cfg.kind === "range" ? cfg.default ?? 0 : 0;
+    const saved = Array.isArray(raw.c) ? raw.c[cfg.slot] : undefined;
+    if (typeof saved === "number" && Number.isFinite(saved)) c[cfg.slot] = saved;
   }
   return { v, c };
+}
+
+/** Valor que o jogador vê: o salvo ou, se nunca mexeu, o padrão do modelo. */
+export function configValue(prefs, cfg) {
+  const v = prefs.c[cfg.slot];
+  return v === undefined || v === CONFIG_UNSET ? cfg.default ?? 0 : v;
 }
 
 export function savePrefs(player, model, prefs) {

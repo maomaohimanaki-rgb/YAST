@@ -14,6 +14,9 @@ export const DP_PREFS = (id) => `yast:prefs:${id}`;    // JSON { v: variação, 
 export const DP_OWNER = "yast:owner";                  // player.id do dono
 
 export const CONFIG_SLOTS = 12;
+// Config que o jogador nunca mexeu: vai para a entidade como CONFIG_UNSET e o modelo usa o
+// próprio padrão (mesmo valor em tools/ysm2bedrock/convert.py).
+export const CONFIG_UNSET = -99999;
 export const RESPAWN_COOLDOWN_TICKS = 20;
 export const SWEEP_INTERVAL_TICKS = 100;
 
@@ -21,13 +24,26 @@ export const SWEEP_INTERVAL_TICKS = 100;
 // O avatar é posicionado pelo servidor, que já recebe a posição do player com atraso,
 // e o cliente ainda interpola a entidade: sem previsão ele fica ~1 passo atrás.
 export const PREDICTION = {
-  leadTicks: 2,         // quanto do futuro prever (ticks de 50 ms). Ajuste: /scriptevent yast:lead <0..6>
+  leadTicks: 3,         // quanto do futuro prever (ticks de 50 ms; 3 = 1 do servidor + ~2 da interpolação do cliente). Ajuste: /scriptevent yast:lead <0..6>
   smoothing: 0.6,       // 0..1: peso da velocidade nova no filtro (1 = sem filtro, mais tremido)
   maxOffset: 1.5,       // avanço máximo em blocos (evita "atravessar parede" ao parar de repente)
   snapDistance: 4,      // deslocamento maior que isso num tick = teleporte/portal: não prever
   maxYawLead: 35,       // graus máximos de avanço na rotação
 };
+// Como o avatar anda até a posição prevista.
+//  impulse : velocidade (o cliente interpola entre ticks -> sem "micro teleporte")
+//  teleport: teleporte a cada tick (sempre funciona, mas pula 20x por segundo)
+// Se o impulso não mover a entidade, a sessão cai sozinha para teleport.
+// Ajuste em jogo: /scriptevent yast:sync impulse   |   /scriptevent yast:sync teleport
+export const SYNC = { mode: "impulse", snapDistance: 2.0, stuckTicks: 10 };
+export const DP_SYNC = "yast:sync";
 export const DP_LEAD = "yast:lead";                    // DynamicProperty do mundo (ajuste ao vivo)
+
+// Sinal dos eixos da cabeça enviados ao avatar (ysm.head_pitch / ysm.head_yaw).
+// Teste 02: olhar para baixo levantava a cabeça e o cabelo apontava para o céu -> pitch -1.
+// Ajuste em jogo: /scriptevent yast:axis pitch -1   |   /scriptevent yast:axis yaw 1
+export const AXIS = { pitch: -1, yaw: 1 };
+export const DP_AXIS = "yast:axis";
 
 // Bits de yast:st — espelho de tools/ysm2bedrock/molang.py (STATE_BITS) + HIDDEN_BIT.
 export const ST = {
