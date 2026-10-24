@@ -4,17 +4,17 @@
     "animation.yast.player.hide": {
       "loop": true,
       "bones": {
-        "root": { "scale": 0 },
-        "waist": { "scale": 0 },
-        "body": { "scale": 0 },
-        "head": { "scale": 0 },
-        "rightArm": { "scale": 0 },
-        "leftArm": { "scale": 0 },
-        "rightLeg": { "scale": 0 },
-        "leftLeg": { "scale": 0 },
-        "rightItem": { "scale": 0 },
-        "leftItem": { "scale": 0 },
-        "cape": { "scale": 0 }
+        "root": { "scale": [0, 0, 0] },
+        "waist": { "scale": [0, 0, 0] },
+        "body": { "scale": [0, 0, 0] },
+        "head": { "scale": [0, 0, 0] },
+        "rightArm": { "scale": [0, 0, 0] },
+        "leftArm": { "scale": [0, 0, 0] },
+        "rightLeg": { "scale": [0, 0, 0] },
+        "leftLeg": { "scale": [0, 0, 0] },
+        "rightItem": { "scale": [0, 0, 0] },
+        "leftItem": { "scale": [0, 0, 0] },
+        "cape": { "scale": [0, 0, 0] }
       }
     }
   }

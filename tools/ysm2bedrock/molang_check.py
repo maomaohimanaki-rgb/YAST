@@ -178,8 +178,12 @@ def _schema_errors(a):
             errs.append("osso com nome vazio")
         for ch in ("rotation", "position", "scale"):
             v = chans.get(ch)
+            if v is None:
+                continue
             if not isinstance(v, dict):
-                if isinstance(v, list) and len(v) != 3:
+                if not isinstance(v, list):
+                    errs.append(f"{bone}.{ch}: valor solto (o Bedrock ignora; use [x,y,z])")
+                elif len(v) != 3:
                     errs.append(f"{bone}.{ch}: vetor com {len(v)} valores")
                 continue
             dynamic, cubic = False, False
@@ -194,6 +198,9 @@ def _schema_errors(a):
                         dynamic = True
                 if isinstance(kf, dict) and kf.get("lerp_mode") == "catmullrom":
                     cubic = True
+                if isinstance(kf, dict) and ("pre" not in kf or "post" not in kf):
+                    # teste 04: depois do último keyframe o Bedrock usa o "pre" ausente (0)
+                    errs.append(f"{bone}.{ch}@{t}: keyframe sem pre/post")
             if dynamic and cubic:
                 errs.append(f"{bone}.{ch}: catmullrom com keyframe não constante")
     return errs

@@ -159,7 +159,7 @@ class Converter:
             self.short["__head_look"] = _anim_short("yast_head_look", used)
             out[f"{self.prefix_anim}.{self.short['__head_look']}"] = {
                 "loop": True,
-                "bones": {self.head_bone: {"rotation": ["math.clamp(v.yq_pitch,-90,90)", "math.clamp(v.yq_hyaw,-85,85)", 0]}},
+                "bones": {self.head_bone: {"rotation": ["math.clamp(-v.yq_pitch,-90,90)", "math.clamp(v.yq_hyaw,-85,85)", 0]}},
             }
         return {"format_version": "1.8.0", "animations": out}
 
@@ -307,6 +307,9 @@ class Converter:
                     nk["lerp_mode"] = kf["lerp_mode"]
                 if "pre" not in nk and "post" not in nk:
                     continue
+                # keyframe só com um dos lados: explicita o outro (não depender do padrão do motor)
+                nk.setdefault("pre", nk.get("post"))
+                nk.setdefault("post", nk["pre"])
                 out[t] = nk
             else:
                 out[t] = self._vec3(kf)
@@ -333,9 +336,9 @@ class Converter:
         return [self.rw.expr(x) for x in v]
 
     def _vec(self, v):
-        if isinstance(v, (list, dict)):
-            return self._vec3(v)
-        return self.rw.expr(v)
+        """Canal sem keyframes. Número/expressão solta é uniforme no YSM (GeckoLib); no Bedrock
+        não vale (teste 04: `"scale": 0.0` não escondia a espada da Furina) -> sempre [x, x, x]."""
+        return self._vec3(v)
 
     # ------------------------------------------------------------------ controladores
     def controllers(self):
@@ -861,7 +864,7 @@ def shim_script(n_configs, defaults=()):
         "v.yq_dt=math.clamp(q.delta_time,0.001,0.1);",
         f"v.yq_st={p('st')};v.yq_var={p('var')};v.yq_vx={p('vx')};v.yq_vy={p('vy')};v.yq_vz={p('vz')};",
         "t.a=math.clamp(math.clamp(q.delta_time,0.001,0.1)*15,0,1);"
-        f"v.yq_pitch=math.lerp(v.yq_pitch??{p('pitch')},{p('pitch')},t.a);"
+        f"v.yq_pitch=math.lerp(v.yq_pitch??-{p('pitch')},-{p('pitch')},t.a);"
         f"v.yq_hyaw=math.lerp(v.yq_hyaw??{p('hyaw')},{p('hyaw')},t.a);"
         f"v.yq_yaw_speed=math.lerp(v.yq_yaw_speed??0,{p('yspd')},t.a);",
         "v.yq_ground_speed=math.sqrt(v.yq_vx*v.yq_vx+v.yq_vz*v.yq_vz);v.yq_vertical_speed=v.yq_vy;"

@@ -100,6 +100,9 @@ def _channel(ctx, v, t):
             a, b = val(k0, "post"), val(k1, "pre")
             f = (t - t0) / (t1 - t0) if t1 > t0 else 0
             return [x + (y - x) * f for x, y in zip(a, b)]
+    last = v[keys[-1][1]]
+    if isinstance(last, dict) and "pre" not in last:
+        return [0.0, 0.0, 0.0]      # Bedrock: depois do último keyframe vale o "pre" (ausente = 0)
     return val(keys[-1][1], "post")
 
 

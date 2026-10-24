@@ -40,7 +40,7 @@ e o mesmo *shim* no `pre_animation`, que converte propriedade → variável:
 |---|---|---|
 | `yast:st` (bits) | `q.is_sneaking`, `q.is_on_ground`, ... | `player.isSneaking` etc. |
 | `yast:vx/vy/vz` | `v.yq_ground_speed`, `v.yq_vertical_speed`, `q.position_delta` | `getVelocity()` × 20 |
-| `yast:pitch`, `yast:hyaw` | `ysm.head_pitch`, `ysm.head_yaw` (suavizados) | `getRotation()` − yaw do corpo |
+| `yast:pitch`, `yast:hyaw` | `ysm.head_pitch` = −pitch (YSM: positivo = cima), `ysm.head_yaw` (suavizados) | `getRotation()` (pitch positivo = baixo, como o Bedrock) − yaw do corpo |
 | `yast:yspd` | `q.yaw_speed` | variação do yaw do corpo |
 | `yast:hp/mhp/food` | `q.health`, `q.max_health`, `ysm.food_level` | componentes health/hunger |
 | `yast:main/off` | `ctrl.hold(...)`, `ysm.has_mainhand` | categoria do item (espada, arco...) |
@@ -99,6 +99,16 @@ animações somam, então emote e idle ao mesmo tempo dariam pose dobrada.
   padrão (`v.x ?? N`). A propriedade só é aplicada quando muda, para não desfazer variáveis que
   o próprio modelo altera (transformação).
 * **Física de busto padrão** para modelos que têm o osso e não o animam.
+
+## Regras do Bedrock descobertas no jogo (teste 04)
+
+* **Keyframe objeto precisa de `pre` e `post`.** O YSM grava muitos keyframes só com `post`.
+  Entre keyframes funciona, mas depois do último o Bedrock usa o `pre` ausente (0): uma escala
+  vira 0. O piscar da Mini (0–0,29 s de 4 s) e da Furina (0–0,5 s de 7 s) deixava o olho com
+  escala 0 o resto do tempo — ele só aparecia durante o piscar. O conversor sempre grava os dois.
+* **Canal com valor solto** (`"scale": 0`, `"scale": "expr"`) vira `[x, x, x]` (uniforme, como no YSM).
+* **Sinal do olhar:** `ysm.head_pitch` é positivo olhando para **cima** (o olho da Furina/Hanfu sobe
+  com ele); a rotação X do Bedrock é positiva para **baixo**. A animação do olhar usa `-v.yq_pitch`.
 
 ## Ajustes em jogo (sem rebuild)
 

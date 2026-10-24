@@ -137,7 +137,7 @@ steve.location = { x: 5, y: 64, z: 5 };
 system._advance(8);
 assert.equal(av.props["yast:st"] & 1, 1, "bit agachado");
 assert.equal(av.props["yast:st"] & 16, 16, "bit no chão");
-assert.equal(av.props["yast:pitch"], -40, "pitch invertido (AXIS.pitch = -1, teste 02)");
+assert.equal(av.props["yast:pitch"], 40, "pitch no padrão do Bedrock (positivo = olhando para baixo); o RP inverte para ysm.head_pitch");
 assert.equal(av.props["yast:main"], 1, "categoria espada");
 assert.ok(Math.abs(av.props["yast:vz"] - 1.2) < 0.06, "velocidade em m/s");
 assert.ok(av.commands.some((c) => c.includes("slot.weapon.mainhand 0 minecraft:diamond_sword")), "item espelhado");

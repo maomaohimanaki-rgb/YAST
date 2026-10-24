@@ -39,11 +39,11 @@ export const SYNC = { mode: "impulse", snapDistance: 2.0, stuckTicks: 10 };
 export const DP_SYNC = "yast:sync";
 export const DP_LEAD = "yast:lead";                    // DynamicProperty do mundo (ajuste ao vivo)
 
-// Sinal dos eixos da cabeça enviados ao avatar (ysm.head_pitch / ysm.head_yaw).
-// Teste 02: olhar para baixo levantava a cabeça e o cabelo apontava para o céu -> pitch -1.
+// Sinal dos eixos da cabeça enviados ao avatar. yast:pitch segue o Bedrock (positivo = olhando
+// para baixo, igual a getRotation().x); o shim do RP converte para ysm.head_pitch (positivo = cima).
 // Ajuste em jogo: /scriptevent yast:axis pitch -1   |   /scriptevent yast:axis yaw 1
-export const AXIS = { pitch: -1, yaw: 1 };
-export const DP_AXIS = "yast:axis";
+export const AXIS = { pitch: 1, yaw: 1 };
+export const DP_AXIS = "yast:axis2";                   // chave nova: descarta o -1 salvo no teste 02
 
 // Bits de yast:st — espelho de tools/ysm2bedrock/molang.py (STATE_BITS) + HIDDEN_BIT.
 export const ST = {

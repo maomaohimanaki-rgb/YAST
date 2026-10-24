@@ -65,8 +65,9 @@ SIMPLE = {
     # cabeça
     "ysm.head_pitch": "v.yq_pitch", "ysm.headpitch": "v.yq_pitch",
     "ysm.head_yaw": "v.yq_hyaw", "ysm.head_y_rotation": "v.yq_hyaw",
-    "q.target_x_rotation": "v.yq_pitch", "q.head_x_rotation": "v.yq_pitch",
-    "q.eye_target_x_rotation": "v.yq_pitch",
+    # v.yq_pitch segue o YSM (positivo = olhando para cima); as queries do Bedrock são o contrário
+    "q.target_x_rotation": "(-v.yq_pitch)", "q.head_x_rotation": "(-v.yq_pitch)",
+    "q.eye_target_x_rotation": "(-v.yq_pitch)",
     "q.target_y_rotation": "v.yq_hyaw", "q.head_y_rotation": "v.yq_hyaw",
     "q.eye_target_y_rotation": "v.yq_hyaw",
     "q.body_x_rotation": "0",
