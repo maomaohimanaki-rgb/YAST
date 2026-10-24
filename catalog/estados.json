@@ -1,0 +1,6 @@
+{
+  "_comentario": "Extras do YSM que são ESTADOS (ligar/desligar na roda principal, não cancelam ao andar). Chave = nome da animação no modelo.",
+  "animacoes": {
+    "找不到狐找不到狐": "Esconder"
+  }
+}

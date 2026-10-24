@@ -54,8 +54,16 @@ for _i in range(CONFIG_SLOTS):
     PROPERTIES[f"yast:c{_i}"] = {"type": "float", "range": [-100000.0, 100000.0], "default": -99999.0, "client_sync": True}
 assert len(PROPERTIES) <= 32, "Bedrock aceita no máximo 32 propriedades por entidade"
 
-HIDDEN_BIT = 32768
-CONFIG_UNSET = -99999  # yast:cN com esse valor = "use o padrão do modelo"  # bit extra de yast:st: player invisível (poção) -> avatar some
+HIDDEN_BIT = 32768     # bit extra de yast:st: player invisível (poção) -> avatar some
+CONFIG_UNSET = -99999  # yast:cN com esse valor = "use o padrão do modelo"
+
+# Extras que são estados (liga/desliga na roda principal), por nome de animação
+_STATES_FILE = os.path.join(os.path.dirname(__file__), "..", "..", "catalog", "estados.json")
+try:
+    with open(_STATES_FILE, encoding="utf-8") as _f:
+        STATE_EXTRAS = json.load(_f).get("animacoes", {})
+except OSError:
+    STATE_EXTRAS = {}
 
 
 def slug(text, maxlen=40):
@@ -426,11 +434,13 @@ class Converter:
         for i, (an, _label) in enumerate(extras):
             sn = f"extra_{i}"
             loops = self.m.animations[an].get("loop") in (True, "true", "hold_on_last_frame")
-            # Como no YSM: emote só termina por "Parar emote", outro emote, morte ou — se não
-            # tiver loop — fim da animação. Andar NÃO cancela (teste 03: o "Hide" da Momo
-            # fica escondida na terra mesmo andando, até cancelar).
+            # Emote: termina com Parar, outro emote, morte, fim (sem loop) ou ao se mexer
+            # (andar, pular, agachar...). Estado (catalog/estados.json, ex.: "Hide" da Momo):
+            # liga/desliga na roda principal e não cancela ao andar.
             end = "v.yq_act!={i}||v.yq_aseq!=v.yast_seen||v.yq_want=={dead}".format(
                 i=i, dead=MAIN_STATE_CODE["death"])
+            if an not in STATE_EXTRAS:
+                end += "||v.yq_ground_speed>0.3||v.yq_want!={idle}".format(idle=MAIN_STATE_CODE["idle"])
             if not loops:
                 end += "||q.all_animations_finished"
             main["states"][sn] = {
@@ -692,6 +702,7 @@ class Converter:
             "format": self.m.fmt, "license": self.m.license, "authors": self.m.authors[:6],
             "variants": [t.name for t in texs], "defaultVariant": default,
             "extras": [label for _a, label in self.extras],
+            "states": [{"index": i, "label": STATE_EXTRAS[a]} for i, (a, _l) in enumerate(self.extras) if a in STATE_EXTRAS],
             "configs": [dict(_config_entry(i, c), default=self.config_defaults[i]) for i, c in enumerate(self.configs)],
             "report": {"unsupported": dict(self.rw.report.most_common()), "notes": self.notes,
                        "animations": len(self.short), "dynamics": len(self.rw.dynamics),

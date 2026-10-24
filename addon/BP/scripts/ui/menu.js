@@ -17,6 +17,7 @@ import { C, pickWheel, pickWheelAt } from "./wheel.js";
 import { allModels, collections } from "../avatar/catalog.js";
 import { configValue } from "../avatar/store.js";
 import { CONFIG_UNSET } from "../config.js";
+import { PACK_VERSION } from "../generated/catalog.js";
 import { sessions, activate, reset, setVariant, setConfig, playEmote, stopEmote } from "../avatar/manager.js";
 
 const FLAT_LIST_LIMIT = 40;      // até isso, pula o nível "coleções"
@@ -35,17 +36,27 @@ export async function openMenu(player) {
     const items = [{ label: `${C.cat}Avatares${s ? `\n${ON}${short(s.model.name)}` : ""}`, value: "browse" }];
     if (s) {
       if (s.model.variants.length > 1) items.push({ label: `${C.cat}Cor\n${ON}${short(s.model.variants[s.prefs.v])}`, value: "variant" });
-      if (s.model.extras.length) {
+      // Estados (ex.: "Esconder" da Momo): liga/desliga aqui, não cancelam ao andar
+      for (const st of s.model.states ?? []) {
+        const on = s.counters.act === st.index;
+        items.push({ label: `${C.cat}${short(st.label)}\n${on ? `${ON}ligado` : `${OFF}desligado`}`, value: { state: st.index } });
+      }
+      if (s.model.extras.length > (s.model.states?.length ?? 0)) {
         items.push({ label: `${C.cat}Emotes`, value: "emotes" });
         items.push({ label: `${C.off}Parar emote`, value: "stop" });
       }
       if (s.model.configs.length) items.push({ label: `${C.cat}Ajustes`, value: "configs" });
       items.push({ label: `${C.off}Resetar\n${OFF}player normal`, value: "reset" });
     }
-    const r = await pickWheelAt(player, "YAST", items, "Fechar", page);
+    const r = await pickWheelAt(player, `YAST ${PACK_VERSION}`, items, "Fechar", page);
     page = r.page;
     const pick = r.value;
     if (pick === undefined || pick === "center") return;
+    if (typeof pick === "object" && "state" in pick) {
+      if (s.counters.act === pick.state) stopEmote(player);
+      else playEmote(player, pick.state);
+      return;
+    }
     if (pick === "browse") {
       if (await browse(player)) return;
     } else if (pick === "variant") await variantWheel(player);
@@ -114,7 +125,10 @@ async function variantWheel(player) {
 async function emoteWheel(player) {
   const s = sessions.get(player.id);
   if (!s) return false;
-  const items = s.model.extras.map((name, i) => ({ label: `${C.cat}${short(name, 16)}`, value: i }));
+  const states = new Set((s.model.states ?? []).map((st) => st.index));
+  const items = s.model.extras
+    .map((name, i) => ({ label: `${C.cat}${short(name, 16)}`, value: i }))
+    .filter((it) => !states.has(it.value));
   const v = await pickWheel(player, `${short(s.model.name, 22)} - Emotes`, items);
   if (typeof v !== "number") return false;
   playEmote(player, v);

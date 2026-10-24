@@ -163,6 +163,14 @@ world._fire("itemUse", { itemStack: { typeId: "yast:menu_key" }, source: steve }
 for (let i = 0; i < 10; i++) await flush();
 assert.equal(av.props["yast:act"], 0);
 assert.equal(av.props["yast:aseq"], 1);
+// emote (não estado) acaba ao se mexer
+const sneak0 = steve.isSneaking;
+steve.isSneaking = false;
+steve.isOnGround = false;
+system._advance(1);
+assert.equal(av.props["yast:act"], -1, "pular cancela o emote");
+steve.isOnGround = true;
+steve.isSneaking = sneak0;
 
 // Ajustes na roda: checkbox alterna com um toque e a fatia mostra o estado por extenso
 const cfg0 = target.configs[0];

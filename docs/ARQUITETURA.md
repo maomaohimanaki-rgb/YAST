@@ -99,6 +99,9 @@ animações somam, então emote e idle ao mesmo tempo dariam pose dobrada.
   padrão (`v.x ?? N`). A propriedade só é aplicada quando muda, para não desfazer variáveis que
   o próprio modelo altera (transformação).
 * **Física de busto padrão** para modelos que têm o osso e não o animam.
+* **Emotes** acabam com Parar, outro emote, morte, fim (sem loop) ou ao se mexer. Extras listados em
+  `catalog/estados.json` (ex.: "Hide" da Momo) são **estados**: liga/desliga na roda principal, não cancelam ao andar.
+* **Versão**: `0.5.<build>` (`catalog/build.json`), visível no título da roda.
 
 ## Regras do Bedrock descobertas no jogo (teste 04)
 

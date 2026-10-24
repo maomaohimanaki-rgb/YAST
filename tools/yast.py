@@ -20,7 +20,7 @@ from collections import Counter
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "tools"))
 
-from ysm2bedrock import loader, registry  # noqa: E402
+from ysm2bedrock import diag, loader, registry  # noqa: E402
 from ysm2bedrock.convert import Converter  # noqa: E402
 from ysm2bedrock.molang_check import validate_dir, validate_structure  # noqa: E402
 
@@ -106,11 +106,30 @@ def _uuid(seed):
     return str(uuid.uuid5(uuid.NAMESPACE_URL, f"yast/{seed}"))
 
 
+BUILD_FILE = os.path.join(ROOT, "catalog", "build.json")
+
+
+def _next_build():
+    try:
+        with open(BUILD_FILE, encoding="utf-8") as f:
+            n = int(json.load(f)["build"]) + 1
+    except (OSError, ValueError, KeyError):
+        n = 1
+    with open(BUILD_FILE, "w", encoding="utf-8") as f:
+        json.dump({"build": n}, f)
+        f.write("\n")
+    return n
+
+
 def cmd_build(args):
     with open(args.pack, encoding="utf-8") as f:
         pack = json.load(f)
     name = pack["name"]
-    version = pack.get("version", [0, 5, 0])
+    # Número de build: sobe a cada build e vira o 3º número da versão (0.5.N). Com versão
+    # repetida o Minecraft pode manter o pacote antigo em cache e o teste não vale nada.
+    build_n = _next_build()
+    version = list(pack.get("version", [0, 5, 0]))[:2] + [build_n]
+    vstr = ".".join(map(str, version))
     ids = registry.load_ids(IDS)
     models = dict(registry.find_models(MODELS))
     sel = _match(pack, list(models))
@@ -156,10 +175,14 @@ def cmd_build(args):
                 if k in c:
                     c[k] = [t(v) for v in c[k]]
 
+    if pack.get("diagnostics"):
+        diag.apply(pack["diagnostics"], bp, rp, catalog)
+
     # catálogo para o script (sem o relatório, que só serve para depuração)
     slim = [{k: v for k, v in e.items() if k not in ("report",)} for e in catalog]
     js = ("// GERADO por tools/yast.py build — não edite à mão.\n"
           f"export const PACK_NAME = {json.dumps(name)};\n"
+          f"export const PACK_VERSION = {json.dumps(vstr)};\n"
           f"export const CATALOG = {json.dumps(slim, ensure_ascii=False, indent=1)};\n")
     with open(os.path.join(bp, "scripts", "generated", "catalog.js"), "w", encoding="utf-8") as f:
         f.write(js)
@@ -178,11 +201,13 @@ def cmd_build(args):
 
     # manifests: UUIDs determinísticos por pack (cada pack é um add-on separado; não misture dois)
     seed = pack.get("uuid_seed", name)
+    if pack.get("new_uuid_each_build"):
+        seed = f"{seed}/b{build_n}"   # pacote de teste: ID novo a cada build (nunca colide com o anterior)
     for path, kind in ((bp, "BP"), (rp, "RP")):
         mpath = os.path.join(path, "manifest.json")
         with open(mpath, encoding="utf-8") as f:
             man = json.load(f)
-        man["header"]["name"] = man["header"]["name"].replace("{PACK}", name)
+        man["header"]["name"] = man["header"]["name"].replace("{PACK}", f"{name} {vstr}")
         man["header"]["description"] = man["header"]["description"].replace("{PACK}", name).replace("{N}", str(len(catalog)))
         man["header"]["uuid"] = _uuid(f"{seed}/{kind}/header")
         man["header"]["version"] = version
@@ -196,7 +221,7 @@ def cmd_build(args):
         with open(mpath, "w", encoding="utf-8") as f:
             json.dump(man, f, ensure_ascii=False, indent=2)
 
-    zpath = os.path.join(DIST, f"YAST_{name}_v{'.'.join(map(str, version))}.mcaddon")
+    zpath = os.path.join(DIST, f"YAST_{name}_v{vstr}.mcaddon")
     with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as z:
         for base in (bp, rp):
             for dp, _dn, fn in os.walk(base):

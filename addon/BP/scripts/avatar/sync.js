@@ -277,6 +277,15 @@ export function syncSession(s) {
 
   if (!moveAvatar(s, e, pred.loc, body)) return;
 
+  // Emote (não estado) acaba ao se mexer — o RP também encerra; aqui o servidor esquece
+  // para não repetir o emote quando a entidade renascer.
+  const act = s.counters.act;
+  if (act >= 0 && !(s.model.states ?? []).some((st) => st.index === act)
+      && (Math.hypot(vel.x, vel.z) * 20 > 0.3 || !p.isOnGround || p.isSneaking)) {
+    s.counters.act = -1;
+    setProp(s, "yast:act", -1);
+  }
+
   s.sync.vehicle = vehicleKind(p);
   setProp(s, "yast:st", stateBits(p, s));
   setProp(s, "yast:veh", s.sync.vehicle);
