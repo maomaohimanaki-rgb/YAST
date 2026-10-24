@@ -224,7 +224,10 @@ class Converter:
         loop = a.get("loop", False)
         if isinstance(loop, str) and loop not in ("hold_on_last_frame",):
             loop = loop.lower() == "true"
-        o["loop"] = loop
+        # YSM segura o último quadro de animação sem loop; no Bedrock ela simplesmente para
+        # de valer. Ex.: pre_parallel0 da Furina (4,1 s) esconde os rostos alternativos —
+        # quando parava, 'blockface'/'Oface' cobriam os olhos (teste 03).
+        o["loop"] = loop if loop else "hold_on_last_frame"
         for k in ("animation_length", "override_previous_animation"):
             if k in a:
                 o[k] = a[k]
@@ -420,9 +423,11 @@ class Converter:
         for i, (an, _label) in enumerate(extras):
             sn = f"extra_{i}"
             loops = self.m.animations[an].get("loop") in (True, "true", "hold_on_last_frame")
-            # sai do emote ao parar (act=-1), trocar de emote, andar rápido ou mudar de pose (pular, agachar...)
-            end = "v.yq_act!={i}||v.yq_aseq!=v.yast_seen||v.yq_ground_speed>1.2||(v.yq_want!={idle}&&v.yq_want!={walk})".format(
-                i=i, idle=MAIN_STATE_CODE["idle"], walk=MAIN_STATE_CODE["walk"])
+            # Como no YSM: emote só termina por "Parar emote", outro emote, morte ou — se não
+            # tiver loop — fim da animação. Andar NÃO cancela (teste 03: o "Hide" da Momo
+            # fica escondida na terra mesmo andando, até cancelar).
+            end = "v.yq_act!={i}||v.yq_aseq!=v.yast_seen||v.yq_want=={dead}".format(
+                i=i, dead=MAIN_STATE_CODE["death"])
             if not loops:
                 end += "||q.all_animations_finished"
             main["states"][sn] = {
@@ -582,6 +587,8 @@ class Converter:
                + self.rw.dynamics_scripts() + self._radio_scripts())
         init = ["v.yast_seen=0;v.yast_swing_seen=0;v.yast_hurt_seen=0;v.yq_mst=0;v.yq_want=0;"]
         init += _init_vars([pre, *generated])
+        if self.rw.dynamics:
+            init.append(self.rw.dynamics_init())
         if self.config_defaults:
             init.append("".join(f"v.yast_cfg{i}={_fmt_num(d)};" for i, d in enumerate(self.config_defaults)))
         init += _chunk(self.const_init)

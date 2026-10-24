@@ -48,6 +48,7 @@ class _Anim:
         self.time = 0.0
         self.len = _length(a)
         self.loop = a.get("loop") is True
+        self.hold = a.get("loop") == "hold_on_last_frame"
 
     def step(self, ctx, dt):
         prev = self.time
@@ -67,6 +68,11 @@ class _Anim:
     @property
     def finished(self):
         return not self.loop and self.len > 0 and self.time >= self.len
+
+    @property
+    def applies(self):
+        """Bedrock: animação sem loop que terminou deixa de ser aplicada (a não ser hold)."""
+        return not self.finished or self.hold
 
 
 def _eval_vec(ctx, v):
@@ -111,6 +117,7 @@ def simulate(rp, mid, frames=45, props=None, state=16):
     playing = {}
     dt = 1 / 60
     bones = {}
+    rots, poss = {}, {}
     for f in range(frames):
         ctx.q["life_time"] += dt
         for s in sc.get("pre_animation", []):
@@ -154,11 +161,14 @@ def simulate(rp, mid, frames=45, props=None, state=16):
             elif full in anims:
                 active.append(((None, None, name), anims[full]))
         bones = {}
+        rots, poss = {}, {}
         live = set()
         for key, a in active:
             live.add(key)
             inst = playing.setdefault(key, _Anim(a))
             inst.step(ctx, dt)
+            if not inst.applies:
+                continue
             ctx.q["anim_time"] = inst.time
             for b, chans in (a.get("bones") or {}).items():
                 if "scale" in chans:
@@ -166,6 +176,12 @@ def simulate(rp, mid, frames=45, props=None, state=16):
                     if s:
                         cur = bones.setdefault(b.lower(), [1.0, 1.0, 1.0])
                         bones[b.lower()] = [c * x for c, x in zip(cur, s)]
+                for ch, store in (("rotation", rots), ("position", poss)):
+                    if ch in chans:
+                        v = _channel(ctx, chans[ch], inst.time)
+                        if v:
+                            cur = store.setdefault(b.lower(), [0.0, 0.0, 0.0])
+                            store[b.lower()] = [c + x for c, x in zip(cur, v)]
         for k in [k for k in playing if k not in live]:
             del playing[k]
 
@@ -200,4 +216,6 @@ def simulate(rp, mid, frames=45, props=None, state=16):
         "unknown_vars": dict(sorted(ctx.unknown.items(), key=lambda kv: -kv[1])[:15]),
         "main_state": next((v for k, v in ctl_state.items() if k.endswith(".main")), None),
         "vars": ctx.v,
+        "pose": {"scale": bones, "rotation": rots, "position": poss},
+        "geo": geo,
     }

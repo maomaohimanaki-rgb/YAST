@@ -464,16 +464,21 @@ class Rewriter:
 
     # -- pre_animation gerado ------------------------------------------------
     def dynamics_scripts(self):
-        """Integra os sistemas de 1ª/2ª ordem (Second Order Dynamics, t3ssel8r)."""
+        """Integra os sistemas de 1ª/2ª ordem (Second Order Dynamics, t3ssel8r).
+
+        Duas linhas por mola: a entrada vai sozinha para v.ysoN_in (se ela falhar, a mola
+        continua com a entrada anterior em vez de abortar), depois a integração.
+        """
         out = []
         for d in self.dynamics.values():
             x, var, p = d["input"], d["var"], d["params"]
+            out.append(f"{var}_in=({x});")
             if d["kind"] == "second_order":
                 f, z, r = (p + ["1", "0.5", "0"])[:3]
                 k = _consts(f, z, r)
                 out.append(
-                    f"t.x=({x});t.dt=v.yq_dt;"
-                    f"{var}_xp={var}_xp??t.x;{var}={var}??t.x;{var}_d={var}_d??0;"
+                    f"t.x={var}_in;t.dt=v.yq_dt;"
+                    f"{var}_xp={var}_xp??t.x;{var}_d={var}_d??0;"
                     f"t.xd=(t.x-{var}_xp)/t.dt;{var}_xp=t.x;"
                     f"t.k1={k[0]};t.k2=math.max({k[1]},math.max(t.dt*t.dt/2+t.dt*t.k1/2,t.dt*t.k1));t.k3={k[2]};"
                     f"{var}={var}+t.dt*{var}_d;"
@@ -481,8 +486,12 @@ class Rewriter:
                 )
             else:
                 tau = (p + ["0.2"])[0]
-                out.append(f"t.x=({x});{var}={var}??t.x;{var}={var}+(t.x-{var})*math.clamp(v.yq_dt/math.max({tau},0.001),0,1);")
+                out.append(f"t.x={var}_in;{var}={var}+(t.x-{var})*math.clamp(v.yq_dt/math.max({tau},0.001),0,1);")
         return out
+
+    def dynamics_init(self):
+        """Toda mola existe desde o spawn: uma pode ler a outra antes de ela rodar no frame."""
+        return "".join(f"{d['var']}=0;{d['var']}_in=0;" for d in self.dynamics.values())
 
 
 def _consts(f, z, r):
