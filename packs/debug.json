@@ -27,77 +27,11 @@
       ]
     },
     {
-      "base": "winefox_17_mini",
-      "suffix": "d2",
-      "label": "olho sem config",
-      "ops": [
-        "drop_scale:Eyelid",
-        "drop_scale:Eyelid4",
-        "drop_scale:Eyelid5"
-      ]
-    },
-    {
-      "base": "winefox_17_mini",
-      "suffix": "d3",
-      "label": "textura 128",
-      "ops": [
-        "texture_res"
-      ]
-    },
-    {
-      "base": "winefox_17_mini",
-      "suffix": "d4",
-      "label": "sem paralelas",
-      "ops": [
-        "drop_parallels"
-      ]
-    },
-    {
-      "base": "winefox_17_mini",
-      "suffix": "d5",
-      "label": "so pose",
-      "ops": [
-        "only_pose"
-      ]
-    },
-    {
-      "base": "winefox_17_mini",
-      "suffix": "d6",
-      "label": "sem guardas",
-      "ops": [
-        "drop_guards"
-      ]
-    },
-    {
       "base": "gi_furina",
       "suffix": "d1",
       "label": "sem piscar",
       "ops": [
         "drop_anim:pre_parallel6"
-      ]
-    },
-    {
-      "base": "gi_furina",
-      "suffix": "d3",
-      "label": "textura 512",
-      "ops": [
-        "texture_res"
-      ]
-    },
-    {
-      "base": "gi_furina",
-      "suffix": "d4",
-      "label": "sem paralelas",
-      "ops": [
-        "drop_parallels"
-      ]
-    },
-    {
-      "base": "gi_furina",
-      "suffix": "d5",
-      "label": "so pose",
-      "ops": [
-        "only_pose"
       ]
     }
   ]

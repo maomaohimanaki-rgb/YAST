@@ -170,9 +170,21 @@ def check(expr):
         raise MolangError(f"sobrou {p.peek()[1]!r}")
 
 
+def _is_num(x):
+    try:
+        float(x)
+        return True
+    except (TypeError, ValueError):
+        return False
+
+
 def _schema_errors(a):
     """Regras de schema que o Bedrock aplica (vistas no Content Log do 1.26.52)."""
     errs = []
+    try:
+        length = float(a.get("animation_length", 0) or 0)
+    except (TypeError, ValueError):
+        length = 0.0
     for bone, chans in (a.get("bones") or {}).items():
         if not bone.strip():
             errs.append("osso com nome vazio")
@@ -187,6 +199,10 @@ def _schema_errors(a):
                     errs.append(f"{bone}.{ch}: vetor com {len(v)} valores")
                 continue
             dynamic, cubic = False, False
+            times = [float(t) for t in v if _is_num(t)]
+            if times and length > max(times) + 1e-4:
+                # teste 05: depois do último keyframe o Bedrock não segura o valor
+                errs.append(f"{bone}.{ch}: keyframes terminam em {max(times)} s, animação tem {length} s")
             for t, kf in v.items():
                 parts = [kf.get("pre"), kf.get("post")] if isinstance(kf, dict) else [kf]
                 for p in parts:

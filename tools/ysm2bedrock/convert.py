@@ -258,6 +258,7 @@ class Converter:
                 nb["relative_to"] = chans["relative_to"]
             if nb:
                 bones[bname] = nb
+        _pad_keyframes(bones, _num(a.get("animation_length", 0)))
         if bones:
             o["bones"] = bones
         tl = a.get("timeline")
@@ -828,6 +829,30 @@ def _as_str(v):
     if isinstance(v, bool):
         return "1" if v else "0"
     return v if isinstance(v, str) else _fmt_num(float(v))
+
+
+def _pad_keyframes(bones, length):
+    """Todo canal com keyframes vai de 0 até animation_length.
+
+    Teste 05 (cópias de diagnóstico): o piscar da Mini (keyframes 0–0,29 s de 4 s) e da Furina
+    (0–0,5 s de 7 s) deixava o olho com escala 0 fora do piscar; sem a animação do piscar o olho
+    aparecia. O do Momo, com keyframe até o fim, funcionava. No Bedrock o último valor NÃO fica
+    valendo até o fim da animação, então repetimos o último keyframe em animation_length (e o
+    primeiro em 0)."""
+    for chans in bones.values():
+        for ch, v in chans.items():
+            if not isinstance(v, dict) or not v:
+                continue
+            keys = sorted(v, key=_num)
+            first, last = v[keys[0]], v[keys[-1]]
+            side = lambda kf, k: (kf.get(k, kf.get("post", kf.get("pre"))) if isinstance(kf, dict) else kf)
+            if length > _num(keys[-1]) + 1e-4:
+                val = side(last, "post")
+                v[_fmt_num(length)] = {"pre": val, "post": val, "lerp_mode": "linear"}
+            if _num(keys[0]) > 1e-4:
+                val = side(first, "pre")
+                v["0.0"] = {"pre": val, "post": val, "lerp_mode": "linear"}
+            chans[ch] = {k: v[k] for k in sorted(v, key=_num)}
 
 
 def _fmt_num(x):

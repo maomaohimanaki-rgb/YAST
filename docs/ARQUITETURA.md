@@ -105,6 +105,8 @@ animações somam, então emote e idle ao mesmo tempo dariam pose dobrada.
 
 ## Regras do Bedrock descobertas no jogo (teste 04)
 
+* **Keyframes até o fim da animação** (teste 05, confirmado com cópias de diagnóstico): depois do último
+  keyframe o Bedrock não segura o valor. O conversor repete o último keyframe em `animation_length`.
 * **Keyframe objeto precisa de `pre` e `post`.** O YSM grava muitos keyframes só com `post`.
   Entre keyframes funciona, mas depois do último o Bedrock usa o `pre` ausente (0): uma escala
   vira 0. O piscar da Mini (0–0,29 s de 4 s) e da Furina (0–0,5 s de 7 s) deixava o olho com

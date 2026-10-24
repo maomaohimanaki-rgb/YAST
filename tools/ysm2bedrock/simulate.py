@@ -82,7 +82,7 @@ def _eval_vec(ctx, v):
     return [x, x, x]
 
 
-def _channel(ctx, v, t):
+def _channel(ctx, v, t, length=0.0):
     if not isinstance(v, dict):
         return _eval_vec(ctx, v)
     keys = sorted((float(k), k) for k in v)
@@ -100,9 +100,11 @@ def _channel(ctx, v, t):
             a, b = val(k0, "post"), val(k1, "pre")
             f = (t - t0) / (t1 - t0) if t1 > t0 else 0
             return [x + (y - x) * f for x, y in zip(a, b)]
-    last = v[keys[-1][1]]
-    if isinstance(last, dict) and "pre" not in last:
-        return [0.0, 0.0, 0.0]      # Bedrock: depois do último keyframe vale o "pre" (ausente = 0)
+    # Bedrock (confirmado no teste 05): depois do último keyframe o valor não fica valendo —
+    # o piscar da Mini/Furina zerava a escala do olho. O conversor completa os keyframes até o
+    # fim da animação; aqui imitamos o motor para pegar quem escapar.
+    if length > keys[-1][0] + 1e-4:
+        return [0.0, 0.0, 0.0]
     return val(keys[-1][1], "post")
 
 
@@ -175,13 +177,13 @@ def simulate(rp, mid, frames=45, props=None, state=16):
             ctx.q["anim_time"] = inst.time
             for b, chans in (a.get("bones") or {}).items():
                 if "scale" in chans:
-                    s = _channel(ctx, chans["scale"], inst.time)
+                    s = _channel(ctx, chans["scale"], inst.time, inst.len)
                     if s:
                         cur = bones.setdefault(b.lower(), [1.0, 1.0, 1.0])
                         bones[b.lower()] = [c * x for c, x in zip(cur, s)]
                 for ch, store in (("rotation", rots), ("position", poss)):
                     if ch in chans:
-                        v = _channel(ctx, chans[ch], inst.time)
+                        v = _channel(ctx, chans[ch], inst.time, inst.len)
                         if v:
                             cur = store.setdefault(b.lower(), [0.0, 0.0, 0.0])
                             store[b.lower()] = [c + x for c, x in zip(cur, v)]
