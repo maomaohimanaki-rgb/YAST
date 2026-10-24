@@ -595,6 +595,11 @@ class Converter:
         if self.config_defaults:
             init.append("".join(f"v.yast_cfg{i}={_fmt_num(d)};" for i, d in enumerate(self.config_defaults)))
         init += _chunk(self.const_init)
+        # Mesmo valor inicial também no pre_animation, com "??" (só vale se a variável ainda não
+        # existe): o modelo não depende do initialize (teste 04: molas e config padrão da Mini).
+        guards = [f"{m.group(1)}={m.group(1)}??{m.group(2)};"
+                  for m in re.finditer(r"(v\.[A-Za-z_][\w.]*)=(-?[\d.]+);", "".join(init))]
+        pre = _chunk(list(dict.fromkeys(guards))) + pre
         return {
             "format_version": "1.10.0",
             "minecraft:client_entity": {"description": {
@@ -887,9 +892,12 @@ def shim_script(n_configs, defaults=()):
     # Assim o padrão do próprio modelo vale até o jogador mexer, e emotes que alternam a
     # mesma variável (transformação) não são desfeitos a cada frame.
     # Voltar para CONFIG_UNSET ("Restaurar padrões") recoloca o padrão do modelo.
+    # Teste 04: a Mini só mostrava o olho padrão depois de escolher outro tipo nos Ajustes ->
+    # não depender do initialize: no 1º frame v.yast_cfgpN não existe, o "??" dá um valor que
+    # nenhuma propriedade tem e o bloco roda uma vez, gravando o padrão.
     for i in range(n_configs):
         d = _fmt_num(defaults[i]) if i < len(defaults) else "0"
-        lines.append(f"t.c={p(f'c{i}')};(t.c!=(v.yast_cfgp{i}??{CONFIG_UNSET}))?{{v.yast_cfgp{i}=t.c;"
+        lines.append(f"t.c={p(f'c{i}')};(t.c!=(v.yast_cfgp{i}??{CONFIG_UNSET + 0.5}))?{{v.yast_cfgp{i}=t.c;"
                      f"v.yast_cfg{i}=(t.c>{CONFIG_UNSET + 1})?t.c:{d};}};")
     return lines
 
